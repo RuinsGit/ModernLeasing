@@ -41,69 +41,46 @@
                 <!-- Contact Form -->
                 <div class="col-lg-8" data-aos="fade-right">
                     <div class="contact-form-container">
-                        <h3 class="text-white mb-4">Müraciət Formu</h3>
+                        <h3 class="text-white mb-4">Əlaqə Formu</h3>
                         <form id="contactForm" class="contact-form">
+                            <!-- Ad və Soyad - Tam genişlik -->
+                            <div class="mb-4">
+                                <label for="contactName" class="form-label">Ad və Soyad</label>
+                                <input type="text" class="form-control" id="contactName" 
+                                       placeholder="Adınızı və soyadınızı daxil edin" required>
+                                <div class="invalid-feedback">Ad və soyad sahəsi mütləqdir.</div>
+                            </div>
+                            
+                            <!-- Telefon və Email - Yan-yana -->
                             <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="contactName" class="form-label">Ad və Soyad</label>
-                                    <input type="text" class="form-control" id="contactName" 
-                                           placeholder="Tam adınızı daxil edin" required>
-                                    <div class="invalid-feedback">Ad və soyad sahəsi mütləqdir.</div>
-                                </div>
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-6 mb-4">
                                     <label for="contactPhone" class="form-label">Telefon</label>
                                     <input type="tel" class="form-control" id="contactPhone" 
                                            placeholder="+994 XX XXX XX XX" required>
                                     <div class="invalid-feedback">Telefon nömrəsi düzgün formatda daxil edin.</div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="contactEmail" class="form-label">E-poçt</label>
+                                <div class="col-md-6 mb-4">
+                                    <label for="contactEmail" class="form-label">Email</label>
                                     <input type="email" class="form-control" id="contactEmail" 
                                            placeholder="emailiniz@example.com" required>
-                                    <div class="invalid-feedback">Düzgün e-poçt ünvanı daxil edin.</div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="serviceSelection" class="form-label">Xidmət Seçimi</label>
-                                    <select class="form-control" id="serviceSelection" required>
-                                        <option value="">Xidməti seçin...</option>
-                                        <option value="agricultural">Kənd Təsərrüfatı Texnikası</option>
-                                        <option value="automotive">Avtomobil Lizinqi</option>
-                                        <option value="household">Məişət Texnikası</option>
-                                        <option value="realestate">Daşınmaz Əmlak</option>
-                                        <option value="industrial">Sənaye Avadanlıqları</option>
-                                        <option value="construction">Tikinti Texnikası</option>
-                                        <option value="investment">İnvestor Olmaq</option>
-                                        <option value="other">Digər</option>
-                                    </select>
-                                    <div class="invalid-feedback">Xidmət seçimi mütləqdir.</div>
+                                    <div class="invalid-feedback">Düzgün email ünvanı daxil edin.</div>
                                 </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="contactSubject" class="form-label">Mövzu</label>
-                                <input type="text" class="form-control" id="contactSubject" 
-                                       placeholder="Müraciətinizin mövzusu" required>
-                                <div class="invalid-feedback">Mövzu sahəsi mütləqdir.</div>
-                            </div>
+                            
+                            <!-- Mesaj - Tam genişlik -->
                             <div class="mb-4">
                                 <label for="contactMessage" class="form-label">Mesaj</label>
-                                <textarea class="form-control" id="contactMessage" rows="5" 
-                                          placeholder="Təfərrüatlı məlumat və suallarınızı yazın..." required></textarea>
+                                <textarea class="form-control" id="contactMessage" rows="6" 
+                                          placeholder="Mesajınızı və suallarınızı yazın..." required></textarea>
                                 <div class="invalid-feedback">Mesaj sahəsi mütləqdir.</div>
                             </div>
-                            <div class="mb-3">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="privacyPolicy" required>
-                                    <label class="form-check-label text-light" for="privacyPolicy">
-                                        <a href="#" class="text-primary">Məxfilik Siyasəti</a>ni oxuyub qəbul edirəm.
-                                    </label>
-                                    <div class="invalid-feedback">Məxfilik siyasətini qəbul etməlisiniz.</div>
-                                </div>
+                            
+                            <!-- Submit Button -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary-custom btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i>Mesaj Göndər
+                                </button>
                             </div>
-                            <button type="submit" class="btn btn-primary-custom">
-                                <i class="fas fa-paper-plane me-2"></i>Müraciəti Göndər
-                            </button>
                         </form>
                     </div>
                 </div>
@@ -322,16 +299,19 @@
     .contact-form-container {
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        padding: 2.5rem;
+        border-radius: 15px;
+        padding: 3rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
     
     .contact-form .form-control {
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.08);
+        border: 2px solid rgba(255, 255, 255, 0.15);
         color: white;
-        border-radius: 8px;
-        padding: 12px 15px;
+        border-radius: 10px;
+        padding: 15px 20px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
     }
     
     .contact-form .form-control::placeholder {
@@ -339,16 +319,18 @@
     }
     
     .contact-form .form-control:focus {
-        background: rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.12);
         border-color: var(--primary-color);
         color: white;
-        box-shadow: 0 0 0 0.2rem rgba(255, 107, 53, 0.25);
+        box-shadow: 0 0 0 0.25rem rgba(34, 137, 255, 0.25);
+        transform: translateY(-2px);
     }
     
     .contact-form .form-label {
-        color: rgba(255, 255, 255, 0.9);
-        font-weight: 500;
-        margin-bottom: 0.5rem;
+        color: rgba(255, 255, 255, 0.95);
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        font-size: 1.05rem;
     }
     
     .contact-form .form-check-input:checked {
@@ -603,7 +585,13 @@
         }
         
         .contact-form-container {
-            padding: 1.5rem;
+            padding: 2rem 1.5rem;
+            border-radius: 10px;
+        }
+        
+        .contact-form .form-control {
+            padding: 12px 15px;
+            font-size: 0.95rem;
         }
         
         .contact-info-sidebar {
@@ -662,8 +650,8 @@
             
             let isValid = true;
             
-            // Validate required fields
-            const requiredFields = ['contactName', 'contactPhone', 'contactEmail', 'serviceSelection', 'contactSubject', 'contactMessage'];
+            // Validate required fields - sadece 4 esas sahə
+            const requiredFields = ['contactName', 'contactPhone', 'contactEmail', 'contactMessage'];
             requiredFields.forEach(fieldId => {
                 const field = document.getElementById(fieldId);
                 if (!field.value.trim()) {
@@ -688,13 +676,6 @@
                 isValid = false;
             }
             
-            // Privacy policy checkbox
-            const privacyPolicy = document.getElementById('privacyPolicy');
-            if (!privacyPolicy.checked) {
-                privacyPolicy.classList.add('is-invalid');
-                isValid = false;
-            }
-            
             if (isValid) {
                 // Submit form
                 const submitBtn = this.querySelector('button[type="submit"]');
@@ -713,7 +694,7 @@
                     // Show success message
                     const successAlert = document.createElement('div');
                     successAlert.className = 'alert alert-success mt-3';
-                    successAlert.innerHTML = '<i class="fas fa-check-circle me-2"></i>Müraciətiniz uğurla göndərildi! 24 saat ərzində sizinlə əlaqə saxlanılacaq.';
+                    successAlert.innerHTML = '<i class="fas fa-check-circle me-2"></i>Mesajınız uğurla göndərildi! Tezliklə sizinlə əlaqə saxlayacağıq.';
                     this.appendChild(successAlert);
                     
                     // Reset form after 3 seconds
