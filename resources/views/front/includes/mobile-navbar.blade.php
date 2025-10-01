@@ -49,7 +49,7 @@
     justify-content: space-around;
     align-items: center;
     max-width: 100%;
-    padding: 0 1rem;
+    padding: 0 15px;
 }
 
 .mobile-nav-item {

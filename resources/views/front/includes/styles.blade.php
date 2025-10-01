@@ -442,20 +442,26 @@
     }
 
     /* ===== LARGE SCREEN FIXES ===== */
-    @media (min-width: 1400px) {
+    @media (min-width: 1400px) and (max-width: 1919.98px) {
         /* Extra Large Desktop - Container max width */
         .container {
-            max-width: 1320px !important;
+            max-width: 1200px !important;
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+        }
+        
+        .navbar-content {
+            padding: 0 20px !important;
         }
         
         /* Hero Section düzəlişləri */
         .hero-title {
-            font-size: 4rem !important;
+            font-size: 3.5rem !important;
             line-height: 1.1 !important;
         }
         
         .hero-subtitle {
-            font-size: 1.3rem !important;
+            font-size: 1.2rem !important;
         }
     }
 
@@ -463,40 +469,54 @@
         /* TV/Ultra Wide Screens */
         .container {
             max-width: 1600px !important;
-            padding-left: 50px !important;
-            padding-right: 50px !important;
+            padding-left: 25px !important;
+            padding-right: 25px !important;
         }
         
         .navbar-content {
-            padding: 0 50px !important;
+            padding: 0 25px !important;
         }
         
         /* Font sizes for large screens */
         .section-title {
-            font-size: 3.5rem !important;
+            font-size: 3rem !important;
         }
         
         .hero-title {
-            font-size: 5rem !important;
+            font-size: 4rem !important;
         }
     }
 
     /* ===== DESKTOP RESPONSIVE FIXES ===== */
-    @media (min-width: 992px) {
+    @media (min-width: 992px) and (max-width: 1919.98px) {
         /* Desktop Container düzəlişləri */
         .container {
-            padding-left: 30px !important;
-            padding-right: 30px !important;
+            padding-left: 15px !important;
+            padding-right: 15px !important;
+        }
+    }
+
+    /* ===== TABLET RESPONSIVE FIXES ===== */
+    @media (min-width: 768px) and (max-width: 991.98px) {
+        /* Tablet Container düzəlişləri */
+        .container {
+            max-width: 100% !important;
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+        }
+        
+        .navbar-content {
+            padding: 0 20px !important;
         }
     }
 
     /* ===== MOBILE RESPONSIVE FIXES ===== */
-    @media (max-width: 991.98px) {
-        /* Container düzəlişləri */
+    @media (max-width: 767.98px) {
+        /* Mobile Container düzəlişləri */
         .container {
             max-width: 100% !important;
-            padding-left: 1rem !important;
-            padding-right: 1rem !important;
+            padding-left: 15px !important;
+            padding-right: 15px !important;
         }
 
         /* Section padding düzəlişləri */
@@ -550,8 +570,14 @@
     @media (max-width: 575.98px) {
         /* Extra small devices */
         .container {
-            padding-left: 0.75rem !important;
-            padding-right: 0.75rem !important;
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+            min-width: 320px !important; /* Minimum phone screen protection */
+        }
+        
+        /* Overflow protection for small screens */
+        body {
+            min-width: 320px !important;
         }
 
         .hero-title {

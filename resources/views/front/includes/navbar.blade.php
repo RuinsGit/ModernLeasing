@@ -52,7 +52,7 @@
     justify-content: center;
     width: 100%;
     gap: 4rem;
-    padding: 0 30px;
+    padding: 0 15px;
 }
 
 /* Logo */
