@@ -27,8 +27,8 @@
                         <div class="category-icon">
                             <i class="fas fa-tractor"></i>
                         </div>
-                        <h4 class="text-white">Kənd Təsərrüfatı Texnikası</h4>
-                        <p class="text-light">Traktor, kombayn və digər kənd təsərrüfatı avadanlıqlarının lizinqi</p>
+                        <h4 class="text-dark">Kənd Təsərrüfatı Texnikası</h4>
+                        <p style="color: #666666;">Traktor, kombayn və digər kənd təsərrüfatı avadanlıqlarının lizinqi</p>
                         <ul class="category-features">
                             <li>• Traktor və kombaynlar</li>
                             <li>• Əkin-biçin avadanlıqları</li>
@@ -42,8 +42,8 @@
                         <div class="category-icon">
                             <i class="fas fa-car"></i>
                         </div>
-                        <h4 class="text-white">Avtomobillər</h4>
-                        <p class="text-light">Şəxsi və kommersiya avtomobillərin əlverişli lizinq imkanları</p>
+                        <h4 class="text-dark">Avtomobillər</h4>
+                        <p style="color: #666666;">Şəxsi və kommersiya avtomobillərin əlverişli lizinq imkanları</p>
                         <ul class="category-features">
                             <li>• Şəxsi avtomobillər</li>
                             <li>• Kommersiya nəqliyyatı</li>
@@ -57,8 +57,8 @@
                         <div class="category-icon">
                             <i class="fas fa-home"></i>
                         </div>
-                        <h4 class="text-white">Məişət Texnikası</h4>
-                        <p class="text-light">Ev və mətbəx texnikalarının lizinq xidmətləri</p>
+                        <h4 class="text-dark">Məişət Texnikası</h4>
+                        <p style="color: #666666;">Ev və mətbəx texnikalarının lizinq xidmətləri</p>
                         <ul class="category-features">
                             <li>• Mətbəx texnikası</li>
                             <li>• Ev elektronika</li>
@@ -72,8 +72,8 @@
                         <div class="category-icon">
                             <i class="fas fa-building"></i>
                         </div>
-                        <h4 class="text-white">Daşınmaz Əmlak</h4>
-                        <p class="text-light">Ofis və yaşayış sahələrinin lizinq imkanları</p>
+                        <h4 class="text-dark">Daşınmaz Əmlak</h4>
+                        <p style="color: #666666;">Ofis və yaşayış sahələrinin lizinq imkanları</p>
                         <ul class="category-features">
                             <li>• Ofis binaları</li>
                             <li>• Mənzil və villalar</li>
@@ -87,8 +87,8 @@
                         <div class="category-icon">
                             <i class="fas fa-industry"></i>
                         </div>
-                        <h4 class="text-white">Sənaye Avadanlıqları</h4>
-                        <p class="text-light">Müxtəlif sənaye sahələri üçün avadanlıq lizinqi</p>
+                        <h4 class="text-dark">Sənaye Avadanlıqları</h4>
+                        <p style="color: #666666;">Müxtəlif sənaye sahələri üçün avadanlıq lizinqi</p>
                         <ul class="category-features">
                             <li>• İstehsal avadanlıqları</li>
                             <li>• Enerji sistemləri</li>
@@ -102,8 +102,8 @@
                         <div class="category-icon">
                             <i class="fas fa-tools"></i>
                         </div>
-                        <h4 class="text-white">Tikinti Texnikası</h4>
-                        <p class="text-light">Tikinti və yol-inşaat texnikalarının lizinqi</p>
+                        <h4 class="text-dark">Tikinti Texnikası</h4>
+                        <p style="color: #666666;">Tikinti və yol-inşaat texnikalarının lizinqi</p>
                         <ul class="category-features">
                             <li>• Ekskovator və bulldozerlər</li>
                             <li>• Kranlar və liftlər</li>
@@ -408,7 +408,7 @@
     
     .category-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(255, 107, 53, 0.2);
+        box-shadow: 0 15px 40px rgba(34, 137, 255, 0.2);
     }
     
     .category-icon {
@@ -431,7 +431,7 @@
     }
     
     .category-features li {
-        color: var(--text-light);
+        color: #666666;
         margin-bottom: 0.5rem;
         font-size: 0.9rem;
     }

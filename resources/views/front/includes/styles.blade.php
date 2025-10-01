@@ -441,6 +441,46 @@
         color: var(--primary-color);
     }
 
+    /* ===== LARGE SCREEN FIXES ===== */
+    @media (min-width: 1400px) {
+        /* Extra Large Desktop - Container max width */
+        .container {
+            max-width: 1320px !important;
+        }
+        
+        /* Hero Section düzəlişləri */
+        .hero-title {
+            font-size: 4rem !important;
+            line-height: 1.1 !important;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem !important;
+        }
+    }
+
+    @media (min-width: 1920px) {
+        /* TV/Ultra Wide Screens */
+        .container {
+            max-width: 1600px !important;
+            padding-left: 50px !important;
+            padding-right: 50px !important;
+        }
+        
+        .navbar-content {
+            padding: 0 50px !important;
+        }
+        
+        /* Font sizes for large screens */
+        .section-title {
+            font-size: 3.5rem !important;
+        }
+        
+        .hero-title {
+            font-size: 5rem !important;
+        }
+    }
+
     /* ===== DESKTOP RESPONSIVE FIXES ===== */
     @media (min-width: 992px) {
         /* Desktop Container düzəlişləri */
