@@ -199,6 +199,138 @@
             </div>
         </div>
     </section>
+
+    <!-- News Section -->
+    <section class="section-padding text-white" style="background-color: var(--section-bg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="section-title text-white" data-aos="fade-up">Son <span class="text-primary">Xəbərlər</span></h2>
+                    <p class="section-subtitle text-light" data-aos="fade-up" data-aos-delay="200">
+                        Şirkətimizin ən son yeniliklərindən və nailiyyətlərindən xəbərdar olun
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <article class="news-card">
+                        <div class="news-date">
+                            <span class="day">15</span>
+                            <span class="month">Dekabr 2024</span>
+                        </div>
+                        <div class="news-content">
+                            <h5 class="news-title text-white">Yeni Rəqəmsal Platformamız İstifadəyə Verildi</h5>
+                            <p class="news-excerpt text-light">
+                                Müştərilərimizin rahatlığı üçün hazırladığımız yeni online lizinq platforması artıq fəaliyyətdədir. Bu platforma ilə siz...
+                            </p>
+                            <a href="#" class="news-link text-primary">
+                                <i class="fas fa-arrow-right me-2"></i>Ətraflı oxu
+                            </a>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <article class="news-card">
+                        <div class="news-date">
+                            <span class="day">02</span>
+                            <span class="month">Dekabr 2024</span>
+                        </div>
+                        <div class="news-content">
+                            <h5 class="news-title text-white">25+ Yeni Tərəfdaşlıq Müqaviləsi İmzalandı</h5>
+                            <p class="news-excerpt text-light">
+                                Bu il ərzində beynəlxalq 25-dən çox şirkətlə əməkdaşlıq müqavilələri imzaladıq. Bu tərəfdaşlıqlar bizə daha geniş...
+                            </p>
+                            <a href="#" class="news-link text-primary">
+                                <i class="fas fa-arrow-right me-2"></i>Ətraflı oxu
+                            </a>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <article class="news-card">
+                        <div class="news-date">
+                            <span class="day">28</span>
+                            <span class="month">Noyabr 2024</span>
+                        </div>
+                        <div class="news-content">
+                            <h5 class="news-title text-white">Avtomobl Lizinqi İnkişaf Edir</h5>
+                            <p class="news-excerpt text-light">
+                                2024-cü ildə avtomobl lizinqi sahəsində 40% artım qeydə alınıb. Yeni model avtomobillər və sərfəli şərtlərlə...
+                            </p>
+                            <a href="#" class="news-link text-primary">
+                                <i class="fas fa-arrow-right me-2"></i>Ətraflı oxu
+                            </a>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <article class="news-card">
+                        <div class="news-date">
+                            <span class="day">15</span>
+                            <span class="month">Noyabr 2024</span>
+                        </div>
+                        <div class="news-content">
+                            <h5 class="news-title text-white">Daşınmaz Əmlak Lizinqi Genişlənir</h5>
+                            <p class="news-excerpt text-light">
+                                Daşınmaz əmlak lizinqi sahəsində yeni imkanlar. Kommersiya və yaşayış sahələri üçün uyğun lizinq həlləri...
+                            </p>
+                            <a href="#" class="news-link text-primary">
+                                <i class="fas fa-arrow-right me-2"></i>Ətraflı oxu
+                            </a>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="700">
+                    <article class="news-card">
+                        <div class="news-date">
+                            <span class="day">08</span>
+                            <span class="month">Noyabr 2024</span>
+                        </div>
+                        <div class="news-content">
+                            <h5 class="news-title text-white">Texnologiya Lizinqi Sahəsində İrəliləyiş</h5>
+                            <p class="news-excerpt text-light">
+                                IT avadanlıqları və texnologiya lizinqi sahəsində yeni məhsullar təqdim edirik. Şirkətlər üçün sərfəli həllər...
+                            </p>
+                            <a href="#" class="news-link text-primary">
+                                <i class="fas fa-arrow-right me-2"></i>Ətraflı oxu
+                            </a>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="800">
+                    <article class="news-card">
+                        <div class="news-date">
+                            <span class="day">25</span>
+                            <span class="month">Oktyabr 2024</span>
+                        </div>
+                        <div class="news-content">
+                            <h5 class="news-title text-white">Müştəri Məmnuniyyəti Rekord Səviyyədə</h5>
+                            <p class="news-excerpt text-light">
+                                Son keçirilən sorğulara görə müştəri məmnuniyyətimiz 96% təşkil edir. Bu, bizim keyfiyyətli xidmətimizin nəticəsidir...
+                            </p>
+                            <a href="#" class="news-link text-primary">
+                                <i class="fas fa-arrow-right me-2"></i>Ətraflı oxu
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <a href="#" class="btn btn-primary" style="background-color: var(--primary-color); border-color: var(--primary-color); border-radius: 10px; padding: 12px 30px;" data-aos="fade-up">
+                        <i class="fas fa-newspaper me-2"></i>Bütün Xəbərləri Gör
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection
 
 @push('styles')
@@ -302,6 +434,82 @@
         margin: 0 auto;
     }
     
+    .news-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 0;
+        height: 100%;
+        transition: all 0.3s ease;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .news-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--primary-color);
+        box-shadow: 0 10px 30px rgba(34, 137, 255, 0.2);
+    }
+    
+    .news-date {
+        background: var(--primary-color);
+        color: white;
+        text-align: center;
+        padding: 15px;
+        position: relative;
+    }
+    
+    .news-date .day {
+        display: block;
+        font-size: 2rem;
+        font-weight: 800;
+        line-height: 1;
+    }
+    
+    .news-date .month {
+        display: block;
+        font-size: 0.9rem;
+        margin-top: 5px;
+        opacity: 0.9;
+    }
+    
+    .news-content {
+        padding: 1.5rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .news-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        line-height: 1.4;
+    }
+    
+    .news-excerpt {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        flex: 1;
+        opacity: 0.8;
+    }
+    
+    .news-link {
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+        transition: all 0.3s ease;
+        margin-top: auto;
+    }
+    
+    .news-link:hover {
+        color: var(--primary-color) !important;
+        transform: translateX(5px);
+    }
+    
     @media (max-width: 768px) {
         .page-title {
             font-size: 2rem;
@@ -313,6 +521,26 @@
         
         .timeline-content {
             padding-left: 1rem;
+        }
+        
+        .news-date .day {
+            font-size: 1.5rem;
+        }
+        
+        .news-date .month {
+            font-size: 0.8rem;
+        }
+        
+        .news-content {
+            padding: 1rem;
+        }
+        
+        .news-title {
+            font-size: 1rem;
+        }
+        
+        .news-excerpt {
+            font-size: 0.85rem;
         }
     }
 </style>
