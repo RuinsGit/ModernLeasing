@@ -478,7 +478,7 @@
         border: 2px solid var(--primary-color);
         color: var(--primary-color);
         padding: 12px 30px;
-        border-radius: 8px;
+        border-radius: 10px;
         font-weight: 600;
         text-decoration: none;
         display: inline-flex;

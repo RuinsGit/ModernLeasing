@@ -222,7 +222,7 @@
         background: var(--primary-color);
         border: none;
         padding: 12px 30px;
-        border-radius: 50px;
+        border-radius: 10px;
         font-weight: 600;
         color: #fff;
         transition: all 0.3s ease;
