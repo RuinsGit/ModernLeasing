@@ -6,7 +6,7 @@
 
 @section('content')
     <!-- Page Header -->
-    <section class="page-header" style="background: linear-gradient(135deg, #1a1a1a 0%, #ff6b35 100%); padding: 150px 0 100px;">
+    <section class="page-header" style="background: linear-gradient(135deg, #1F1F1F 0%, #2289FF 100%); padding: 150px 0 100px;">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">

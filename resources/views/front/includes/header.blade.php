@@ -139,7 +139,7 @@
     .hero-section {
         position: relative;
         min-height: 100vh;
-        background: linear-gradient(135deg, rgba(44, 62, 80, 0.95), rgba(255, 107, 53, 0.85)),
+        background: linear-gradient(135deg, rgba(31, 31, 31, 0.95), rgba(34, 137, 255, 0.85)),
                     url('https://images.unsplash.com/photo-1566576912006-a6d4c86b0d8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
         background-size: cover;
         background-position: center;
@@ -156,8 +156,8 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: radial-gradient(circle at 30% 20%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
-                    radial-gradient(circle at 70% 80%, rgba(44, 62, 80, 0.1) 0%, transparent 50%);
+        background: radial-gradient(circle at 30% 20%, rgba(34, 137, 255, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 70% 80%, rgba(31, 31, 31, 0.1) 0%, transparent 50%);
         animation: backgroundShift 20s ease-in-out infinite;
     }
 

@@ -169,8 +169,8 @@
     /* Hero Section */
     .hero-section {
         min-height: 100vh;
-        background: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(255, 107, 53, 0.8)),
-                    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ff6b35" stop-opacity="0.1"/><stop offset="100%" stop-color="%232c3e50" stop-opacity="0.3"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23a)"/></svg>');
+        background: linear-gradient(135deg, rgba(31, 31, 31, 0.9), rgba(34, 137, 255, 0.8)),
+                    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%232289FF" stop-opacity="0.1"/><stop offset="100%" stop-color="%231F1F1F" stop-opacity="0.3"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23a)"/></svg>');
         background-size: cover;
         background-position: center;
         display: flex;
@@ -186,7 +186,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23ff6b35" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/></circle><circle cx="80" cy="40" r="1.5" fill="%23f39c12" opacity="0.4"><animate attributeName="opacity" values="0.4;0.9;0.4" dur="3s" repeatCount="indefinite"/></circle><circle cx="40" cy="80" r="1" fill="%232c3e50" opacity="0.2"><animate attributeName="opacity" values="0.2;0.6;0.2" dur="4s" repeatCount="indefinite"/></circle></svg>');
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%232289FF" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/></circle><circle cx="80" cy="40" r="1.5" fill="%234A9EFF" opacity="0.4"><animate attributeName="opacity" values="0.4;0.9;0.4" dur="3s" repeatCount="indefinite"/></circle><circle cx="40" cy="80" r="1" fill="%231F1F1F" opacity="0.2"><animate attributeName="opacity" values="0.2;0.6;0.2" dur="4s" repeatCount="indefinite"/></circle></svg>');
         background-size: 200px 200px;
         animation: float 20s linear infinite;
     }
