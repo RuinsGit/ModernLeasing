@@ -19,17 +19,18 @@
 
 <style>
     :root {
-        --primary-color: #ff6b35;
-        --secondary-color: #1a1a1a;
-        --accent-color: #f39c12;
-        --dark-color: #000000;
-        --darker-color: #0a0a0a;
-        --light-color: #f8f9fa;
-        --text-dark: #ffffff;
-        --text-light: #cccccc;
-        --border-color: #333333;
-        --card-bg: #1a1a1a;
-        --section-bg: #000000;
+        --primary-color: #2289FF;
+        --secondary-color: #1F1F1F;
+        --accent-color: #4A9EFF;
+        --dark-color: #1F1F1F;
+        --darker-color: #0F0F0F;
+        --light-color: #F0F2F4;
+        --text-dark: #1F1F1F;
+        --text-light: #666666;
+        --border-color: #E0E0E0;
+        --card-bg: #FFFFFF;
+        --section-bg: #1F1F1F;
+        --main-bg: #F0F2F4;
     }
 
     * {
@@ -68,7 +69,7 @@
         font-family: 'Poppins', sans-serif;
         line-height: 1.6;
         color: var(--text-dark);
-        background-color: #fff;
+        background-color: var(--main-bg);
         overflow-x: hidden !important;
         width: 100% !important;
         max-width: 100vw !important;
@@ -80,7 +81,7 @@
     }
 
     .text-primary:hover {
-        color: #e55a2b !important;
+        color: #1976D2 !important;
     }
 
     .bg-primary {
@@ -97,8 +98,8 @@
     }
 
     .btn-primary:hover {
-        background-color: #e55a2b !important;
-        border-color: #e55a2b !important;
+        background-color: #1976D2 !important;
+        border-color: #1976D2 !important;
     }
 
     /* Custom Scrollbar */
@@ -116,7 +117,7 @@
     }
 
     ::-webkit-scrollbar-thumb:hover {
-        background: #e55a2b;
+        background: #1976D2;
     }
 
     /* Navbar Styles */
@@ -232,9 +233,9 @@
     }
 
     .btn-primary-custom:hover {
-        background: #e55a2b;
+        background: #1976D2;
         transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+        box-shadow: 0 8px 20px rgba(34, 137, 255, 0.4);
         color: #fff;
     }
 
@@ -423,9 +424,9 @@
     }
 
     .track-btn:hover {
-        background: #e55a2b;
+        background: #1976D2;
         transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+        box-shadow: 0 5px 15px rgba(34, 137, 255, 0.4);
     }
 
     /* Phone number styling */
@@ -438,6 +439,15 @@
 
     .phone-number:hover {
         color: var(--primary-color);
+    }
+
+    /* ===== DESKTOP RESPONSIVE FIXES ===== */
+    @media (min-width: 992px) {
+        /* Desktop Container düzəlişləri */
+        .container {
+            padding-left: 30px !important;
+            padding-right: 30px !important;
+        }
     }
 
     /* ===== MOBILE RESPONSIVE FIXES ===== */

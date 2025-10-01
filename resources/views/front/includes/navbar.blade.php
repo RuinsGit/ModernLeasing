@@ -32,7 +32,7 @@
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.4); /* Daha şeffaf beyaz */
+    background: rgba(240, 242, 244, 0.9); /* Yeni ana background şəffaf */
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -42,7 +42,7 @@
 }
 
 .desktop-navbar.scrolled {
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(240, 242, 244, 0.95);
     padding: 1.25rem 0;
 }
 
@@ -52,13 +52,14 @@
     justify-content: center;
     width: 100%;
     gap: 4rem;
+    padding: 0 30px;
 }
 
 /* Logo */
 .navbar-brand a {
     display: flex;
     align-items: center;
-    color: #000;
+    color: #1F1F1F;
     text-decoration: none;
     font-weight: 800;
     font-size: 1.5rem;
@@ -85,7 +86,7 @@
 }
 
 .menu-list a {
-    color: rgba(0, 0, 0, 0.8);
+    color: rgba(31, 31, 31, 0.8);
     text-decoration: none;
     font-weight: 500;
     padding: 0.5rem 1rem;
@@ -96,8 +97,8 @@
 
 .menu-list a:hover,
 .menu-list a.active {
-    color: #ff6b35;
-    background: rgba(255, 107, 53, 0.1);
+    color: #2289FF;
+    background: rgba(34, 137, 255, 0.1);
     transform: translateY(-2px);
 }
 
