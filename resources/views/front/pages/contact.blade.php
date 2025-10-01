@@ -339,9 +339,22 @@
     }
     
     .contact-form .invalid-feedback {
-        display: block;
+        display: none;
         font-size: 0.875rem;
         color: #ff6b6b;
+        margin-top: 0.25rem;
+    }
+    
+    .contact-form .form-control.is-invalid + .invalid-feedback,
+    .contact-form .form-control.is-invalid ~ .invalid-feedback {
+        display: block;
+    }
+    
+    .contact-form .form-control.is-invalid {
+        border-color: #ff6b6b !important;
+        background: rgba(255, 107, 107, 0.1) !important;
+        color: white;
+        box-shadow: 0 0 0 0.25rem rgba(255, 107, 107, 0.25) !important;
     }
     
     .contact-info-sidebar {
@@ -782,6 +795,50 @@
         
         // Update every minute
         setInterval(updateCurrentTime, 60000);
+        
+        // Real-time blur validation - sahədən çıxanda yoxla
+        const formFields = ['contactName', 'contactPhone', 'contactEmail', 'contactMessage'];
+        formFields.forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                field.addEventListener('blur', function() {
+                    // Sahə boşdursa və istifadəçi ona toxunubsa
+                    if (this.value.trim() === '' && this.hasAttribute('data-touched')) {
+                        this.classList.add('is-invalid');
+                    } else {
+                        this.classList.remove('is-invalid');
+                        
+                        // Email xüsusi yoxlanması
+                        if (fieldId === 'contactEmail' && this.value.trim() !== '') {
+                            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                            if (!emailRegex.test(this.value)) {
+                                this.classList.add('is-invalid');
+                            }
+                        }
+                        
+                        // Telefon xüsusi yoxlanması
+                        if (fieldId === 'contactPhone' && this.value.trim() !== '') {
+                            const phoneRegex = /^\+994\s?\d{2}\s?\d{3}\s?\d{2}\s?\d{2}$/;
+                            if (!phoneRegex.test(this.value)) {
+                                this.classList.add('is-invalid');
+                            }
+                        }
+                    }
+                });
+                
+                // İstifadəçi sahəyə toxunduğunu işarələ
+                field.addEventListener('focus', function() {
+                    this.setAttribute('data-touched', 'true');
+                });
+                
+                // İstifadəçi yazanda xətanı sil
+                field.addEventListener('input', function() {
+                    if (this.value.trim() !== '') {
+                        this.classList.remove('is-invalid');
+                    }
+                });
+            }
+        });
     });
 </script>
 @endpush
