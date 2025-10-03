@@ -1,44 +1,44 @@
 <!-- MOBILE BOTTOM NAVIGATION ONLY -->
 <div class="mobile-bottom-nav d-lg-none">
     <div class="mobile-nav-container">
-        @if(isset($mobileNavbarItems) && $mobileNavbarItems->count() > 0)
-            @foreach($mobileNavbarItems as $item)
-                <a href="{{ $item->url }}" class="mobile-nav-item {{ $item->isActive() ? 'active' : '' }}">
-                    @if($item->icon)
-                        <i class="{{ $item->icon }}"></i>
-                    @else
+        <?php if(isset($mobileNavbarItems) && $mobileNavbarItems->count() > 0): ?>
+            <?php $__currentLoopData = $mobileNavbarItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <a href="<?php echo e($item->url); ?>" class="mobile-nav-item <?php echo e($item->isActive() ? 'active' : ''); ?>">
+                    <?php if($item->icon): ?>
+                        <i class="<?php echo e($item->icon); ?>"></i>
+                    <?php else: ?>
                         <i class="fas fa-circle"></i>
-                    @endif
-                    <span>{{ $item->title }}</span>
+                    <?php endif; ?>
+                    <span><?php echo e($item->title); ?></span>
                 </a>
-            @endforeach
-        @else
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        <?php else: ?>
             <!-- Default mobile menu items if no data in database -->
-            <a href="{{ route('front.index') }}" class="mobile-nav-item {{ request()->routeIs('front.index') ? 'active' : '' }}">
+            <a href="<?php echo e(route('front.index')); ?>" class="mobile-nav-item <?php echo e(request()->routeIs('front.index') ? 'active' : ''); ?>">
                 <i class="fas fa-home"></i>
                 <span>Ana Səhifə</span>
             </a>
             
-            <a href="{{ route('front.about') }}" class="mobile-nav-item {{ request()->routeIs('front.about') ? 'active' : '' }}">
+            <a href="<?php echo e(route('front.about')); ?>" class="mobile-nav-item <?php echo e(request()->routeIs('front.about') ? 'active' : ''); ?>">
                 <i class="fas fa-info-circle"></i>
                 <span>Haqqımızda</span>
             </a>
             
-            <a href="{{ route('front.services') }}" class="mobile-nav-item {{ request()->routeIs('front.services') ? 'active' : '' }}">
+            <a href="<?php echo e(route('front.services')); ?>" class="mobile-nav-item <?php echo e(request()->routeIs('front.services') ? 'active' : ''); ?>">
                 <i class="fas fa-cogs"></i>
                 <span>Xidmətlər</span>
             </a>
             
-            <a href="{{ route('front.contact') }}" class="mobile-nav-item {{ request()->routeIs('front.contact') ? 'active' : '' }}">
+            <a href="<?php echo e(route('front.contact')); ?>" class="mobile-nav-item <?php echo e(request()->routeIs('front.contact') ? 'active' : ''); ?>">
                 <i class="fas fa-envelope"></i>
                 <span>Əlaqə</span>
             </a>
             
-            <a href="{{ route('front.faq') }}" class="mobile-nav-item {{ request()->routeIs('front.faq') ? 'active' : '' }}">
+            <a href="<?php echo e(route('front.faq')); ?>" class="mobile-nav-item <?php echo e(request()->routeIs('front.faq') ? 'active' : ''); ?>">
                 <i class="fas fa-question-circle"></i>
                 <span>FAQ</span>
             </a>
-        @endif
+        <?php endif; ?>
     </div>
 </div>
 
@@ -164,4 +164,4 @@
         max-width: 100% !important;
     }
 }
-</style>
+</style><?php /**PATH C:\xampp\htdocs\ModernLeasing\resources\views/front/includes/mobile-navbar.blade.php ENDPATH**/ ?>

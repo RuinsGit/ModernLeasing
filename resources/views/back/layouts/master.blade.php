@@ -83,7 +83,7 @@
     <script src="{{ asset('back/assets/') }}/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="{{ asset('back/assets/') }}/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
 
-    <script src="{{ asset('back/assets/') }}/js/pages/dashboard.init.js"></script>
+    @stack('dashboard-scripts')
 
     <!-- App js -->
     <script src="{{ asset('back/assets/') }}/js/app.js"></script>
@@ -99,6 +99,7 @@
         });
     </script>
     @stack('js')
+    @stack('script')
 </body>
 
 

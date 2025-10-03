@@ -8,7 +8,8 @@
            
             <div class="mt-3">
                 <h4 class="font-size-16 mb-1" style="color: white;">
-                    {{ auth()->guard('admin')->user()->name ?? 'Administrator' }}
+                    <?php echo e(auth()->guard('admin')->user()->name ?? 'Administrator'); ?>
+
                 </h4>
                 <span class="text-muted"><i class="ri-record-circle-line align-middle font-size-14 text-success"></i>
                     Online</span>
@@ -22,7 +23,7 @@
                 <li class="menu-title">İDARƏ PANELİ</li>
 
                 <li>
-                    <a href="{{ route('admin.dashboard') }}" class="waves-effect">
+                    <a href="<?php echo e(route('admin.dashboard')); ?>" class="waves-effect">
                         <i class="ri-dashboard-line"></i>
                         <span>Dashboard</span>
                     </a>
@@ -34,11 +35,11 @@
                         <span>Ana Səhifə</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('admin.hero.index') }}">Hero Section</a></li>
-                        <li><a href="{{ route('admin.hero-features.index') }}">Hero Kartları</a></li>
-                        <li><a href="{{ route('admin.navbar.index') }}">Navbar Menyu</a></li>
-                        <li><a href="{{ route('admin.site-logo.index') }}">Logo İdarəetməsi</a></li>
-                        <li><a href="{{ route('admin.services.index') }}">Xidmətlər</a></li>
+                        <li><a href="<?php echo e(route('admin.hero.index')); ?>">Hero Section</a></li>
+                        <li><a href="<?php echo e(route('admin.hero-features.index')); ?>">Hero Kartları</a></li>
+                        <li><a href="<?php echo e(route('admin.navbar.index')); ?>">Navbar Menyu</a></li>
+                        <li><a href="<?php echo e(route('admin.site-logo.index')); ?>">Logo İdarəetməsi</a></li>
+                        <li><a href="<?php echo e(route('admin.services.index')); ?>">Xidmətlər</a></li>
                     </ul>
                 </li>
 
@@ -48,3 +49,4 @@
     </div>
 </div>
 <!-- Left Sidebar End -->
+<?php /**PATH C:\xampp\htdocs\ModernLeasing\resources\views/back/includes/sidebar.blade.php ENDPATH**/ ?>

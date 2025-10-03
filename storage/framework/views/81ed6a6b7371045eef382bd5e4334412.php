@@ -4,42 +4,43 @@
         <div class="navbar-content">
             <!-- Logo -->
             <div class="navbar-brand">
-                <a href="{{ route('front.index') }}">
-                    @if(isset($siteLogo) && $siteLogo)
-                        @if($siteLogo->shouldShowLogo())
-                            <img src="{{ $siteLogo->logo_url }}" alt="{{ $siteLogo->site_name }}" style="height: 60px !important; max-height: 60px !important; width: auto !important;">
-                        @endif
-                        @if($siteLogo->shouldShowText())
-                            <span>{{ $siteLogo->site_name }}</span>
-                        @endif
-                    @else
+                <a href="<?php echo e(route('front.index')); ?>">
+                    <?php if(isset($siteLogo) && $siteLogo): ?>
+                        <?php if($siteLogo->shouldShowLogo()): ?>
+                            <img src="<?php echo e($siteLogo->logo_url); ?>" alt="<?php echo e($siteLogo->site_name); ?>" style="height: 60px !important; max-height: 60px !important; width: auto !important;">
+                        <?php endif; ?>
+                        <?php if($siteLogo->shouldShowText()): ?>
+                            <span><?php echo e($siteLogo->site_name); ?></span>
+                        <?php endif; ?>
+                    <?php else: ?>
                         <!-- Default logo və mətn -->
-                        <img src="{{ asset('uploads/logos/logo.png') }}" alt="MODERN LİZİNQ" style="height: 60px !important; max-height: 60px !important; width: auto !important;">
+                        <img src="<?php echo e(asset('uploads/logos/logo.png')); ?>" alt="MODERN LİZİNQ" style="height: 60px !important; max-height: 60px !important; width: auto !important;">
                         <span>MODERN LİZİNQ</span>
-                    @endif
+                    <?php endif; ?>
                 </a>
             </div>
 
             <!-- Menu Links -->
             <div class="navbar-menu">
                 <ul class="menu-list">
-                    @if(isset($desktopNavbarItems) && $desktopNavbarItems->count() > 0)
-                        @foreach($desktopNavbarItems as $item)
+                    <?php if(isset($desktopNavbarItems) && $desktopNavbarItems->count() > 0): ?>
+                        <?php $__currentLoopData = $desktopNavbarItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <li>
-                                <a href="{{ $item->url }}" class="{{ $item->isActive() ? 'active' : '' }}">
-                                    {{ $item->title }}
+                                <a href="<?php echo e($item->url); ?>" class="<?php echo e($item->isActive() ? 'active' : ''); ?>">
+                                    <?php echo e($item->title); ?>
+
                                 </a>
                             </li>
-                        @endforeach
-                    @else
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php else: ?>
                         <!-- Default menu items if no data in database -->
-                        <li><a href="{{ route('front.index') }}" class="{{ request()->routeIs('front.index') ? 'active' : '' }}">Ana Səhifə</a></li>
-                        <li><a href="{{ route('front.about') }}" class="{{ request()->routeIs('front.about') ? 'active' : '' }}">Haqqımızda</a></li>
-                        <li><a href="{{ route('front.services') }}" class="{{ request()->routeIs('front.services') ? 'active' : '' }}">Xidmətlər</a></li>
-                        <li><a href="{{ route('front.investors') }}" class="{{ request()->routeIs('front.investors') ? 'active' : '' }}">İnvestorlar</a></li>
-                        <li><a href="{{ route('front.faq') }}" class="{{ request()->routeIs('front.faq') ? 'active' : '' }}">FAQ</a></li>
-                        <li><a href="{{ route('front.contact') }}" class="{{ request()->routeIs('front.contact') ? 'active' : '' }}">Əlaqə</a></li>
-                    @endif
+                        <li><a href="<?php echo e(route('front.index')); ?>" class="<?php echo e(request()->routeIs('front.index') ? 'active' : ''); ?>">Ana Səhifə</a></li>
+                        <li><a href="<?php echo e(route('front.about')); ?>" class="<?php echo e(request()->routeIs('front.about') ? 'active' : ''); ?>">Haqqımızda</a></li>
+                        <li><a href="<?php echo e(route('front.services')); ?>" class="<?php echo e(request()->routeIs('front.services') ? 'active' : ''); ?>">Xidmətlər</a></li>
+                        <li><a href="<?php echo e(route('front.investors')); ?>" class="<?php echo e(request()->routeIs('front.investors') ? 'active' : ''); ?>">İnvestorlar</a></li>
+                        <li><a href="<?php echo e(route('front.faq')); ?>" class="<?php echo e(request()->routeIs('front.faq') ? 'active' : ''); ?>">FAQ</a></li>
+                        <li><a href="<?php echo e(route('front.contact')); ?>" class="<?php echo e(request()->routeIs('front.contact') ? 'active' : ''); ?>">Əlaqə</a></li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
@@ -166,4 +167,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-</script>
+</script><?php /**PATH C:\xampp\htdocs\ModernLeasing\resources\views/front/includes/navbar.blade.php ENDPATH**/ ?>

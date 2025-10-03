@@ -252,3 +252,7 @@
     });
 </script>
 @endpush
+
+@push('dashboard-scripts')
+<script src="{{ asset('back/assets/') }}/js/pages/dashboard.init.js"></script>
+@endpush

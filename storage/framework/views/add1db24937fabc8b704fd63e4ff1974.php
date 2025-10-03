@@ -5,36 +5,40 @@
             <div class="col-lg-8">
                 <div class="hero-content" data-aos="fade-up" data-aos-delay="300">
                     <h1 class="hero-title">
-                        @if($heroSection && $heroSection->title)
-                            {!! nl2br(e($heroSection->title)) !!}
-                        @else
+                        <?php if($heroSection && $heroSection->title): ?>
+                            <?php echo nl2br(e($heroSection->title)); ?>
+
+                        <?php else: ?>
                             TEXNİKA, AVTOMOBİL VƏ<br>
                             <span class="text-primary">ƏMLAKINIIZI ŞƏRFƏLI LİZİNQ ŞƏRTLƏRİ İLƏ ƏLDƏ EDİN</span>
-                        @endif
+                        <?php endif; ?>
                     </h1>
                     
-                    @if($heroSection && $heroSection->subtitle)
+                    <?php if($heroSection && $heroSection->subtitle): ?>
                         <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="500">
-                            {{ $heroSection->subtitle }}
+                            <?php echo e($heroSection->subtitle); ?>
+
                         </p>
-                    @else
+                    <?php else: ?>
                         <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="500">
                             Modern Lizinq ilə texnika, avtomobil və əmlakınızı ən əlverişli şərtlərlə əldə edin. 
                             Çevik ödəniş imkanları, geniş məhsul seçimi və peşəkar komandamızla 
                             sizə xüsusi həllər təqdim edirik.
                         </p>
-                    @endif
+                    <?php endif; ?>
                     
                     <div class="hero-actions" data-aos="fade-up" data-aos-delay="700">
-                        @if($heroSection)
+                        <?php if($heroSection): ?>
                             <button class="btn-primary-custom me-3" data-bs-toggle="modal" data-bs-target="#applicationModal">
-                                <i class="fas fa-file-alt me-2"></i>{{ $heroSection->primary_button_text ?? 'Lizinqə Müraciət Et' }}
+                                <i class="fas fa-file-alt me-2"></i><?php echo e($heroSection->primary_button_text ?? 'Lizinqə Müraciət Et'); ?>
+
                             </button>
                             
-                            <a href="{{ $heroSection->secondary_button_link ?? '#contact' }}" class="btn-outline-custom">
-                                <i class="fas fa-phone me-2"></i>{{ $heroSection->secondary_button_text ?? 'Əlaqə Saxla' }}
+                            <a href="<?php echo e($heroSection->secondary_button_link ?? '#contact'); ?>" class="btn-outline-custom">
+                                <i class="fas fa-phone me-2"></i><?php echo e($heroSection->secondary_button_text ?? 'Əlaqə Saxla'); ?>
+
                             </a>
-                        @else
+                        <?php else: ?>
                             <button class="btn-primary-custom me-3" data-bs-toggle="modal" data-bs-target="#applicationModal">
                                 <i class="fas fa-file-alt me-2"></i>Lizinqə Müraciət Et
                             </button>
@@ -42,7 +46,7 @@
                             <a href="#contact" class="btn-outline-custom">
                                 <i class="fas fa-phone me-2"></i>Əlaqə Saxla
                             </a>
-                        @endif
+                        <?php endif; ?>
                     </div>
                     
                     <!-- Stats -->
@@ -50,25 +54,25 @@
                         <div class="row">
                             <div class="col-md-3 col-6 mb-3">
                                 <div class="stat-item">
-                                    <div class="stat-number animate-number" data-count="{{ $heroSection->happy_customers ?? 3500 }}">0</div>
+                                    <div class="stat-number animate-number" data-count="<?php echo e($heroSection->happy_customers ?? 3500); ?>">0</div>
                                     <div class="stat-label">Məmnun Müştəri</div>
                                 </div>
                             </div>
                             <div class="col-md-3 col-6 mb-3">
                                 <div class="stat-item">
-                                    <div class="stat-number animate-number" data-count="{{ $heroSection->delivered_equipment ?? 6800 }}">0</div>
+                                    <div class="stat-number animate-number" data-count="<?php echo e($heroSection->delivered_equipment ?? 6800); ?>">0</div>
                                     <div class="stat-label">Təhvil Verilən Texnika</div>
                                 </div>
                             </div>
                             <div class="col-md-3 col-6 mb-3">
                                 <div class="stat-item">
-                                    <div class="stat-number animate-number" data-count="{{ $heroSection->international_partners ?? 25 }}">0</div>
+                                    <div class="stat-number animate-number" data-count="<?php echo e($heroSection->international_partners ?? 25); ?>">0</div>
                                     <div class="stat-label">Beynəlxalq Tərəfdaş</div>
                                 </div>
                             </div>
                             <div class="col-md-3 col-6 mb-3">
                                 <div class="stat-item">
-                                    <div class="stat-number animate-number" data-count="{{ $heroSection->years_experience ?? 15 }}">0</div>
+                                    <div class="stat-number animate-number" data-count="<?php echo e($heroSection->years_experience ?? 15); ?>">0</div>
                                     <div class="stat-label">İl Təcrübə</div>
                                 </div>
                             </div>
@@ -79,25 +83,25 @@
             
             <div class="col-lg-4 d-none d-lg-block">
                 <div class="hero-image d-none d-lg-block" data-aos="fade-left" data-aos-delay="400">
-                    @if($heroFeatures && $heroFeatures->count() > 0)
-                        @foreach($heroFeatures as $index => $feature)
-                            <div class="hero-card floating" style="animation-delay: {{ $index }}s;">
+                    <?php if($heroFeatures && $heroFeatures->count() > 0): ?>
+                        <?php $__currentLoopData = $heroFeatures; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $feature): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div class="hero-card floating" style="animation-delay: <?php echo e($index); ?>s;">
                                 <div class="card-icon">
-                                    @if($feature->image)
-                                        <img src="{{ asset('uploads/hero-features/' . $feature->image) }}" 
-                                             alt="{{ $feature->title }}" 
+                                    <?php if($feature->image): ?>
+                                        <img src="<?php echo e(asset('uploads/hero-features/' . $feature->image)); ?>" 
+                                             alt="<?php echo e($feature->title); ?>" 
                                              style="width: 60px; height: 60px; object-fit: cover; border-radius: 50%;">
-                                    @else
+                                    <?php else: ?>
                                         <i class="fas fa-star"></i>
-                                    @endif
+                                    <?php endif; ?>
                                 </div>
                                 <div class="card-content">
-                                    <h4>{{ $feature->title }}</h4>
-                                    <p>{{ $feature->description }}</p>
+                                    <h4><?php echo e($feature->title); ?></h4>
+                                    <p><?php echo e($feature->description); ?></p>
                                 </div>
                             </div>
-                        @endforeach
-                    @else
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php else: ?>
                         <!-- Default cards if no features in database -->
                         <div class="hero-card floating">
                             <div class="card-icon">
@@ -128,7 +132,7 @@
                                 <p>Həftənin 7 günü müştəri xidmətləri</p>
                             </div>
                         </div>
-                    @endif
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -584,3 +588,4 @@
         }
     }
 </style>
+<?php /**PATH C:\xampp\htdocs\ModernLeasing\resources\views/front/includes/header.blade.php ENDPATH**/ ?>

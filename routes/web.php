@@ -115,15 +115,62 @@ Route::prefix('admin')->group(function () {
               Route::delete('socialfooter/{id}', [SocialfooterController::class, 'destroy'])->name('socialfooter.destroy');
               Route::post('socialfooter/order', [SocialfooterController::class, 'order'])->name('socialfooter.order');
               Route::post('socialfooter/toggle-status/{id}', [SocialfooterController::class, 'toggleStatus'])->name('socialfooter.toggle-status');
-
-
-
-
-
-
-
         });
 
-        
+        // Hero Section routes
+        Route::prefix('hero')->name('admin.hero.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\HeroSectionController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\HeroSectionController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\HeroSectionController::class, 'store'])->name('store');
+            Route::get('{hero}', [App\Http\Controllers\Admin\HeroSectionController::class, 'show'])->name('show');
+            Route::get('{hero}/edit', [App\Http\Controllers\Admin\HeroSectionController::class, 'edit'])->name('edit');
+            Route::put('{hero}', [App\Http\Controllers\Admin\HeroSectionController::class, 'update'])->name('update');
+        });
+
+        // Hero Features routes
+        Route::prefix('hero-features')->name('admin.hero-features.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\HeroFeatureController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\HeroFeatureController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\HeroFeatureController::class, 'store'])->name('store');
+            Route::get('{heroFeature}', [App\Http\Controllers\Admin\HeroFeatureController::class, 'show'])->name('show');
+            Route::get('{heroFeature}/edit', [App\Http\Controllers\Admin\HeroFeatureController::class, 'edit'])->name('edit');
+            Route::put('{heroFeature}', [App\Http\Controllers\Admin\HeroFeatureController::class, 'update'])->name('update');
+            Route::delete('{heroFeature}', [App\Http\Controllers\Admin\HeroFeatureController::class, 'destroy'])->name('destroy');
+        });
+
+        // Navbar routes
+        Route::prefix('navbar')->name('admin.navbar.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\NavbarItemController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\NavbarItemController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\NavbarItemController::class, 'store'])->name('store');
+            Route::get('{navbar}', [App\Http\Controllers\Admin\NavbarItemController::class, 'show'])->name('show');
+            Route::get('{navbar}/edit', [App\Http\Controllers\Admin\NavbarItemController::class, 'edit'])->name('edit');
+            Route::put('{navbar}', [App\Http\Controllers\Admin\NavbarItemController::class, 'update'])->name('update');
+            Route::post('{navbar}/toggle-status', [App\Http\Controllers\Admin\NavbarItemController::class, 'toggleStatus'])->name('toggle-status');
+        });
+
+        // Site Logo routes
+        Route::prefix('site-logo')->name('admin.site-logo.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\SiteLogoController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\SiteLogoController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\SiteLogoController::class, 'store'])->name('store');
+            Route::get('{siteLogo}', [App\Http\Controllers\Admin\SiteLogoController::class, 'show'])->name('show');
+            Route::get('{siteLogo}/edit', [App\Http\Controllers\Admin\SiteLogoController::class, 'edit'])->name('edit');
+            Route::put('{siteLogo}', [App\Http\Controllers\Admin\SiteLogoController::class, 'update'])->name('update');
+            Route::delete('{siteLogo}', [App\Http\Controllers\Admin\SiteLogoController::class, 'destroy'])->name('destroy');
+            Route::post('{siteLogo}/toggle-status', [App\Http\Controllers\Admin\SiteLogoController::class, 'toggleStatus'])->name('toggle-status');
+        });
+
+        // Services routes
+        Route::prefix('services')->name('admin.services.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\ServiceController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\ServiceController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\ServiceController::class, 'store'])->name('store');
+            Route::get('{service}', [App\Http\Controllers\Admin\ServiceController::class, 'show'])->name('show');
+            Route::get('{service}/edit', [App\Http\Controllers\Admin\ServiceController::class, 'edit'])->name('edit');
+            Route::put('{service}', [App\Http\Controllers\Admin\ServiceController::class, 'update'])->name('update');
+            Route::delete('{service}', [App\Http\Controllers\Admin\ServiceController::class, 'destroy'])->name('destroy');
+            Route::post('{service}/toggle-status', [App\Http\Controllers\Admin\ServiceController::class, 'toggleStatus'])->name('toggle-status');
+        });
     });
 });

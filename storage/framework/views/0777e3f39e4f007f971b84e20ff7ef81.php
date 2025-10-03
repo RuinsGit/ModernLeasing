@@ -1,10 +1,10 @@
-@extends('front.layouts.master')
 
-@section('title', 'Xidmətlər - MODERN LİZİNQ')
-@section('description', 'Modern Lizinq xidmətləri: kənd təsərrüfatı texnikası, avtomobil, məişət texnikası, daşınmaz əmlak, sənaye avadanlıqları və tikinti texnikası lizinqi.')
-@section('keywords', 'lizinq xidmətləri, kənd təsərrüfatı lizinqi, avtomobil lizinqi, məişət texnikası, sənaye avadanlıqları')
 
-@section('content')
+<?php $__env->startSection('title', 'Xidmətlər - MODERN LİZİNQ'); ?>
+<?php $__env->startSection('description', 'Modern Lizinq xidmətləri: kənd təsərrüfatı texnikası, avtomobil, məişət texnikası, daşınmaz əmlak, sənaye avadanlıqları və tikinti texnikası lizinqi.'); ?>
+<?php $__env->startSection('keywords', 'lizinq xidmətləri, kənd təsərrüfatı lizinqi, avtomobil lizinqi, məişət texnikası, sənaye avadanlıqları'); ?>
+
+<?php $__env->startSection('content'); ?>
     <!-- Page Header -->
     <section class="page-header" style="background: linear-gradient(135deg, #1F1F1F 0%, #2289FF 100%); padding: 150px 0 100px;">
         <div class="container">
@@ -14,7 +14,7 @@
                     <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item">
-                                <a href="{{ route('front.index') }}" class="text-light">Ana Səhifə</a>
+                                <a href="<?php echo e(route('front.index')); ?>" class="text-light">Ana Səhifə</a>
                             </li>
                             <li class="breadcrumb-item active text-white" aria-current="page">Xidmətlər</li>
                         </ol>
@@ -45,63 +45,63 @@
                 <div class="col-lg-10">
                     <div class="services-accordion" data-aos="fade-up">
                         
-                        @if(isset($services) && $services->count() > 0)
-                            @foreach($services as $index => $service)
-                                <!-- {{ $service->title }} -->
+                        <?php if(isset($services) && $services->count() > 0): ?>
+                            <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <!-- <?php echo e($service->title); ?> -->
                                 <div class="service-accordion-item">
-                                    <div class="service-accordion-header" data-bs-toggle="collapse" data-bs-target="#service{{ $service->id }}" aria-expanded="false">
+                                    <div class="service-accordion-header" data-bs-toggle="collapse" data-bs-target="#service<?php echo e($service->id); ?>" aria-expanded="false">
                                         <div class="service-icon">
-                                            <i class="{{ $service->icon_class }}"></i>
+                                            <i class="<?php echo e($service->icon_class); ?>"></i>
                                         </div>
                                         <div class="service-title">
-                                            <h3>{{ $service->title }}</h3>
-                                            <p>{{ $service->description }}</p>
+                                            <h3><?php echo e($service->title); ?></h3>
+                                            <p><?php echo e($service->description); ?></p>
                                         </div>
                                         <div class="service-arrow">
                                             <i class="fas fa-chevron-down"></i>
                                         </div>
                                     </div>
-                                    <div class="collapse service-accordion-content" id="service{{ $service->id }}">
+                                    <div class="collapse service-accordion-content" id="service<?php echo e($service->id); ?>">
                                         <div class="service-content-body">
                                             <div class="row g-4">
                                                 <div class="col-md-6">
                                                     <h5>Xidmət təsviri</h5>
-                                                    <p>{{ $service->description }}</p>
+                                                    <p><?php echo e($service->description); ?></p>
                                                     
-                                                    @if($service->features_list && count($service->features_list) > 0)
+                                                    <?php if($service->features_list && count($service->features_list) > 0): ?>
                                                         <h6>Xidmət xüsusiyyətləri</h6>
                                                         <ul class="service-features">
-                                                            @foreach($service->features_list as $feature)
-                                                                <li><i class="fas fa-check text-primary me-2"></i>{{ $feature }}</li>
-                                                            @endforeach
+                                                            <?php $__currentLoopData = $service->features_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $feature): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <li><i class="fas fa-check text-primary me-2"></i><?php echo e($feature); ?></li>
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </ul>
-                                                    @endif
+                                                    <?php endif; ?>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="service-image">
-                                                        @if($service->image)
-                                                            <img src="{{ $service->image_url }}" 
-                                                                 alt="{{ $service->title }}" class="img-fluid" style="border-radius: 8px;">
-                                                        @else
+                                                        <?php if($service->image): ?>
+                                                            <img src="<?php echo e($service->image_url); ?>" 
+                                                                 alt="<?php echo e($service->title); ?>" class="img-fluid" style="border-radius: 8px;">
+                                                        <?php else: ?>
                                                             <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                                                                 alt="{{ $service->title }}" class="img-fluid" style="border-radius: 8px;">
-                                                        @endif
+                                                                 alt="<?php echo e($service->title); ?>" class="img-fluid" style="border-radius: 8px;">
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mt-4">
                                                 <div class="col-12 text-center">
                                                     <button class="btn btn-primary-custom" data-bs-toggle="modal" data-bs-target="#applicationModal">
-                                                        {{ $service->title }} Üstünlükləri
+                                                        <?php echo e($service->title); ?> Üstünlükləri
                                                     </button>
-                                                    <a href="{{ route('front.contact') }}" class="btn btn-outline ms-3">Müraciət Et</a>
+                                                    <a href="<?php echo e(route('front.contact')); ?>" class="btn btn-outline ms-3">Müraciət Et</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
-                        @else
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php else: ?>
                             <!-- Default static service if no data -->
                             <div class="service-accordion-item">
                                 <div class="service-accordion-header" data-bs-toggle="collapse" data-bs-target="#agricultural" aria-expanded="false">
@@ -143,13 +143,13 @@
                                                 <button class="btn btn-primary-custom" data-bs-toggle="modal" data-bs-target="#applicationModal">
                                                     Müştəri üçün üstünlüklər
                                                 </button>
-                                                <a href="{{ route('front.contact') }}" class="btn btn-outline ms-3">Müraciət Et</a>
+                                                <a href="<?php echo e(route('front.contact')); ?>" class="btn btn-outline ms-3">Müraciət Et</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        @endif
+                        <?php endif; ?>
 
                     </div>
                 </div>
@@ -189,9 +189,9 @@
             </div>
         </div>
     </section>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('styles')
+<?php $__env->startPush('styles'); ?>
 <style>
     .page-header {
         position: relative;
@@ -397,4 +397,6 @@
         }
     }
 </style>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('front.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\ModernLeasing\resources\views/front/pages/services.blade.php ENDPATH**/ ?>

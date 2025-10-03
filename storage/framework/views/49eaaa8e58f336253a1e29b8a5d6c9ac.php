@@ -1,14 +1,12 @@
-@extends('front.layouts.master')
+<?php $__env->startSection('title', 'MODERN LİZİNQ - Ana Səhifə'); ?>
+<?php $__env->startSection('description', 'MODERN LİZİNQ ilə texnika, avtomobil və əmlakınızı şərfəli lizinq şərtləri ilə əldə edin. Etibarlı xidmət və peşəkar dəstək.'); ?>
+<?php $__env->startSection('keywords', 'lizinq, texnika lizinqi, avtomobil lizinqi, əmlak lizinqi, kənd təsərrüfatı, sənaye avadanlıqları, modern lizinq'); ?>
 
-@section('title', 'MODERN LİZİNQ - Ana Səhifə')
-@section('description', 'MODERN LİZİNQ ilə texnika, avtomobil və əmlakınızı şərfəli lizinq şərtləri ilə əldə edin. Etibarlı xidmət və peşəkar dəstək.')
-@section('keywords', 'lizinq, texnika lizinqi, avtomobil lizinqi, əmlak lizinqi, kənd təsərrüfatı, sənaye avadanlıqları, modern lizinq')
+<?php $__env->startSection('header'); ?>
+    <?php echo $__env->make('front.includes.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php $__env->stopSection(); ?>
 
-@section('header')
-    @include('front.includes.header')
-@endsection
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <!-- Service Categories Section -->
     <section class="section-padding bg-dark text-white" id="categories" style="background-color: var(--section-bg);">
         <div class="container">
@@ -22,26 +20,26 @@
             </div>
             
             <div class="row g-4">
-                @if(isset($services) && $services->count() > 0)
-                    @foreach($services as $index => $service)
-                        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ 300 + ($index * 100) }}">
+                <?php if(isset($services) && $services->count() > 0): ?>
+                    <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="<?php echo e(300 + ($index * 100)); ?>">
                             <div class="category-card">
                                 <div class="category-icon">
-                                    <i class="{{ $service->icon_class }}"></i>
+                                    <i class="<?php echo e($service->icon_class); ?>"></i>
                                 </div>
-                                <h4 class="text-dark">{{ $service->title }}</h4>
-                                <p style="color: #666666;">{{ $service->description }}</p>
-                                @if($service->features_list && count($service->features_list) > 0)
+                                <h4 class="text-dark"><?php echo e($service->title); ?></h4>
+                                <p style="color: #666666;"><?php echo e($service->description); ?></p>
+                                <?php if($service->features_list && count($service->features_list) > 0): ?>
                                     <ul class="category-features">
-                                        @foreach($service->features_list as $feature)
-                                            <li>• {{ $feature }}</li>
-                                        @endforeach
+                                        <?php $__currentLoopData = $service->features_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $feature): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <li>• <?php echo e($feature); ?></li>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </ul>
-                                @endif
+                                <?php endif; ?>
                             </div>
                         </div>
-                    @endforeach
-                @else
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php else: ?>
                     <!-- Default static services if no data -->
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="category-card">
@@ -87,7 +85,7 @@
                             </ul>
                         </div>
                     </div>
-                @endif
+                <?php endif; ?>
             </div>
         </div>
     </section>
@@ -367,9 +365,9 @@
             </div>
         </div>
     </section>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('styles')
+<?php $__env->startPush('styles'); ?>
 <style>
     /* Category Cards */
     .category-card {
@@ -758,4 +756,6 @@
         }
     }
 </style>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('front.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\ModernLeasing\resources\views/front/pages/index.blade.php ENDPATH**/ ?>

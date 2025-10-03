@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\Socialfooter;
 use App\Models\Logo;
+use App\Models\HeroSection;
+use App\Models\HeroFeature;
+use App\Models\NavbarItem;
+use App\Models\SiteLogo;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -17,8 +22,14 @@ class FrontController extends Controller
         // Get all records without status filtering for now
         $socialfooters = Socialfooter::orderBy('order')->get();
         $logos = Logo::all();
+        $heroSection = HeroSection::first();
+        $heroFeatures = HeroFeature::getOrdered();
+        $desktopNavbarItems = NavbarItem::getDesktopItems();
+        $mobileNavbarItems = NavbarItem::getMobileItems();
+        $siteLogo = SiteLogo::getActiveLogo();
+        $services = Service::getActiveServices();
         
-        return view('front.pages.index', compact('socialfooters', 'logos'));
+        return view('front.pages.index', compact('socialfooters', 'logos', 'heroSection', 'heroFeatures', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'services'));
     }
     
     /**
@@ -29,8 +40,12 @@ class FrontController extends Controller
         // Get all records without status filtering for now
         $socialfooters = Socialfooter::orderBy('order')->get();
         $logos = Logo::all();
+        $heroSection = HeroSection::first();
+        $desktopNavbarItems = NavbarItem::getDesktopItems();
+        $mobileNavbarItems = NavbarItem::getMobileItems();
+        $siteLogo = SiteLogo::getActiveLogo();
         
-        return view('front.pages.about', compact('socialfooters', 'logos'));
+        return view('front.pages.about', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo'));
     }
     
     /**
@@ -40,8 +55,13 @@ class FrontController extends Controller
     {
         $socialfooters = Socialfooter::orderBy('order')->get();
         $logos = Logo::all();
+        $heroSection = HeroSection::first();
+        $desktopNavbarItems = NavbarItem::getDesktopItems();
+        $mobileNavbarItems = NavbarItem::getMobileItems();
+        $siteLogo = SiteLogo::getActiveLogo();
+        $services = Service::getActiveServices();
         
-        return view('front.pages.services', compact('socialfooters', 'logos'));
+        return view('front.pages.services', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'services'));
     }
     
     /**
@@ -51,8 +71,12 @@ class FrontController extends Controller
     {
         $socialfooters = Socialfooter::orderBy('order')->get();
         $logos = Logo::all();
+        $heroSection = HeroSection::first();
+        $desktopNavbarItems = NavbarItem::getDesktopItems();
+        $mobileNavbarItems = NavbarItem::getMobileItems();
+        $siteLogo = SiteLogo::getActiveLogo();
         
-        return view('front.pages.investors', compact('socialfooters', 'logos'));
+        return view('front.pages.investors', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo'));
     }
     
     /**
@@ -62,8 +86,12 @@ class FrontController extends Controller
     {
         $socialfooters = Socialfooter::orderBy('order')->get();
         $logos = Logo::all();
+        $heroSection = HeroSection::first();
+        $desktopNavbarItems = NavbarItem::getDesktopItems();
+        $mobileNavbarItems = NavbarItem::getMobileItems();
+        $siteLogo = SiteLogo::getActiveLogo();
         
-        return view('front.pages.faq', compact('socialfooters', 'logos'));
+        return view('front.pages.faq', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo'));
     }
     
     /**
@@ -74,8 +102,12 @@ class FrontController extends Controller
         // Get all records without status filtering for now
         $socialfooters = Socialfooter::orderBy('order')->get();
         $logos = Logo::all();
+        $heroSection = HeroSection::first();
+        $desktopNavbarItems = NavbarItem::getDesktopItems();
+        $mobileNavbarItems = NavbarItem::getMobileItems();
+        $siteLogo = SiteLogo::getActiveLogo();
         
-        return view('front.pages.contact', compact('socialfooters', 'logos'));
+        return view('front.pages.contact', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo'));
     }
     
     /**
