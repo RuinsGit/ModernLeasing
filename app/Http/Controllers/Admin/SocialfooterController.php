@@ -7,15 +7,25 @@ use App\Models\Socialfooter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Artisan;
-
-
-
+use Illuminate\Support\Str;
 
 class SocialfooterController extends Controller
 {
+    private $uploadPath;
+
+    public function __construct()
+    {
+        $this->uploadPath = public_path('uploads/socialfooters');
+        
+        // Upload qovluğu yoxdursa yarat
+        if (!File::exists($this->uploadPath)) {
+            File::makeDirectory($this->uploadPath, 0755, true);
+        }
+    }
+
     public function index()
     {
-        Artisan::call('migrate');
+        // Artisan::call('migrate'); // Artıq bu lazım deyil
         $socialfooters = Socialfooter::orderBy('order')->get();
         return view('back.admin.socialfooter.index', compact('socialfooters'));
     }
@@ -28,28 +38,38 @@ class SocialfooterController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
-            'link' => 'required|url'
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
+            'icon_class' => 'nullable|string|max:100',
+            'link' => 'required|url',
+            'order' => 'required|integer|min:0'
         ], [
-            'image.required' => 'Şəkil mütləq yüklənməlidir',
             'image.image' => 'Fayl şəkil formatında olmalıdır',
             'link.required' => 'Link mütləq daxil edilməlidir',
-            'link.url' => 'Düzgün link daxil edin'
+            'link.url' => 'Düzgün link daxil edin',
+            'order.required' => 'Sıra nömrəsi mütləq daxil edilməlidir',
+            'order.integer' => 'Sıra nömrəsi tam ədəd olmalıdır',
+            'order.min' => 'Sıra nömrəsi sıfırdan kiçik ola bilməz'
         ]);
 
-        $socialfooter = new Socialfooter();
+        $data = $request->except(['_token']);
+        
+        $data['is_active'] = $request->has('is_active') ? 1 : 0;
         
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('uploads/socialfooter'), $imageName);
-            $socialfooter->image = 'uploads/socialfooter/' . $imageName;
+            $imageName = Str::random(10) . '_' . time() . '.' . $image->getClientOriginalExtension();
+            $image->move($this->uploadPath, $imageName);
+            $data['image'] = $imageName;
+            $data['icon_class'] = null; // Şəkil yüklənibsə ikon class sıfırlanır
+        } else {
+            $data['image'] = null; // Şəkil yüklənməyibsə boş olur
         }
 
-        $socialfooter->link = $request->link;
-        $socialfooter->order = Socialfooter::max('order') + 1;
-        $socialfooter->status = 1;
-        $socialfooter->save();
+        if ($data['order'] == 0) {
+            $data['order'] = Socialfooter::max('order') + 1;
+        }
+
+        Socialfooter::create($data);
 
         return redirect()->route('back.pages.socialfooter.index')->with('success', 'Sosial media uğurla əlavə edildi');
     }
@@ -64,29 +84,51 @@ class SocialfooterController extends Controller
     {
         $request->validate([
             'image' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
-            'link' => 'required|url'
+            'icon_class' => 'nullable|string|max:100',
+            'link' => 'required|url',
+            'order' => 'required|integer|min:0'
         ], [
             'image.image' => 'Fayl şəkil formatında olmalıdır',
             'link.required' => 'Link mütləq daxil edilməlidir',
-            'link.url' => 'Düzgün link daxil edin'
+            'link.url' => 'Düzgün link daxil edin',
+            'order.required' => 'Sıra nömrəsi mütləq daxil edilməlidir',
+            'order.integer' => 'Sıra nömrəsi tam ədəd olmalıdır',
+            'order.min' => 'Sıra nömrəsi sıfırdan kiçik ola bilməz'
         ]);
 
         $socialfooter = Socialfooter::findOrFail($id);
+        $data = $request->except(['_token', '_method']);
 
+        $data['is_active'] = $request->has('is_active') ? 1 : 0;
+
+        // Şəkil yüklənməsi
         if ($request->hasFile('image')) {
-            if ($socialfooter->image && File::exists(public_path($socialfooter->image))) {
-                File::delete(public_path($socialfooter->image));
+            // Köhnə şəkli sil
+            if ($socialfooter->image && File::exists($this->uploadPath . '/' . $socialfooter->image)) {
+                File::delete($this->uploadPath . '/' . $socialfooter->image);
             }
 
             $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('uploads/socialfooter'), $imageName);
-            $socialfooter->image = 'uploads/socialfooter/' . $imageName;
+            $imageName = Str::random(10) . '_' . time() . '.' . $image->getClientOriginalExtension();
+            $image->move($this->uploadPath, $imageName);
+            $data['image'] = $imageName;
+            $data['icon_class'] = null; // Şəkil yüklənibsə ikon class sıfırlanır
+        } elseif ($request->input('clear_image')) {
+            // Şəkli sil checkbox seçilibsə
+            if ($socialfooter->image && File::exists($this->uploadPath . '/' . $socialfooter->image)) {
+                File::delete($this->uploadPath . '/' . $socialfooter->image);
+            }
+            $data['image'] = null;
+        } else {
+            $data['image'] = $socialfooter->image; // Köhnə şəkli saxla
         }
 
-        $socialfooter->link = $request->link;
-        $socialfooter->status = 1;
-        $socialfooter->save();
+        // Əgər icon_class boşdursa və şəkil yoxdursa, boş saxla
+        if (!$request->hasFile('image') && empty($request->input('icon_class'))) {
+            $data['icon_class'] = null;
+        }
+        
+        $socialfooter->update($data);
 
         return redirect()->route('back.pages.socialfooter.index')->with('success', 'Sosial media uğurla yeniləndi');
     }
@@ -110,14 +152,13 @@ class SocialfooterController extends Controller
             Socialfooter::where('id', $order['id'])->update(['order' => $order['position']]);
         }
 
-        return redirect()->route('back.admin.socialfooter.index')
-        ->with('success', 'Sosial media uğurla silindi.');
+        return response()->json(['status' => 'success', 'message' => 'Sıra uğurla yeniləndi.']);
     }
 
     public function toggleStatus($id)
     {
         $socialfooter = Socialfooter::findOrFail($id);
-        $socialfooter->status = !$socialfooter->status;
+        $socialfooter->is_active = !$socialfooter->is_active;
         $socialfooter->save();
 
         return redirect()->back()->with('success', 'Status uğurla dəyişdirildi');

@@ -39,6 +39,70 @@
                         <li><a href="{{ route('admin.navbar.index') }}">Navbar Menyu</a></li>
                         <li><a href="{{ route('admin.site-logo.index') }}">Logo İdarəetməsi</a></li>
                         <li><a href="{{ route('admin.services.index') }}">Xidmətlər</a></li>
+                        <li><a href="{{ route('admin.advantages.index') }}">Üstünlüklər</a></li>
+                        <li><a href="{{ route('admin.mission-goals.index') }}">Missiya və Məqsədlər</a></li>
+                        
+                    </ul>
+                </li>
+
+                <li class="menu-title">Xəbərlər</li>
+                <li>
+                    <a href="{{ route('admin.news-items.index') }}" class="waves-effect">
+                        <i class="ri-newspaper-line"></i>
+                        <span>Son Xəbərlər</span>
+                    </a>
+                </li>
+
+                <li class="menu-title">Haqqımızda Səhifəsi</li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-file-info-line"></i>
+                        <span>Haqqımızda Bölmələri</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('admin.about-mission-section.index') }}">Ümumi Missiya Bölməsi</a></li>
+                        <li><a href="{{ route('admin.about-mission-card.index') }}">Missiya Kartları</a></li>
+                        <li><a href="{{ route('admin.company-history-items.index') }}">Şirkət Tarixi</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-title">Komandamız</li>
+                <li>
+                    <a href="{{ route('admin.team-members.index') }}" class="waves-effect">
+                        <i class="ri-team-line"></i>
+                        <span>Komanda Üzvləri</span>
+                    </a>
+                </li>
+
+                <li class="menu-title">Statistika</li>
+                <li>
+                    <a href="{{ route('admin.stat-items.index') }}" class="waves-effect">
+                        <i class="ri-line-chart-line"></i>
+                        <span>Statistikalar</span>
+                    </a>
+                </li>
+
+                <li class="menu-title">Əməkdaşlıq</li>
+                <li>
+                    <a href="{{ route('admin.partners.index') }}" class="waves-effect">
+                        <i class="ri-handshake-line"></i>
+                        <span>Tərəfdaşlar</span>
+                    </a>
+                </li>
+
+                <li class="menu-title">Sayt Məlumatları</li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-settings-4-line"></i>
+                        <span>Əsas Parametrlər</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('admin.site-logo.index') }}">Logo & Sayt Adı</a></li>
+                        <li><a href="{{ route('admin.contact-info.index') }}">Əlaqə Məlumatları</a></li>
+                        <li><a href="{{ route('back.pages.socialfooter.index') }}">Sosial Media</a></li>
+                        <li><a href="{{ route('admin.contact-messages.index') }}">Əlaqə Mesajları</a></li>
+                        <li><a href="{{ route('admin.business-hours.index') }}">İş Saatları</a></li>
+                        {{-- Digər ümumi parametrlər bura əlavə oluna bilər --}}
                     </ul>
                 </li>
 

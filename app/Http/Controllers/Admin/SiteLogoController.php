@@ -15,9 +15,17 @@ class SiteLogoController extends Controller
     {
         $this->uploadPath = public_path('uploads/logos');
         
+        // About səhifə şəkli üçün qovluq yarat
+        $this->aboutImagePath = public_path('uploads/about_images');
+
         // Upload qovluğu yoxdursa yarat
         if (!File::exists($this->uploadPath)) {
             File::makeDirectory($this->uploadPath, 0755, true);
+        }
+
+        // About səhifə şəkli qovluğu yoxdursa yarat
+        if (!File::exists($this->aboutImagePath)) {
+            File::makeDirectory($this->aboutImagePath, 0755, true);
         }
     }
 
@@ -58,11 +66,15 @@ class SiteLogoController extends Controller
 
         $request->validate([
             'site_name' => 'required|string|max:255',
+            'site_description' => 'nullable|string|max:1000',
+            'about_title' => 'nullable|string|max:255',
+            'about_subtitle' => 'nullable|string|max:1000',
+            'about_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'logo_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'favicon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,ico|max:1024'
         ]);
 
-        $data = $request->only(['site_name']);
+        $data = $request->only(['site_name', 'site_description', 'about_title', 'about_subtitle']);
         
         // Boolean sahələr
         $data['show_text'] = $request->has('show_text') ? 1 : 0;
@@ -82,6 +94,14 @@ class SiteLogoController extends Controller
             $faviconName = 'favicon_' . time() . '.' . $faviconFile->getClientOriginalExtension();
             $faviconFile->move($this->uploadPath, $faviconName);
             $data['favicon'] = $faviconName;
+        }
+
+        // About Image yükləmə
+        if ($request->hasFile('about_image')) {
+            $aboutImageFile = $request->file('about_image');
+            $aboutImageName = 'about_' . time() . '.' . $aboutImageFile->getClientOriginalExtension();
+            $aboutImageFile->move($this->aboutImagePath, $aboutImageName);
+            $data['about_image'] = $aboutImageName;
         }
 
         SiteLogo::create($data);
@@ -112,11 +132,15 @@ class SiteLogoController extends Controller
     {
         $request->validate([
             'site_name' => 'required|string|max:255',
+            'site_description' => 'nullable|string|max:1000',
+            'about_title' => 'nullable|string|max:255',
+            'about_subtitle' => 'nullable|string|max:1000',
+            'about_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'logo_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'favicon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,ico|max:1024'
         ]);
 
-        $data = $request->only(['site_name']);
+        $data = $request->only(['site_name', 'site_description', 'about_title', 'about_subtitle']);
         
         // Boolean sahələr
         $data['show_text'] = $request->has('show_text') ? 1 : 0;
@@ -133,6 +157,11 @@ class SiteLogoController extends Controller
             $logoName = 'logo_' . time() . '.' . $logoFile->getClientOriginalExtension();
             $logoFile->move($this->uploadPath, $logoName);
             $data['logo_image'] = $logoName;
+        } elseif ($request->input('clear_logo_image')) {
+            if ($siteLogo->logo_image && File::exists($this->uploadPath . '/' . $siteLogo->logo_image)) {
+                File::delete($this->uploadPath . '/' . $siteLogo->logo_image);
+            }
+            $data['logo_image'] = null;
         }
 
         // Favicon yükləmə
@@ -146,6 +175,29 @@ class SiteLogoController extends Controller
             $faviconName = 'favicon_' . time() . '.' . $faviconFile->getClientOriginalExtension();
             $faviconFile->move($this->uploadPath, $faviconName);
             $data['favicon'] = $faviconName;
+        } elseif ($request->input('clear_favicon')) {
+            if ($siteLogo->favicon && File::exists($this->uploadPath . '/' . $siteLogo->favicon)) {
+                File::delete($this->uploadPath . '/' . $siteLogo->favicon);
+            }
+            $data['favicon'] = null;
+        }
+
+        // About Image yükləmə
+        if ($request->hasFile('about_image')) {
+            // Köhnə şəkli sil
+            if ($siteLogo->about_image && File::exists($this->aboutImagePath . '/' . $siteLogo->about_image)) {
+                File::delete($this->aboutImagePath . '/' . $siteLogo->about_image);
+            }
+            
+            $aboutImageFile = $request->file('about_image');
+            $aboutImageName = 'about_' . time() . '.' . $aboutImageFile->getClientOriginalExtension();
+            $aboutImageFile->move($this->aboutImagePath, $aboutImageName);
+            $data['about_image'] = $aboutImageName;
+        } elseif ($request->input('clear_about_image')) {
+            if ($siteLogo->about_image && File::exists($this->aboutImagePath . '/' . $siteLogo->about_image)) {
+                File::delete($this->aboutImagePath . '/' . $siteLogo->about_image);
+            }
+            $data['about_image'] = null;
         }
 
         // Əgər yeni logo aktiv edilərsə, digərlərini deaktiv et
@@ -170,6 +222,11 @@ class SiteLogoController extends Controller
         
         if ($siteLogo->favicon && File::exists($this->uploadPath . '/' . $siteLogo->favicon)) {
             File::delete($this->uploadPath . '/' . $siteLogo->favicon);
+        }
+
+        // About Image sil
+        if ($siteLogo->about_image && File::exists($this->aboutImagePath . '/' . $siteLogo->about_image)) {
+            File::delete($this->aboutImagePath . '/' . $siteLogo->about_image);
         }
 
         $siteLogo->delete();

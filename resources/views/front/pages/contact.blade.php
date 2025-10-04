@@ -42,11 +42,12 @@
                 <div class="col-lg-8" data-aos="fade-right">
                     <div class="contact-form-container">
                         <h3 class="text-white mb-4">Əlaqə Formu</h3>
-                        <form id="contactForm" class="contact-form">
+                        <form id="contactForm" class="contact-form" action="{{ route('front.contact.store') }}" method="POST">
+                            @csrf
                             <!-- Ad və Soyad - Tam genişlik -->
                             <div class="mb-4">
                                 <label for="contactName" class="form-label">Ad və Soyad</label>
-                                <input type="text" class="form-control" id="contactName" 
+                                <input type="text" class="form-control" id="contactName" name="name"
                                        placeholder="Adınızı və soyadınızı daxil edin" required>
                                 <div class="invalid-feedback">Ad və soyad sahəsi mütləqdir.</div>
                             </div>
@@ -55,22 +56,29 @@
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <label for="contactPhone" class="form-label">Telefon</label>
-                                    <input type="tel" class="form-control" id="contactPhone" 
+                                    <input type="tel" class="form-control" id="contactPhone" name="phone"
                                            placeholder="+994 XX XXX XX XX" required>
                                     <div class="invalid-feedback">Telefon nömrəsi düzgün formatda daxil edin.</div>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <label for="contactEmail" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="contactEmail" 
+                                    <input type="email" class="form-control" id="contactEmail" name="email"
                                            placeholder="emailiniz@example.com" required>
                                     <div class="invalid-feedback">Düzgün email ünvanı daxil edin.</div>
                                 </div>
+                            </div>
+
+                            <!-- Mövzu - Tam genişlik -->
+                            <div class="mb-4">
+                                <label for="contactSubject" class="form-label">Mövzu</label>
+                                <input type="text" class="form-control" id="contactSubject" name="subject"
+                                       placeholder="Mesajınızın mövzusu (isteğe bağlı)">
                             </div>
                             
                             <!-- Mesaj - Tam genişlik -->
                             <div class="mb-4">
                                 <label for="contactMessage" class="form-label">Mesaj</label>
-                                <textarea class="form-control" id="contactMessage" rows="6" 
+                                <textarea class="form-control" id="contactMessage" name="message" rows="6" 
                                           placeholder="Mesajınızı və suallarınızı yazın..." required></textarea>
                                 <div class="invalid-feedback">Mesaj sahəsi mütləqdir.</div>
                             </div>
@@ -100,7 +108,7 @@
                                     </div>
                                     <div class="contact-content">
                                         <h6 class="text-primary">Ünvan</h6>
-                                        <p class="text-light">28 May küç. 123<br>Bakı, Azərbaycan AZ1000</p>
+                                        <p class="text-light">{{ $contactInfo->address ?? 'Təyin edilməyib' }}</p>
                                     </div>
                                 </div>
                                 
@@ -111,8 +119,15 @@
                                     <div class="contact-content">
                                         <h6 class="text-primary">Telefon</h6>
                                         <p class="text-light">
-                                            <a href="tel:+994123456789" class="text-light">+994 12 345 67 89</a><br>
-                                            <a href="tel:+994503456789" class="text-light">+994 50 345 67 89</a>
+                                            @if($contactInfo->phone1)
+                                                <a href="tel:{{ $contactInfo->phone1 }}" class="text-light">{{ $contactInfo->phone1 }}</a><br>
+                                            @endif
+                                            @if($contactInfo->phone2)
+                                                <a href="tel:{{ $contactInfo->phone2 }}" class="text-light">{{ $contactInfo->phone2 }}</a>
+                                            @endif
+                                            @if(!$contactInfo->phone1 && !$contactInfo->phone2)
+                                                Təyin edilməyib
+                                            @endif
                                         </p>
                                     </div>
                                 </div>
@@ -124,8 +139,15 @@
                                     <div class="contact-content">
                                         <h6 class="text-primary">E-poçt</h6>
                                         <p class="text-light">
-                                            <a href="mailto:info@modernlizinq.az" class="text-light">info@modernlizinq.az</a><br>
-                                            <a href="mailto:support@modernlizinq.az" class="text-light">support@modernlizinq.az</a>
+                                            @if($contactInfo->email1)
+                                                <a href="mailto:{{ $contactInfo->email1 }}" class="text-light">{{ $contactInfo->email1 }}</a><br>
+                                            @endif
+                                            @if($contactInfo->email2)
+                                                <a href="mailto:{{ $contactInfo->email2 }}" class="text-light">{{ $contactInfo->email2 }}</a>
+                                            @endif
+                                            @if(!$contactInfo->email1 && !$contactInfo->email2)
+                                                Təyin edilməyib
+                                            @endif
                                         </p>
                                     </div>
                                 </div>
@@ -137,9 +159,12 @@
                                     <div class="contact-content">
                                         <h6 class="text-primary">İş Saatları</h6>
                                         <p class="text-light">
-                                            Bazar ertəsi - Cümə: 09:00 - 18:00<br>
-                                            Şənbə: 09:00 - 14:00<br>
-                                            Bazar: Bağlı
+                                            @if(isset($businessHours) && $businessHours->is_active)
+                                                <span class="d-block">Həftə İçi: {{ $businessHours->weekday_hours ?? 'Təyin edilməyib' }}</span>
+                                                <span class="d-block">Həftə Sonu: {{ $businessHours->weekend_hours ?? 'Təyin edilməyib' }}</span>
+                                            @else
+                                                Təyin edilməyib
+                                            @endif
                                         </p>
                                     </div>
                                 </div>
@@ -148,52 +173,49 @@
                         
                         <!-- Quick Contact Buttons -->
                         <div class="quick-contact-buttons">
-                            <a href="tel:+994123456789" class="quick-contact-btn phone-btn">
-                                <i class="fas fa-phone"></i>
-                                <span>Zəng Et</span>
-                            </a>
-                            <a href="mailto:info@modernlizinq.az" class="quick-contact-btn email-btn">
-                                <i class="fas fa-envelope"></i>
-                                <span>Email Göndər</span>
-                            </a>
-                            <a href="https://wa.me/994503456789" target="_blank" class="quick-contact-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                <span>WhatsApp</span>
-                            </a>
+                            @if(isset($contactInfo) && $contactInfo->phone1)
+                                <a href="tel:{{ $contactInfo->phone1 }}" class="quick-contact-btn phone-btn">
+                                    <i class="fas fa-phone"></i>
+                                    <span>Zəng Et</span>
+                                </a>
+                            @endif
+                            @if(isset($contactInfo) && $contactInfo->email1)
+                                <a href="mailto:{{ $contactInfo->email1 }}" class="quick-contact-btn email-btn">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>Email Göndər</span>
+                                </a>
+                            @endif
+                            @if(isset($contactInfo) && $contactInfo->phone2) {{-- WhatsApp adətən ikinci nömrə ilə əlaqələndirilir --}}
+                                <a href="https://wa.me/{{ preg_replace('/[^0-9]/m', '', $contactInfo->phone2) }}" target="_blank" class="quick-contact-btn whatsapp-btn">
+                                    <i class="fab fa-whatsapp"></i>
+                                    <span>WhatsApp</span>
+                                </a>
+                            @endif
                         </div>
                         
                         <!-- Business Hours Card -->
                         <div class="business-hours-card">
-                            <h5 class="text-white mb-3">Həftə İçi İş Saatları</h5>
+                            <h5 class="text-white mb-3">İş Saatları</h5>
                             <div class="hours-list">
-                                <div class="hours-item">
-                                    <span class="day">Bazar ertəsi</span>
-                                    <span class="time text-primary">09:00 - 18:00</span>
-                                </div>
-                                <div class="hours-item">
-                                    <span class="day">Çərşənbə axşamı</span>
-                                    <span class="time text-primary">09:00 - 18:00</span>
-                                </div>
-                                <div class="hours-item">
-                                    <span class="day">Çərşənbə</span>
-                                    <span class="time text-primary">09:00 - 18:00</span>
-                                </div>
-                                <div class="hours-item">
-                                    <span class="day">Cümə axşamı</span>
-                                    <span class="time text-primary">09:00 - 18:00</span>
-                                </div>
-                                <div class="hours-item">
-                                    <span class="day">Cümə</span>
-                                    <span class="time text-primary">09:00 - 18:00</span>
-                                </div>
-                                <div class="hours-item">
-                                    <span class="day">Şənbə</span>
-                                    <span class="time text-primary">09:00 - 14:00</span>
-                                </div>
-                                <div class="hours-item">
-                                    <span class="day">Bazar</span>
-                                    <span class="time text-secondary">Bağlı</span>
-                                </div>
+                                @if(isset($businessHours) && $businessHours->is_active)
+                                    <div class="hours-item">
+                                        <span class="day">Həftə İçi</span>
+                                        <span class="time text-primary">{{ $businessHours->weekday_hours }}</span>
+                                    </div>
+                                    <div class="hours-item">
+                                        <span class="day">Həftə Sonu</span>
+                                        <span class="time text-primary">{{ $businessHours->weekend_hours }}</span>
+                                    </div>
+                                @else
+                                    <div class="hours-item">
+                                        <span class="day">Həftə İçi</span>
+                                        <span class="time text-primary">09:00 - 18:00</span>
+                                    </div>
+                                    <div class="hours-item">
+                                        <span class="day">Həftə Sonu</span>
+                                        <span class="time text-primary">09:00 - 14:00, Bazar: Bağlı</span>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -211,17 +233,25 @@
                         <div class="map-overlay">
                             <div class="map-info">
                                 <h4 class="text-white">Modern Lizinq Mərkəzi Ofis</h4>
-                                <p class="text-light">28 May küç. 123, Bakı</p>
-                                <a href="https://maps.google.com" target="_blank" class="btn btn-primary-custom btn-sm">
+                                <p class="text-light">{{ $contactInfo->address ?? 'Təyin edilməyib' }}</p>
+                                <a href="https://maps.google.com/?q={{ urlencode($contactInfo->address ?? 'Bakı, Azərbaycan') }}" target="_blank" class="btn btn-primary-custom btn-sm">
                                     <i class="fas fa-directions me-2"></i>Yol Tarifləri Al
                                 </a>
                             </div>
                         </div>
                         <!-- Map Placeholder - Gerçək xəritə inteqrasiyası üçün Google Maps və ya digər xidmət -->
                         <div class="map-placeholder">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3039.175385327671!2d49.8671!3d40.4093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDI0JzMzLjUiTiA0OcKwNTInMDEuNiJF!5e0!3m2!1sen!2saz!4v1620000000000!5m2!1sen!2saz" 
-                                    width="100%" height="400" style="border:0;" allowfullscreen="" 
-                                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            @if(isset($contactInfo) && $contactInfo->map_iframe)
+                                <div class="responsive-map-iframe-wrapper">
+                                    {!! $contactInfo->map_iframe !!}
+                                </div>
+                            @else
+                                <div class="responsive-map-iframe-wrapper">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3039.175385327671!2d49.8671!3d40.4093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDI0JzMzLjU!SBOIDQ5wrDuyUyNTInMDEuNiJF!5e0!3m2!1sen!2saz!4v1620000000000!5m2!1sen!2saz" 
+                                            width="100%" height="400" style="border:0;" allowfullscreen="" 
+                                            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -234,7 +264,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
-                    <div class="contact-cta">
+                    <!-- <div class="contact-cta">
                         <h3 class="text-white mb-3">24/7 Müştəri Dəstəyi</h3>
                         <p class="text-light mb-4">
                             Bizim mütəxəssis komanda həftənin 7 günü sizin xidmətinizdədir. 
@@ -265,7 +295,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -565,6 +595,22 @@
     .map-placeholder:hover iframe {
         filter: grayscale(0%);
     }
+
+    .responsive-map-iframe-wrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspekt nisbəti (hündürlük / genişlik) */
+        height: 0;
+        overflow: hidden;
+    }
+
+    .responsive-map-iframe-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
     
     .contact-cta {
         background: rgba(255, 255, 255, 0.05);
@@ -663,7 +709,7 @@
             
             let isValid = true;
             
-            // Validate required fields - sadece 4 esas sahə
+            // Validate required fields
             const requiredFields = ['contactName', 'contactPhone', 'contactEmail', 'contactMessage'];
             requiredFields.forEach(fieldId => {
                 const field = document.getElementById(fieldId);
@@ -690,40 +736,81 @@
             }
             
             if (isValid) {
-                // Submit form
                 const submitBtn = this.querySelector('button[type="submit"]');
                 const originalText = submitBtn.innerHTML;
-                
+                const formData = new FormData(this); // Form datalarını götür
+
                 // Show loading state
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Göndərilir...';
                 submitBtn.disabled = true;
                 
-                // Simulate API call
-                setTimeout(() => {
-                    submitBtn.innerHTML = '<i class="fas fa-check me-2"></i>Uğurla Göndərildi!';
-                    submitBtn.classList.remove('btn-primary-custom');
-                    submitBtn.classList.add('btn-success');
-                    
-                    // Show success message
-                    const successAlert = document.createElement('div');
-                    successAlert.className = 'alert alert-success mt-3';
-                    successAlert.innerHTML = '<i class="fas fa-check-circle me-2"></i>Mesajınız uğurla göndərildi! Tezliklə sizinlə əlaqə saxlayacağıq.';
-                    this.appendChild(successAlert);
-                    
-                    // Reset form after 3 seconds
-                    setTimeout(() => {
-                        this.reset();
+                // Real API call using Fetch API
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        submitBtn.innerHTML = '<i class="fas fa-check me-2"></i>Uğurla Göndərildi!';
+                        submitBtn.classList.remove('btn-primary-custom');
+                        submitBtn.classList.add('btn-success');
+                        
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Uğurlu!',
+                            text: data.message || 'Mesajınız uğurla göndərildi! Tezliklə sizinlə əlaqə saxlayacağıq.',
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                        
+                        setTimeout(() => {
+                            this.reset();
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.classList.remove('btn-success');
+                            submitBtn.classList.add('btn-primary-custom');
+                            submitBtn.disabled = false;
+                        }, 2000);
+                    } else {
+                        // Handle validation errors or other errors from backend
                         submitBtn.innerHTML = originalText;
-                        submitBtn.classList.remove('btn-success');
-                        submitBtn.classList.add('btn-primary-custom');
                         submitBtn.disabled = false;
-                        successAlert.remove();
-                    }, 3000);
-                }, 2000);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Xəta Baş Verdi!',
+                            text: data.message || 'Mesaj göndərilərkən bir xəta baş verdi. Zəhmət olmasa, yenidən cəhd edin.'
+                        });
+                        if (data.errors) {
+                            for (const fieldName in data.errors) {
+                                const fieldElement = document.querySelector(`[name="${fieldName}"]`);
+                                if (fieldElement) {
+                                    fieldElement.classList.add('is-invalid');
+                                    const feedbackElement = fieldElement.nextElementSibling;
+                                    if (feedbackElement && feedbackElement.classList.contains('invalid-feedback')) {
+                                        feedbackElement.textContent = data.errors[fieldName][0];
+                                    }
+                                }
+                            }
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Şəbəkə Xətası!',
+                        text: 'Mesaj göndərilərkən şəbəkə xətası baş verdi. İnternet bağlantınızı yoxlayın.'
+                    });
+                });
             }
         });
         
-        // Real-time validation feedback
+        // Real-time validation feedback (unchanged)
         document.getElementById('contactEmail').addEventListener('input', function() {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (this.value && !emailRegex.test(this.value)) {
@@ -734,7 +821,7 @@
         });
         
         document.getElementById('contactPhone').addEventListener('input', function() {
-            // Format phone number as user types
+            // Format phone number as user types (unchanged)
             let value = this.value.replace(/\D/g, '');
             if (value.length > 0 && !value.startsWith('994')) {
                 value = '994' + value;
@@ -753,7 +840,7 @@
             }
             this.value = '+' + value;
             
-            // Validate
+            // Validate (unchanged)
             const phoneRegex = /^\+994\s?\d{2}\s?\d{3}\s?\d{2}\s?\d{2}$/;
             if (this.value && !phoneRegex.test(this.value)) {
                 this.classList.add('is-invalid');
@@ -762,41 +849,40 @@
             }
         });
         
-        // Current time display for business hours
-        function updateCurrentTime() {
-            const now = new Date();
-            const days = ['Bazar', 'Bazar ertəsi', 'Çərşənbə axşamı', 'Çərşənbə', 'Cümə axşamı', 'Cümə', 'Şənbə'];
-            const currentDay = days[now.getDay()];
-            const currentHour = now.getHours();
+        // Current time display for business hours (unchanged)
+        // function updateCurrentTime() {
+        //     const now = new Date();
+        //     const days = ['Bazar', 'Bazar ertəsi', 'Çərşənbə axşamı', 'Çərşənbə', 'Cümə axşamı', 'Cümə', 'Şənbə'];
+        //     const currentDay = days[now.getDay()];
+        //     const currentHour = now.getHours();
             
-            // Highlight current day
-            document.querySelectorAll('.hours-item').forEach(item => {
-                const daySpan = item.querySelector('.day');
-                if (daySpan && daySpan.textContent === currentDay) {
-                    item.style.background = 'rgba(255, 107, 53, 0.1)';
-                    item.style.borderRadius = '4px';
+        //     // Highlight current day
+        //     document.querySelectorAll('.hours-item').forEach(item => {
+        //         const daySpan = item.querySelector('.day');
+        //         if (daySpan && daySpan.textContent === currentDay) {
+        //             item.style.background = 'rgba(255, 107, 53, 0.1)';
+        //             item.style.borderRadius = '4px';
                     
-                    // Check if currently open
-                    const isOpen = (currentDay !== 'Bazar') && 
-                                  ((currentDay === 'Şənbə' && currentHour >= 9 && currentHour < 14) || 
-                                   (currentDay !== 'Şənbə' && currentHour >= 9 && currentHour < 18));
+        //             // Check if currently open
+        //             const isOpen = (currentDay !== 'Bazar') && 
+        //                           ((currentDay === 'Şənbə' && currentHour >= 9 && currentHour < 14) || 
+        //                            (currentDay !== 'Şənbə' && currentHour >= 9 && currentHour < 18));
                     
-                    if (isOpen) {
-                        const statusSpan = document.createElement('span');
-                        statusSpan.className = 'badge bg-success ms-2';
-                        statusSpan.textContent = 'AÇIQ';
-                        daySpan.appendChild(statusSpan);
-                    }
-                }
-            });
-        }
+        //             if (isOpen) {
+        //                 const statusSpan = document.createElement('span');
+        //                 statusSpan.className = 'badge bg-success ms-2';
+        //                 statusSpan.textContent = 'AÇIQ';
+        //                 daySpan.appendChild(statusSpan);
+        //             }
+        //         }
+        //     });
+        // }
         
-        updateCurrentTime();
+        // updateCurrentTime();
         
-        // Update every minute
-        setInterval(updateCurrentTime, 60000);
+        // setInterval(updateCurrentTime, 60000);
         
-        // Real-time blur validation - sahədən çıxanda yoxla
+        // Real-time blur validation - sahədən çıxanda yoxla (unchanged)
         const formFields = ['contactName', 'contactPhone', 'contactEmail', 'contactMessage'];
         formFields.forEach(fieldId => {
             const field = document.getElementById(fieldId);

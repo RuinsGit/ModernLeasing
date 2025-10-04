@@ -7,7 +7,7 @@
             <div class="col-sm-6">
                 <div class="text-sm-end d-none d-sm-block">
                     Designed <i class="mdi mdi-heart text-danger"></i> by <a
-                        href="https://166tech.az" target="_blank">166 Tech</a>
+                        href="https://www.instagram.com/r.museyibli/" target="_blank">Ruhin Museyibli</a>
                 </div>
             </div>
         </div>

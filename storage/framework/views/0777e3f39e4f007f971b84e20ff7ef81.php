@@ -156,7 +156,7 @@
             </div>
 
             <!-- Service Features Summary -->
-            <div class="row mt-5">
+            <!-- <div class="row mt-5">
                 <div class="col-12 text-center">
                     <h3 class="text-white mb-4">Hər Xidmət Sahəsi</h3>
                     <div class="row g-4">
@@ -186,7 +186,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 <?php $__env->stopSection(); ?>

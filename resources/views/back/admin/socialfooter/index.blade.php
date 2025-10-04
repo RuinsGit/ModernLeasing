@@ -63,7 +63,7 @@
                                     <thead>
                                         <tr>
                                             <th>Sıra</th>
-                                            <th>Şəkil</th>
+                                            <th>İkon / Şəkil</th>
                                             <th>Link</th>
                                             <th>Status</th>
                                             <th>Əməliyyatlar</th>
@@ -74,14 +74,16 @@
                                             <tr id="order-{{ $socialfooter->id }}">
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
-                                                    <img src="{{ asset($socialfooter->image) }}" alt="" style="height: 50px; width: 50px; object-fit: cover; ">
+                                                    <div style="height: 50px; width: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                                                        {!! $socialfooter->display_icon !!}
+                                                    </div>
                                                 </td>
                                                 <td>{{ $socialfooter->link }}</td>
                                                 <td>
                                                     <form action="{{ route('back.pages.socialfooter.toggle-status', $socialfooter->id) }}" method="POST" class="d-inline-block">
                                                         @csrf
-                                                        <button type="submit" class="btn btn-sm btn-{{ $socialfooter->status ? 'success' : 'danger' }}">
-                                                            {{ $socialfooter->status ? 'Aktiv' : 'Deaktiv' }}
+                                                        <button type="submit" class="btn btn-sm btn-{{ $socialfooter->is_active ? 'success' : 'danger' }}">
+                                                            {{ $socialfooter->is_active ? 'Aktiv' : 'Deaktiv' }}
                                                         </button>
                                                     </form>
                                                 </td>

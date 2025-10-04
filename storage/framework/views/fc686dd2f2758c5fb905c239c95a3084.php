@@ -7,12 +7,23 @@
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="footer-section">
                     <div class="footer-logo mb-4">
-                        <img src="<?php echo e(asset('uploads/logos/logo.png')); ?>" alt="MODERN LİZİNQ" height="45" class="mb-3">
-                        <h4 class="text-white">MODERN LİZİNQ</h4>
+                        <?php if(isset($siteLogo) && $siteLogo->logo_image): ?>
+                            <img src="<?php echo e($siteLogo->logo_url); ?>" alt="<?php echo e($siteLogo->site_name); ?>" height="45" class="mb-3">
+                        <?php endif; ?>
+                        <?php if(isset($siteLogo) && $siteLogo->site_name): ?>
+                            <h4 class="text-white"><?php echo e($siteLogo->site_name); ?></h4>
+                        <?php else: ?>
+                            <h4 class="text-white">MODERN LİZİNQ</h4>
+                        <?php endif; ?>
                     </div>
                     <p class="footer-description">
-                        15 il təcrübəmizla Azərbaycanın aparıcı lizinq şirkəti olaraq 
-                        fərdi və korporativ müştərilərimizə ən uyğun maliyyələşdirmə həllərini təqdim edirik.
+                        <?php if(isset($siteLogo) && $siteLogo->site_description): ?>
+                            <?php echo e($siteLogo->site_description); ?>
+
+                        <?php else: ?>
+                            15 il təcrübəmizla Azərbaycanın aparıcı lizinq şirkəti olaraq 
+                            fərdi və korporativ müştərilərimizə ən uyğun maliyyələşdirmə həllərini təqdim edirik.
+                        <?php endif; ?>
                     </p>
                     
                     <!-- Social Media -->
@@ -21,9 +32,10 @@
                         <div class="social-links">
                             <?php if(isset($socialfooters) && count($socialfooters) > 0): ?>
                                 <?php $__currentLoopData = $socialfooters; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $social): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <?php if($social->status): ?>
+                                    <?php if($social->is_active): ?>
                                         <a href="<?php echo e($social->link); ?>" target="_blank" class="social-link">
-                                            <img src="<?php echo e(asset($social->image)); ?>" alt="Social Media">
+                                            <?php echo $social->display_icon; ?>
+
                                         </a>
                                     <?php endif; ?>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -55,11 +67,19 @@
                 <div class="footer-section">
                     <h5>Sürətli Keçidlər</h5>
                     <ul class="footer-links">
-                        <li><a href="<?php echo e(route('front.index')); ?>">Ana Səhifə</a></li>
-                        <li><a href="<?php echo e(route('front.about')); ?>">Haqqımızda</a></li>
-                        <li><a href="#services">Xidmətlər</a></li>
-                        <li><a href="#investors">İnvestorlar</a></li>
-                        <li><a href="<?php echo e(route('front.contact')); ?>">Əlaqə</a></li>
+                        <?php if(isset($desktopNavbarItems) && $desktopNavbarItems->count() > 0): ?>
+                            <?php $__currentLoopData = $desktopNavbarItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php if(!$item->parent_id && $item->is_active && $item->show_desktop): ?>
+                                    <li><a href="<?php echo e($item->link); ?>"><?php echo e($item->title); ?></a></li>
+                                <?php endif; ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php else: ?>
+                            <li><a href="<?php echo e(route('front.index')); ?>">Ana Səhifə</a></li>
+                            <li><a href="<?php echo e(route('front.about')); ?>">Haqqımızda</a></li>
+                            <li><a href="#services">Xidmətlər</a></li>
+                            <li><a href="#investors">İnvestorlar</a></li>
+                            <li><a href="<?php echo e(route('front.contact')); ?>">Əlaqə</a></li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -69,11 +89,19 @@
                 <div class="footer-section">
                     <h5>Xidmətlər</h5>
                     <ul class="footer-links">
-                        <li><a href="#agricultural">Kənd Təsərrüfatı</a></li>
-                        <li><a href="#automotive">Avtomobillər</a></li>
-                        <li><a href="#household">Məişət Texnikası</a></li>
-                        <li><a href="#realestate">Daşınmaz Əmlak</a></li>
-                        <li><a href="#industrial">Sənaye Avadanlıqları</a></li>
+                        <?php if(isset($services) && $services->count() > 0): ?>
+                            <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php if($service->is_active): ?>
+                                    <li><a href="<?php echo e(route('front.services')); ?>#<?php echo e(Str::slug($service->title)); ?>"><?php echo e($service->title); ?></a></li>
+                                <?php endif; ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php else: ?>
+                            <li><a href="#agricultural">Kənd Təsərrüfatı</a></li>
+                            <li><a href="#automotive">Avtomobillər</a></li>
+                            <li><a href="#household">Məişət Texnikası</a></li>
+                            <li><a href="#realestate">Daşınmaz Əmlak</a></li>
+                            <li><a href="#industrial">Sənaye Avadanlıqları</a></li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -83,55 +111,115 @@
                 <div class="footer-section">
                     <h5>Əlaqə Məlumatları</h5>
                     
-                    <!-- Address -->
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
+                    <?php if(isset($contactInfo) && $contactInfo->is_active): ?>
+                        <!-- Address -->
+                        <?php if($contactInfo->address): ?>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-content">
+                                <p><?php echo e($contactInfo->address); ?></p>
+                            </div>
                         </div>
-                        <div class="contact-content">
-                            <p>28 May küç. 123<br>Bakı, Azərbaycan AZ1000</p>
+                        <?php endif; ?>
+                        
+                        <!-- Phone -->
+                        <?php if($contactInfo->phone1 || $contactInfo->phone2): ?>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-content">
+                                <p>
+                                    <?php if($contactInfo->phone1): ?><a href="tel:<?php echo e($contactInfo->phone1); ?>"><?php echo e($contactInfo->phone1); ?></a><br><?php endif; ?>
+                                    <?php if($contactInfo->phone2): ?><a href="tel:<?php echo e($contactInfo->phone2); ?>"><?php echo e($contactInfo->phone2); ?></a><?php endif; ?>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <!-- Phone -->
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
+                        <?php endif; ?>
+                        
+                        <!-- Email -->
+                        <?php if($contactInfo->email1 || $contactInfo->email2): ?>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-content">
+                                <p>
+                                    <?php if($contactInfo->email1): ?><a href="mailto:<?php echo e($contactInfo->email1); ?>"><?php echo e($contactInfo->email1); ?></a><br><?php endif; ?>
+                                    <?php if($contactInfo->email2): ?><a href="mailto:<?php echo e($contactInfo->email2); ?>"><?php echo e($contactInfo->email2); ?></a><?php endif; ?>
+                                </p>
+                            </div>
                         </div>
-                        <div class="contact-content">
-                            <p>
-                                <a href="tel:+994123456789">+994 12 345 67 89</a><br>
-                                <a href="tel:+994503456789">+994 50 345 67 89</a>
-                            </p>
+                        <?php endif; ?>
+                        
+                        <!-- Working Hours -->
+                        <?php if($contactInfo->working_hours_weekdays || $contactInfo->working_hours_weekends): ?>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-content">
+                                <p>
+                                    <?php if($contactInfo->working_hours_weekdays): ?><?php echo e($contactInfo->working_hours_weekdays); ?><br><?php endif; ?>
+                                    <?php if($contactInfo->working_hours_weekends): ?><?php echo e($contactInfo->working_hours_weekends); ?><?php endif; ?>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <!-- Email -->
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
+                        <?php endif; ?>
+                    <?php else: ?>
+                        <!-- Default static contact info -->
+                        <!-- Address -->
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-content">
+                                <p>28 May küç. 123<br>Bakı, Azərbaycan AZ1000</p>
+                            </div>
                         </div>
-                        <div class="contact-content">
-                            <p>
-                                <a href="mailto:info@modernlizinq.az">info@modernlizinq.az</a><br>
-                                <a href="mailto:support@modernlizinq.az">support@modernlizinq.az</a>
-                            </p>
+                        
+                        <!-- Phone -->
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-content">
+                                <p>
+                                    <a href="tel:+994123456789">+994 12 345 67 89</a><br>
+                                    <a href="tel:+994503456789">+994 50 345 67 89</a>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <!-- Working Hours -->
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
+                        
+                        <!-- Email -->
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-content">
+                                <p>
+                                    <a href="mailto:info@modernlizinq.az">info@modernlizinq.az</a><br>
+                                    <a href="mailto:support@modernlizinq.az">support@modernlizinq.az</a>
+                                </p>
+                            </div>
                         </div>
-                        <div class="contact-content">
-                            <p>
-                                Bazar ertəsi - Cümə: 09:00 - 18:00<br>
-                                Şənbə: 09:00 - 14:00<br>
-                                Bazar: Bağlı
-                            </p>
+                        
+                        <!-- Working Hours -->
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-content">
+                                <p>
+                                    Bazar ertəsi - Cümə: 09:00 - 18:00<br>
+                                    Şənbə: 09:00 - 14:00<br>
+                                    Bazar: Bağlı
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

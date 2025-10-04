@@ -10,7 +10,20 @@ use App\Models\HeroFeature;
 use App\Models\NavbarItem;
 use App\Models\SiteLogo;
 use App\Models\Service;
+use App\Models\Advantage;
+use App\Models\MissionGoal; // Yeni əlavə edildi
+use App\Models\StatItem; // Yeni əlavə edildi
+use App\Models\Partner; // Yeni əlavə edildi
+use App\Models\ContactInfo; // Yeni əlavə edildi
+use App\Models\CompanyHistoryItem; // Yeni əlavə edildi
+use App\Models\AboutMissionSection; // Yeni əlavə edildi
+use App\Models\AboutMissionCard; // Yeni əlavə edildi
+use App\Models\TeamMember; // Yeni əlavə edildi
+use App\Models\NewsItem; // Yeni əlavə edildi
+use App\Models\ContactMessage; // Yeni əlavə edildi
+use App\Models\BusinessHour; // Yeni əlavə edildi
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class FrontController extends Controller
 {
@@ -28,8 +41,14 @@ class FrontController extends Controller
         $mobileNavbarItems = NavbarItem::getMobileItems();
         $siteLogo = SiteLogo::getActiveLogo();
         $services = Service::getActiveServices();
+        $advantages = Advantage::getActiveAdvantages();
+        $missionGoals = MissionGoal::getActiveMissionGoals(); // Yeni əlavə edildi
+        $statItems = StatItem::getActiveStatItems(); // Yeni əlavə edildi
+        $partners = Partner::getActivePartners(); // Yeni əlavə edildi
+        $contactInfo = ContactInfo::getActiveContactInfo(); // Yeni əlavə edildi
+        $businessHours = BusinessHour::getActiveBusinessHours(); // Yeni əlavə edildi
         
-        return view('front.pages.index', compact('socialfooters', 'logos', 'heroSection', 'heroFeatures', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'services'));
+        return view('front.pages.index', compact('socialfooters', 'logos', 'heroSection', 'heroFeatures', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'services', 'advantages', 'missionGoals', 'statItems', 'partners', 'contactInfo', 'businessHours'));
     }
     
     /**
@@ -44,8 +63,16 @@ class FrontController extends Controller
         $desktopNavbarItems = NavbarItem::getDesktopItems();
         $mobileNavbarItems = NavbarItem::getMobileItems();
         $siteLogo = SiteLogo::getActiveLogo();
+        $advantages = Advantage::getActiveAdvantages();
+        $contactInfo = ContactInfo::getActiveContactInfo(); // Yeni əlavə edildi
+        $companyHistoryItems = CompanyHistoryItem::getActiveHistoryItems(); // Yeni əlavə edildi
+        $aboutMissionSection = AboutMissionSection::getActiveMissionSection(); // Yeni əlavə edildi
+        $aboutMissionCards = AboutMissionCard::getActiveCards(); // Yeni əlavə edildi
+        $teamMembers = TeamMember::getActiveTeamMembers(); // Yeni əlavə edildi
+        $newsItems = NewsItem::getActiveNewsItems(); // Yeni əlavə edildi
+        $businessHours = BusinessHour::getActiveBusinessHours(); // Yeni əlavə edildi
         
-        return view('front.pages.about', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo'));
+        return view('front.pages.about', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'advantages', 'contactInfo', 'companyHistoryItems', 'aboutMissionSection', 'aboutMissionCards', 'teamMembers', 'newsItems', 'businessHours'));
     }
     
     /**
@@ -60,8 +87,10 @@ class FrontController extends Controller
         $mobileNavbarItems = NavbarItem::getMobileItems();
         $siteLogo = SiteLogo::getActiveLogo();
         $services = Service::getActiveServices();
+        $contactInfo = ContactInfo::getActiveContactInfo(); // Yeni əlavə edildi
+        $businessHours = BusinessHour::getActiveBusinessHours(); // Yeni əlavə edildi
         
-        return view('front.pages.services', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'services'));
+        return view('front.pages.services', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'services', 'contactInfo', 'businessHours'));
     }
     
     /**
@@ -75,8 +104,10 @@ class FrontController extends Controller
         $desktopNavbarItems = NavbarItem::getDesktopItems();
         $mobileNavbarItems = NavbarItem::getMobileItems();
         $siteLogo = SiteLogo::getActiveLogo();
+        $contactInfo = ContactInfo::getActiveContactInfo(); // Yeni əlavə edildi
+        $businessHours = BusinessHour::getActiveBusinessHours(); // Yeni əlavə edildi
         
-        return view('front.pages.investors', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo'));
+        return view('front.pages.investors', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'contactInfo', 'businessHours'));
     }
     
     /**
@@ -90,8 +121,10 @@ class FrontController extends Controller
         $desktopNavbarItems = NavbarItem::getDesktopItems();
         $mobileNavbarItems = NavbarItem::getMobileItems();
         $siteLogo = SiteLogo::getActiveLogo();
+        $contactInfo = ContactInfo::getActiveContactInfo(); // Yeni əlavə edildi
+        $businessHours = BusinessHour::getActiveBusinessHours(); // Yeni əlavə edildi
         
-        return view('front.pages.faq', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo'));
+        return view('front.pages.faq', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'contactInfo', 'businessHours'));
     }
     
     /**
@@ -106,8 +139,10 @@ class FrontController extends Controller
         $desktopNavbarItems = NavbarItem::getDesktopItems();
         $mobileNavbarItems = NavbarItem::getMobileItems();
         $siteLogo = SiteLogo::getActiveLogo();
+        $contactInfo = ContactInfo::getActiveContactInfo(); // Yeni əlavə edildi
+        $businessHours = BusinessHour::getActiveBusinessHours(); // Yeni əlavə edildi
         
-        return view('front.pages.contact', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo'));
+        return view('front.pages.contact', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'contactInfo', 'businessHours'));
     }
     
     /**
@@ -115,17 +150,33 @@ class FrontController extends Controller
      */
     public function contactStore(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'subject' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'subject' => 'nullable|string|max:255',
             'message' => 'required|string|max:2000',
         ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Zəhmət olmasa, bütün tələb olunan sahələri düzgün doldurun.',
+                'errors' => $validator->errors()
+            ], 422);
+        }
         
-        // Here you can add logic to save contact form data to database
-        // or send email notification
-        
-        return back()->with('success', 'Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.');
+        ContactMessage::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Mesajınız uğurla göndərildi! Tezliklə sizinlə əlaqə saxlayacağıq.'
+        ]);
     }
     
     /**

@@ -107,59 +107,74 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6" data-aos="fade-right">
                     <div class="advantages-content">
-                        <div class="advantage-item">
-                            <div class="advantage-icon">
-                                <i class="fas fa-percentage"></i>
+                        @if(isset($advantages) && $advantages->count() > 0)
+                            @foreach($advantages as $index => $advantage)
+                                <div class="advantage-item" data-aos="fade-up" data-aos-delay="{{ 300 + ($index * 100) }}" data-image-url="{{ $advantage->image_url }}">
+                                    <div class="advantage-icon">
+                                        <i class="{{ $advantage->icon_class }}"></i>
+                                    </div>
+                                    <div class="advantage-content">
+                                        <h4 class="text-white">{{ $advantage->title }}</h4>
+                                        <p class="text-light">{{ $advantage->description }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @else
+                            <!-- Default advantages if no data in database -->
+                            <div class="advantage-item">
+                                <div class="advantage-icon">
+                                    <i class="fas fa-percentage"></i>
+                                </div>
+                                <div class="advantage-content">
+                                    <h4 class="text-white">Ən Aşağı Faiz Dərəcələri</h4>
+                                    <p class="text-light">Bazarda ən əlverişli faiz dərəcələri ilə lizinq imkanı</p>
+                                </div>
                             </div>
-                            <div class="advantage-content">
-                                <h4 class="text-white">Ən Aşağı Faiz Dərəcələri</h4>
-                                <p class="text-light">Bazarda ən əlverişli faiz dərəcələri ilə lizinq imkanı</p>
+                            
+                            <div class="advantage-item">
+                                <div class="advantage-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="advantage-content">
+                                    <h4 class="text-white">Sürətli Baxış və Təsdiq</h4>
+                                    <p class="text-light">24 saat ərzində müraciətlərin baxılması və cavab verilməsi</p>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="advantage-item">
-                            <div class="advantage-icon">
-                                <i class="fas fa-clock"></i>
+                            
+                            <div class="advantage-item">
+                                <div class="advantage-icon">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                                <div class="advantage-content">
+                                    <h4 class="text-white">Çevik Ödəniş Imkanları</h4>
+                                    <p class="text-light">Müxtəlif ödəniş variantları və fərdi yanaşma</p>
+                                </div>
                             </div>
-                            <div class="advantage-content">
-                                <h4 class="text-white">Sürətli Baxış və Təsdiq</h4>
-                                <p class="text-light">24 saat ərzində müraciətlərin baxılması və cavab verilməsi</p>
+                            
+                            <div class="advantage-item">
+                                <div class="advantage-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="advantage-content">
+                                    <h4 class="text-white">Tam Sığorta Dəstəyi</h4>
+                                    <p class="text-light">Bütün məhsullar üçün hərtərəfli sığorta təminatı</p>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="advantage-item">
-                            <div class="advantage-icon">
-                                <i class="fas fa-handshake"></i>
-                            </div>
-                            <div class="advantage-content">
-                                <h4 class="text-white">Çevik Ödəniş Imkanları</h4>
-                                <p class="text-light">Müxtəlif ödəniş variantları və fərdi yanaşma</p>
-                            </div>
-                        </div>
-                        
-                        <div class="advantage-item">
-                            <div class="advantage-icon">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
-                            <div class="advantage-content">
-                                <h4 class="text-white">Tam Sığorta Dəstəyi</h4>
-                                <p class="text-light">Bütün məhsullar üçün hərtərəfli sığorta təminatı</p>
-                            </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
                 
                 <div class="col-lg-6" data-aos="fade-left">
                     <div class="advantages-image">
-                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1226&q=80" 
+                        <img id="advantages-display-image" src="{{ isset($advantages) && $advantages->count() > 0 ? ($advantages->first()->image_url ?: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1226&q=80') : 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1226&q=80' }}" 
                              alt="Bizim üstünlüklərimiz" class="img-fluid" style="border-radius: 8px;">
                         
-                        <div class="experience-badge">
+                        <!-- <div class="experience-badge">
                             <div class="badge-content">
-                                <span class="badge-number">15+</span>
+                                <span class="badge-number">{{ $heroSection->years_experience ?? '15' }}+</span>
                                 <span class="badge-text">İl<br>Təcrübə</span>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -169,61 +184,74 @@
     <!-- Mission & Goals Section -->
     <section class="section-padding text-white" id="mission" style="background-color: var(--section-bg);">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6" data-aos="fade-right">
-                    <div class="mission-image">
-                        <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" 
-                             alt="Bizim Missiyamız" class="img-fluid" style="border-radius: 8px;">
-                        
-                        <div class="play-button" data-bs-toggle="modal" data-bs-target="#videoModal">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-6" data-aos="fade-left">
+            <div class="row g-5 align-items-center flex-row-reverse"> {{-- flex-row-reverse added to put image on left --}}
+                <div class="col-lg-6" data-aos="fade-left"> {{-- Changed from fade-right --}}
                     <div class="mission-content">
                         <h2 class="section-title text-white">Bizim <span class="text-primary">Missiya və Məqsədlərimiz</span></h2>
                         <p class="section-subtitle text-light">
-                            Müştəri yönümlü yanaşma ilə lizinq xidmətləri sahəsində lider mövqe tutaraq, 
+                            Müştəri yönümlü yanaşma ilə lizinq xidmətləri sahəsində lider mövqe tutaraq,
                             rəqabətədavamlı həllər və yenilikçi texnologiyalarla müştərilərimizin rifah səviyyəsini artırmaq.
                         </p>
                         
-                        <div class="mission-item" data-aos="fade-up" data-aos-delay="300">
-                            <div class="mission-icon">
-                                <i class="fas fa-bullseye"></i>
+                        @if(isset($missionGoals) && $missionGoals->count() > 0)
+                            @foreach($missionGoals as $index => $missionGoal)
+                                <div class="mission-item" data-aos="fade-up" data-aos-delay="{{ 300 + ($index * 100) }}" data-image-url="{{ $missionGoal->image_url }}"> {{-- data-image-url added --}}
+                                    <div class="mission-icon">
+                                        <i class="{{ $missionGoal->icon_class }}"></i>
+                                    </div>
+                                    <div class="mission-text">
+                                        <h4 class="text-white">{{ $missionGoal->title }}</h4>
+                                        <p class="text-light">{{ $missionGoal->description }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @else
+                            <!-- Default static mission goals if no data -->
+                            <div class="mission-item" data-aos="fade-up" data-aos-delay="300" data-image-url="https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80"> {{-- Default image --}}
+                                <div class="mission-icon">
+                                    <i class="fas fa-bullseye"></i>
+                                </div>
+                                <div class="mission-text">
+                                    <h4 class="text-white">Missiyamız</h4>
+                                    <p class="text-light">Müştəri yönümlü yanaşma ilə keyfiyyətli, rəqabətli həllər təqdim etmək</p>
+                                </div>
                             </div>
-                            <div class="mission-text">
-                                <h4 class="text-white">Missiyamız</h4>
-                                <p class="text-light">Müştəri yönümlü yanaşma ilə keyfiyyətli, rəqabətli həllər təqdim etmək</p>
+                            
+                            <div class="mission-item" data-aos="fade-up" data-aos-delay="400" data-image-url="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80"> {{-- Default image --}}
+                                <div class="mission-icon">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                                <div class="mission-text">
+                                    <h4 class="text-white">Strategji Məqsədlər</h4>
+                                    <p class="text-light">Məhsul çeşidi, xidmət keyfiyyəti, rəqamsal həllər və beynəlxalq nüfuz</p>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="mission-item" data-aos="fade-up" data-aos-delay="400">
-                            <div class="mission-icon">
-                                <i class="fas fa-eye"></i>
+                            
+                            <div class="mission-item" data-aos="fade-up" data-aos-delay="500" data-image-url="https://images.unsplash.com/photo-1552588147-3211516631b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80"> {{-- Default image --}}
+                                <div class="mission-icon">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <div class="mission-text">
+                                    <h4 class="text-white">Gələcək Planlarımız</h4>
+                                    <p class="text-light">Yeni sahələr, investor əməkdaşlığı, rəqamsal yeniliklər</p>
+                                </div>
                             </div>
-                            <div class="mission-text">
-                                <h4 class="text-white">Strategji Məqsədlər</h4>
-                                <p class="text-light">Məhsul çeşidi, xidmət keyfiyyəti, rəqamsal həllər və beynəlxalq nüfuz</p>
-                            </div>
-                        </div>
-                        
-                        <div class="mission-item" data-aos="fade-up" data-aos-delay="500">
-                            <div class="mission-icon">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                            <div class="mission-text">
-                                <h4 class="text-white">Gələcək Planlarımız</h4>
-                                <p class="text-light">Yeni sahələr, investor əməkdaşlığı, rəqamsal yeniliklər</p>
-                            </div>
-                        </div>
+                        @endif
                         
                         <div class="mission-actions" data-aos="fade-up" data-aos-delay="600">
                             <button class="btn-primary-custom" data-bs-toggle="modal" data-bs-target="#applicationModal">
                                 Bizimlə Əməkdaşlıq Edin
                             </button>
                         </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6" data-aos="fade-right"> {{-- Changed from fade-left --}}
+                    <div class="mission-image">
+                        <img id="mission-display-image" src="{{ isset($missionGoals) && $missionGoals->count() > 0 ? ($missionGoals->first()->image_url ?: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80') : 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80' }}" 
+                             alt="Bizim Missiyamız" class="img-fluid" style="border-radius: 8px; width: 100%; height: 400px; object-fit: cover;"> {{-- id, width, height, object-fit added --}}
+                        
+                        {{-- Video play button removed --}}
                     </div>
                 </div>
             </div>
@@ -234,51 +262,66 @@
     <section class="stats-section section-padding bg-primary text-white">
         <div class="container">
             <div class="row text-center">
-                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="stat-box">
-                        <div class="stat-icon">
-                            <i class="fas fa-users"></i>
+                @if(isset($statItems) && $statItems->count() > 0)
+                    @foreach($statItems as $index => $statItem)
+                        <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ 100 + ($index * 100) }}">
+                            <div class="stat-box">
+                                <div class="stat-icon">
+                                    <i class="{{ $statItem->icon_class }}"></i>
+                                </div>
+                                <h3 class="animate-number" data-count="{{ $statItem->value }}">0</h3>
+                                <p>{{ $statItem->title }}</p>
+                            </div>
                         </div>
-                        <h3 class="animate-number" data-count="3500">0</h3>
-                        <p>Məmnun Müştəri</p>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="stat-box">
-                        <div class="stat-icon">
-                            <i class="fas fa-handshake"></i>
+                    @endforeach
+                @else
+                    <!-- Default static stat items if no data -->
+                    <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="stat-box">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 class="animate-number" data-count="3500">0</h3>
+                            <p>Məmnun Müştəri</p>
                         </div>
-                        <h3 class="animate-number" data-count="6800">0</h3>
-                        <p>Yerinə Yetirilən Sifariş</p>
                     </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="stat-box">
-                        <div class="stat-icon">
-                            <i class="fas fa-globe"></i>
+                    
+                    <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="stat-box">
+                            <div class="stat-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h3 class="animate-number" data-count="6800">0</h3>
+                            <p>Yerinə Yetirilən Sifariş</p>
                         </div>
-                        <h3 class="animate-number" data-count="25">0</h3>
-                        <p>Beynəlxalq Tərəfdaş</p>
                     </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
-                    <div class="stat-box">
-                        <div class="stat-icon">
-                            <i class="fas fa-award"></i>
+                    
+                    <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="stat-box">
+                            <div class="stat-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h3 class="animate-number" data-count="25">0</h3>
+                            <p>Beynəlxalq Tərəfdaş</p>
                         </div>
-                        <h3 class="animate-number" data-count="12">0</h3>
-                        <p>Sənaye Mükafatı</p>
                     </div>
-                </div>
+                    
+                    <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                        <div class="stat-box">
+                            <div class="stat-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <h3 class="animate-number" data-count="12">0</h3>
+                            <p>Sənaye Mükafatı</p>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </section>
 
     <!-- Contact CTA Section -->
-    <section class="section-padding text-white" id="contact-cta" style="background-color: var(--section-bg);">
+    <!-- <section class="section-padding text-white" id="contact-cta" style="background-color: var(--section-bg);">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center" data-aos="fade-up">
@@ -301,7 +344,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Partners Section -->
     <section class="section-padding" id="partners" style="background: #f8f9fa;">
@@ -316,54 +359,72 @@
             </div>
             
             <div class="row align-items-center justify-content-center" data-aos="fade-up" data-aos-delay="400">
-                <div class="col-lg-2 col-md-3 col-4 mb-4">
-                    <div class="partner-logo">
-                        <div class="partner-placeholder">
-                            <i class="fas fa-building"></i>
-                            <span>Partner 1</span>
+                @if(isset($partners) && $partners->count() > 0)
+                    @foreach($partners as $index => $partner)
+                        <div class="col-lg-2 col-md-3 col-4 mb-4" data-aos="fade-up" data-aos-delay="{{ 300 + ($index * 100) }}">
+                            <div class="partner-logo">
+                                @if($partner->logo_url)
+                                    <img src="{{ $partner->logo_url }}" alt="{{ $partner->name }}" class="img-fluid">
+                                @else
+                                    <div class="partner-placeholder">
+                                        <i class="fas fa-handshake"></i> {{-- Default icon if no logo --}}
+                                        <span>{{ $partner->name }}</span>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <!-- Default static partners if no data -->
+                    <div class="col-lg-2 col-md-3 col-4 mb-4">
+                        <div class="partner-logo">
+                            <div class="partner-placeholder">
+                                <i class="fas fa-building"></i>
+                                <span>Partner 1</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-4 mb-4">
-                    <div class="partner-logo">
-                        <div class="partner-placeholder">
-                            <i class="fas fa-industry"></i>
-                            <span>Partner 2</span>
+                    <div class="col-lg-2 col-md-3 col-4 mb-4">
+                        <div class="partner-logo">
+                            <div class="partner-placeholder">
+                                <i class="fas fa-industry"></i>
+                                <span>Partner 2</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-4 mb-4">
-                    <div class="partner-logo">
-                        <div class="partner-placeholder">
-                            <i class="fas fa-handshake"></i>
-                            <span>Partner 3</span>
+                    <div class="col-lg-2 col-md-3 col-4 mb-4">
+                        <div class="partner-logo">
+                            <div class="partner-placeholder">
+                                <i class="fas fa-handshake"></i>
+                                <span>Partner 3</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-4 mb-4">
-                    <div class="partner-logo">
-                        <div class="partner-placeholder">
-                            <i class="fas fa-globe"></i>
-                            <span>Partner 4</span>
+                    <div class="col-lg-2 col-md-3 col-4 mb-4">
+                        <div class="partner-logo">
+                            <div class="partner-placeholder">
+                                <i class="fas fa-globe"></i>
+                                <span>Partner 4</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-4 mb-4">
-                    <div class="partner-logo">
-                        <div class="partner-placeholder">
-                            <i class="fas fa-city"></i>
-                            <span>Partner 5</span>
+                    <div class="col-lg-2 col-md-3 col-4 mb-4">
+                        <div class="partner-logo">
+                            <div class="partner-placeholder">
+                                <i class="fas fa-city"></i>
+                                <span>Partner 5</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-4 mb-4">
-                    <div class="partner-logo">
-                        <div class="partner-placeholder">
-                            <i class="fas fa-landmark"></i>
-                            <span>Partner 6</span>
+                    <div class="col-lg-2 col-md-3 col-4 mb-4">
+                        <div class="partner-logo">
+                            <div class="partner-placeholder">
+                                <i class="fas fa-landmark"></i>
+                                <span>Partner 6</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
             </div>
         </div>
     </section>
@@ -418,6 +479,17 @@
         display: flex;
         align-items: flex-start;
         margin-bottom: 2rem;
+        cursor: pointer; /* Clickable style */
+        transition: all 0.3s ease;
+        padding: 1rem; /* Add padding for better click area */
+        border-radius: 8px; /* Rounded corners */
+        border: 1px solid transparent; /* Default border */
+    }
+
+    .advantage-item.active,
+    .advantage-item:hover {
+        background: rgba(255, 255, 255, 0.08); /* Highlight on hover/active */
+        border-color: var(--primary-color); /* Highlight border */
     }
     
     .advantage-icon {
@@ -448,6 +520,17 @@
         display: flex;
         align-items: flex-start;
         margin-bottom: 2rem;
+        cursor: pointer; /* Clickable style */
+        transition: all 0.3s ease;
+        padding: 1rem; /* Add padding for better click area */
+        border-radius: 8px; /* Rounded corners */
+        border: 1px solid transparent; /* Default border */
+    }
+
+    .mission-item.active,
+    .mission-item:hover {
+        background: rgba(255, 255, 255, 0.08); /* Highlight on hover/active */
+        border-color: var(--primary-color); /* Highlight border */
     }
     
     .mission-icon {
@@ -757,5 +840,114 @@
             width: 200px;
         }
     }
+
+    .advantages-image img {
+        width: 100%;
+        height: 400px; /* Sabit hündürlük */
+        object-fit: cover; /* Şəklin container-i doldurmasını təmin edir */
+        border-radius: 8px;
+    }
+    
+    .experience-badge {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: var(--primary-color);
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+    }
+    
+    .badge-content {
+        text-align: center;
+    }
+    
+    .badge-number {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+    
+    .badge-text {
+        font-size: 0.8rem;
+        line-height: 1.2;
+    }
 </style>
+@endpush
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const advantageItems = document.querySelectorAll('.advantage-item');
+        const advantagesDisplayImage = document.getElementById('advantages-display-image');
+        
+        advantageItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all items
+                advantageItems.forEach(adv => adv.classList.remove('active'));
+                
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // Update image based on data attribute (if image is present)
+                const imageUrl = this.getAttribute('data-image-url');
+                if (imageUrl) {
+                    advantagesDisplayImage.src = imageUrl;
+                } else {
+                    // Fallback image if no specific image for advantage
+                    advantagesDisplayImage.src = 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1226&q=80';
+                }
+            });
+        });
+
+        // Set the first advantage as active on page load and display its image
+        if (advantageItems.length > 0) {
+            advantageItems[0].classList.add('active');
+            const firstImageUrl = advantageItems[0].getAttribute('data-image-url');
+            if (firstImageUrl) {
+                advantagesDisplayImage.src = firstImageUrl;
+            }
+        }
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const missionItems = document.querySelectorAll('.mission-item');
+        const missionDisplayImage = document.getElementById('mission-display-image');
+        
+        missionItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all items
+                missionItems.forEach(mg => mg.classList.remove('active'));
+                
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // Update image based on data attribute (if image is present)
+                const imageUrl = this.getAttribute('data-image-url');
+                if (imageUrl) {
+                    missionDisplayImage.src = imageUrl;
+                } else {
+                    // Fallback image if no specific image for mission goal
+                    missionDisplayImage.src = 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80';
+                }
+            });
+        });
+
+        // Set the first mission item as active on page load and display its image
+        if (missionItems.length > 0) {
+            missionItems[0].classList.add('active');
+            const firstImageUrl = missionItems[0].getAttribute('data-image-url');
+            if (firstImageUrl) {
+                missionDisplayImage.src = firstImageUrl;
+            }
+        }
+    });
+</script>
 @endpush

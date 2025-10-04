@@ -11,6 +11,10 @@ class SiteLogo extends Model
 
     protected $fillable = [
         'site_name',
+        'site_description',
+        'about_title',
+        'about_subtitle',
+        'about_image',
         'logo_image',
         'favicon',
         'show_text',
@@ -18,50 +22,60 @@ class SiteLogo extends Model
     ];
 
     protected $casts = [
-        'show_text' => 'boolean',
         'is_active' => 'boolean'
     ];
 
     /**
-     * Aktiv logo əldə et
+     * Aktiv sayt loqosunu əldə et
      */
     public static function getActiveLogo()
     {
-        return self::where('is_active', true)->first();
+        return self::where('is_active', true)->first() ?? self::first();
     }
 
     /**
-     * Logo şəkil URL'i əldə et
+     * Loqo şəkli URL-ini əldə et
      */
     public function getLogoUrlAttribute()
     {
         if ($this->logo_image) {
             return asset('uploads/logos/' . $this->logo_image);
         }
-        return asset('uploads/logos/logo.png'); // Default logo
+        return null;
     }
 
     /**
-     * Favicon URL'i əldə et
+     * Favicon URL-ini əldə et
      */
     public function getFaviconUrlAttribute()
     {
         if ($this->favicon) {
             return asset('uploads/logos/' . $this->favicon);
         }
-        return asset('favicon.ico'); // Default favicon
+        return null;
     }
 
     /**
-     * Logo və ya mətn göstərilməli olub-olmadığını yoxla
+     * About Image URL-ini əldə et
+     */
+    public function getAboutImageUrlAttribute()
+    {
+        if ($this->about_image) {
+            return asset('uploads/about_images/' . $this->about_image);
+        }
+        return null;
+    }
+
+    /**
+     * Navbar'da loqo göstərilməlidirmi?
      */
     public function shouldShowLogo()
     {
-        return !empty($this->logo_image);
+        return $this->logo_image !== null;
     }
 
     /**
-     * Mətn göstərilməli olub-olmadığını yoxla
+     * Navbar'da mətn göstərilməlidirmi?
      */
     public function shouldShowText()
     {

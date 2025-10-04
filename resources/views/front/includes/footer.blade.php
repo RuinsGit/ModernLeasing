@@ -7,12 +7,22 @@
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="footer-section">
                     <div class="footer-logo mb-4">
-                        <img src="{{ asset('uploads/logos/logo.png') }}" alt="MODERN LİZİNQ" height="45" class="mb-3">
-                        <h4 class="text-white">MODERN LİZİNQ</h4>
+                        @if(isset($siteLogo) && $siteLogo->logo_image)
+                            <img src="{{ $siteLogo->logo_url }}" alt="{{ $siteLogo->site_name }}" height="45" class="mb-3">
+                        @endif
+                        @if(isset($siteLogo) && $siteLogo->site_name)
+                            <h4 class="text-white">{{ $siteLogo->site_name }}</h4>
+                        @else
+                            <h4 class="text-white">MODERN LİZİNQ</h4>
+                        @endif
                     </div>
                     <p class="footer-description">
-                        15 il təcrübəmizla Azərbaycanın aparıcı lizinq şirkəti olaraq 
-                        fərdi və korporativ müştərilərimizə ən uyğun maliyyələşdirmə həllərini təqdim edirik.
+                        @if(isset($siteLogo) && $siteLogo->site_description)
+                            {{ $siteLogo->site_description }}
+                        @else
+                            15 il təcrübəmizla Azərbaycanın aparıcı lizinq şirkəti olaraq 
+                            fərdi və korporativ müştərilərimizə ən uyğun maliyyələşdirmə həllərini təqdim edirik.
+                        @endif
                     </p>
                     
                     <!-- Social Media -->
@@ -21,9 +31,9 @@
                         <div class="social-links">
                             @if(isset($socialfooters) && count($socialfooters) > 0)
                                 @foreach($socialfooters as $social)
-                                    @if($social->status)
+                                    @if($social->is_active)
                                         <a href="{{ $social->link }}" target="_blank" class="social-link">
-                                            <img src="{{ asset($social->image) }}" alt="Social Media">
+                                            {!! $social->display_icon !!}
                                         </a>
                                     @endif
                                 @endforeach
@@ -55,11 +65,19 @@
                 <div class="footer-section">
                     <h5>Sürətli Keçidlər</h5>
                     <ul class="footer-links">
-                        <li><a href="{{ route('front.index') }}">Ana Səhifə</a></li>
-                        <li><a href="{{ route('front.about') }}">Haqqımızda</a></li>
-                        <li><a href="#services">Xidmətlər</a></li>
-                        <li><a href="#investors">İnvestorlar</a></li>
-                        <li><a href="{{ route('front.contact') }}">Əlaqə</a></li>
+                        @if(isset($desktopNavbarItems) && $desktopNavbarItems->count() > 0)
+                            @foreach($desktopNavbarItems as $item)
+                                @if(!$item->parent_id && $item->is_active && $item->show_desktop)
+                                    <li><a href="{{ $item->link }}">{{ $item->title }}</a></li>
+                                @endif
+                            @endforeach
+                        @else
+                            <li><a href="{{ route('front.index') }}">Ana Səhifə</a></li>
+                            <li><a href="{{ route('front.about') }}">Haqqımızda</a></li>
+                            <li><a href="#services">Xidmətlər</a></li>
+                            <li><a href="#investors">İnvestorlar</a></li>
+                            <li><a href="{{ route('front.contact') }}">Əlaqə</a></li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -69,11 +87,19 @@
                 <div class="footer-section">
                     <h5>Xidmətlər</h5>
                     <ul class="footer-links">
-                        <li><a href="#agricultural">Kənd Təsərrüfatı</a></li>
-                        <li><a href="#automotive">Avtomobillər</a></li>
-                        <li><a href="#household">Məişət Texnikası</a></li>
-                        <li><a href="#realestate">Daşınmaz Əmlak</a></li>
-                        <li><a href="#industrial">Sənaye Avadanlıqları</a></li>
+                        @if(isset($services) && $services->count() > 0)
+                            @foreach($services as $service)
+                                @if($service->is_active)
+                                    <li><a href="{{ route('front.services') }}#{{ Str::slug($service->title) }}">{{ $service->title }}</a></li>
+                                @endif
+                            @endforeach
+                        @else
+                            <li><a href="#agricultural">Kənd Təsərrüfatı</a></li>
+                            <li><a href="#automotive">Avtomobillər</a></li>
+                            <li><a href="#household">Məişət Texnikası</a></li>
+                            <li><a href="#realestate">Daşınmaz Əmlak</a></li>
+                            <li><a href="#industrial">Sənaye Avadanlıqları</a></li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -83,55 +109,115 @@
                 <div class="footer-section">
                     <h5>Əlaqə Məlumatları</h5>
                     
-                    <!-- Address -->
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
+                    @if(isset($contactInfo) && $contactInfo->is_active)
+                        <!-- Address -->
+                        @if($contactInfo->address)
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-content">
+                                <p>{{ $contactInfo->address }}</p>
+                            </div>
                         </div>
-                        <div class="contact-content">
-                            <p>28 May küç. 123<br>Bakı, Azərbaycan AZ1000</p>
+                        @endif
+                        
+                        <!-- Phone -->
+                        @if($contactInfo->phone1 || $contactInfo->phone2)
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-content">
+                                <p>
+                                    @if($contactInfo->phone1)<a href="tel:{{ $contactInfo->phone1 }}">{{ $contactInfo->phone1 }}</a><br>@endif
+                                    @if($contactInfo->phone2)<a href="tel:{{ $contactInfo->phone2 }}">{{ $contactInfo->phone2 }}</a>@endif
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <!-- Phone -->
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
+                        @endif
+                        
+                        <!-- Email -->
+                        @if($contactInfo->email1 || $contactInfo->email2)
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-content">
+                                <p>
+                                    @if($contactInfo->email1)<a href="mailto:{{ $contactInfo->email1 }}">{{ $contactInfo->email1 }}</a><br>@endif
+                                    @if($contactInfo->email2)<a href="mailto:{{ $contactInfo->email2 }}">{{ $contactInfo->email2 }}</a>@endif
+                                </p>
+                            </div>
                         </div>
-                        <div class="contact-content">
-                            <p>
-                                <a href="tel:+994123456789">+994 12 345 67 89</a><br>
-                                <a href="tel:+994503456789">+994 50 345 67 89</a>
-                            </p>
+                        @endif
+                        
+                        <!-- Working Hours -->
+                        @if($contactInfo->working_hours_weekdays || $contactInfo->working_hours_weekends)
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-content">
+                                <p>
+                                    @if($contactInfo->working_hours_weekdays){{ $contactInfo->working_hours_weekdays }}<br>@endif
+                                    @if($contactInfo->working_hours_weekends){{ $contactInfo->working_hours_weekends }}@endif
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <!-- Email -->
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
+                        @endif
+                    @else
+                        <!-- Default static contact info -->
+                        <!-- Address -->
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-content">
+                                <p>28 May küç. 123<br>Bakı, Azərbaycan AZ1000</p>
+                            </div>
                         </div>
-                        <div class="contact-content">
-                            <p>
-                                <a href="mailto:info@modernlizinq.az">info@modernlizinq.az</a><br>
-                                <a href="mailto:support@modernlizinq.az">support@modernlizinq.az</a>
-                            </p>
+                        
+                        <!-- Phone -->
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-content">
+                                <p>
+                                    <a href="tel:+994123456789">+994 12 345 67 89</a><br>
+                                    <a href="tel:+994503456789">+994 50 345 67 89</a>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <!-- Working Hours -->
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
+                        
+                        <!-- Email -->
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-content">
+                                <p>
+                                    <a href="mailto:info@modernlizinq.az">info@modernlizinq.az</a><br>
+                                    <a href="mailto:support@modernlizinq.az">support@modernlizinq.az</a>
+                                </p>
+                            </div>
                         </div>
-                        <div class="contact-content">
-                            <p>
-                                Bazar ertəsi - Cümə: 09:00 - 18:00<br>
-                                Şənbə: 09:00 - 14:00<br>
-                                Bazar: Bağlı
-                            </p>
+                        
+                        <!-- Working Hours -->
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-content">
+                                <p>
+                                    Bazar ertəsi - Cümə: 09:00 - 18:00<br>
+                                    Şənbə: 09:00 - 14:00<br>
+                                    Bazar: Bağlı
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>

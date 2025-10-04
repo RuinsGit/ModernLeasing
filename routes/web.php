@@ -172,5 +172,150 @@ Route::prefix('admin')->group(function () {
             Route::delete('{service}', [App\Http\Controllers\Admin\ServiceController::class, 'destroy'])->name('destroy');
             Route::post('{service}/toggle-status', [App\Http\Controllers\Admin\ServiceController::class, 'toggleStatus'])->name('toggle-status');
         });
+
+        // Advantages Routes
+        Route::prefix('advantages')->name('admin.advantages.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\AdvantageController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\AdvantageController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\AdvantageController::class, 'store'])->name('store');
+            Route::get('{advantage}', [App\Http\Controllers\Admin\AdvantageController::class, 'show'])->name('show');
+            Route::get('{advantage}/edit', [App\Http\Controllers\Admin\AdvantageController::class, 'edit'])->name('edit');
+            Route::put('{advantage}', [App\Http\Controllers\Admin\AdvantageController::class, 'update'])->name('update');
+            Route::delete('{advantage}', [App\Http\Controllers\Admin\AdvantageController::class, 'destroy'])->name('destroy');
+            Route::post('{advantage}/toggle-status', [App\Http\Controllers\Admin\AdvantageController::class, 'toggleStatus'])->name('toggle-status');
+        });
+
+        // Mission Goals Routes
+        Route::prefix('mission-goals')->name('admin.mission-goals.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\MissionGoalController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\MissionGoalController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\MissionGoalController::class, 'store'])->name('store');
+            Route::get('{missionGoal}', [App\Http\Controllers\Admin\MissionGoalController::class, 'show'])->name('show');
+            Route::get('{missionGoal}/edit', [App\Http\Controllers\Admin\MissionGoalController::class, 'edit'])->name('edit');
+            Route::put('{missionGoal}', [App\Http\Controllers\Admin\MissionGoalController::class, 'update'])->name('update');
+            Route::delete('{missionGoal}', [App\Http\Controllers\Admin\MissionGoalController::class, 'destroy'])->name('destroy');
+            Route::post('{missionGoal}/toggle-status', [App\Http\Controllers\Admin\MissionGoalController::class, 'toggleStatus'])->name('toggle-status');
+        });
+
+        // Stat Items Routes
+        Route::prefix('stat-items')->name('admin.stat-items.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\StatItemController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\StatItemController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\StatItemController::class, 'store'])->name('store');
+            Route::get('{statItem}', [App\Http\Controllers\Admin\StatItemController::class, 'show'])->name('show');
+            Route::get('{statItem}/edit', [App\Http\Controllers\Admin\StatItemController::class, 'edit'])->name('edit');
+            Route::put('{statItem}', [App\Http\Controllers\Admin\StatItemController::class, 'update'])->name('update');
+            Route::delete('{statItem}', [App\Http\Controllers\Admin\StatItemController::class, 'destroy'])->name('destroy');
+            Route::post('{statItem}/toggle-status', [App\Http\Controllers\Admin\StatItemController::class, 'toggleStatus'])->name('toggle-status');
+        });
+
+        // Partners Routes
+        Route::prefix('partners')->name('admin.partners.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\PartnerController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\PartnerController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\PartnerController::class, 'store'])->name('store');
+            Route::get('{partner}', [App\Http\Controllers\Admin\PartnerController::class, 'show'])->name('show');
+            Route::get('{partner}/edit', [App\Http\Controllers\Admin\PartnerController::class, 'edit'])->name('edit');
+            Route::put('{partner}', [App\Http\Controllers\Admin\PartnerController::class, 'update'])->name('update');
+            Route::delete('{partner}', [App\Http\Controllers\Admin\PartnerController::class, 'destroy'])->name('destroy');
+            Route::post('{partner}/toggle-status', [App\Http\Controllers\Admin\PartnerController::class, 'toggleStatus'])->name('toggle-status');
+        });
+
+        // Contact Info Routes
+        Route::prefix('contact-info')->name('admin.contact-info.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\ContactInfoController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\ContactInfoController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\ContactInfoController::class, 'store'])->name('store');
+            Route::get('{contactInfo}', [App\Http\Controllers\Admin\ContactInfoController::class, 'show'])->name('show');
+            Route::get('{contactInfo}/edit', [App\Http\Controllers\Admin\ContactInfoController::class, 'edit'])->name('edit');
+            Route::put('{contactInfo}', [App\Http\Controllers\Admin\ContactInfoController::class, 'update'])->name('update');
+            Route::delete('{contactInfo}', [App\Http\Controllers\Admin\ContactInfoController::class, 'destroy'])->name('destroy');
+            Route::post('{contactInfo}/toggle-status', [App\Http\Controllers\Admin\ContactInfoController::class, 'toggleStatus'])->name('toggle-status');
+        });
+
+        // Company History Items Routes
+        Route::prefix('company-history-items')->name('admin.company-history-items.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\CompanyHistoryItemController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\CompanyHistoryItemController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\CompanyHistoryItemController::class, 'store'])->name('store');
+            Route::get('{companyHistoryItem}', [App\Http\Controllers\Admin\CompanyHistoryItemController::class, 'show'])->name('show');
+            Route::get('{companyHistoryItem}/edit', [App\Http\Controllers\Admin\CompanyHistoryItemController::class, 'edit'])->name('edit');
+            Route::put('{companyHistoryItem}', [App\Http\Controllers\Admin\CompanyHistoryItemController::class, 'update'])->name('update');
+            Route::delete('{companyHistoryItem}', [App\Http\Controllers\Admin\CompanyHistoryItemController::class, 'destroy'])->name('destroy');
+            Route::post('{companyHistoryItem}/toggle-status', [App\Http\Controllers\Admin\CompanyHistoryItemController::class, 'toggleStatus'])->name('toggle-status');
+            Route::post('order', [App\Http\Controllers\Admin\CompanyHistoryItemController::class, 'order'])->name('order');
+        });
+
+        // About Mission Section Routes
+        Route::prefix('about-mission-section')->name('admin.about-mission-section.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\AboutMissionSectionController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\AboutMissionSectionController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\AboutMissionSectionController::class, 'store'])->name('store');
+            Route::get('{aboutMissionSection}', [App\Http\Controllers\Admin\AboutMissionSectionController::class, 'show'])->name('show');
+            Route::get('{aboutMissionSection}/edit', [App\Http\Controllers\Admin\AboutMissionSectionController::class, 'edit'])->name('edit');
+            Route::put('{aboutMissionSection}', [App\Http\Controllers\Admin\AboutMissionSectionController::class, 'update'])->name('update');
+        });
+
+        // About Mission Card Routes
+        Route::prefix('about-mission-cards')->name('admin.about-mission-card.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\AboutMissionCardController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\AboutMissionCardController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\AboutMissionCardController::class, 'store'])->name('store');
+            Route::get('{aboutMissionCard}', [App\Http\Controllers\Admin\AboutMissionCardController::class, 'show'])->name('show');
+            Route::get('{aboutMissionCard}/edit', [App\Http\Controllers\Admin\AboutMissionCardController::class, 'edit'])->name('edit');
+            Route::put('{aboutMissionCard}', [App\Http\Controllers\Admin\AboutMissionCardController::class, 'update'])->name('update');
+            Route::delete('{aboutMissionCard}', [App\Http\Controllers\Admin\AboutMissionCardController::class, 'destroy'])->name('destroy');
+            Route::post('{aboutMissionCard}/toggle-status', [App\Http\Controllers\Admin\AboutMissionCardController::class, 'toggleStatus'])->name('toggle-status');
+        });
+
+        // Team Members Routes
+        Route::prefix('team-members')->name('admin.team-members.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\TeamMemberController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\TeamMemberController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\TeamMemberController::class, 'store'])->name('store');
+            Route::get('{teamMember}', [App\Http\Controllers\Admin\TeamMemberController::class, 'show'])->name('show');
+            Route::get('{teamMember}/edit', [App\Http\Controllers\Admin\TeamMemberController::class, 'edit'])->name('edit');
+            Route::put('{teamMember}', [App\Http\Controllers\Admin\TeamMemberController::class, 'update'])->name('update');
+            Route::delete('{teamMember}', [App\Http\Controllers\Admin\TeamMemberController::class, 'destroy'])->name('destroy');
+            Route::post('{teamMember}/toggle-status', [App\Http\Controllers\Admin\TeamMemberController::class, 'toggleStatus'])->name('toggle-status');
+        });
+
+        // News Items Routes
+        Route::prefix('news-items')->name('admin.news-items.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\NewsItemController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\NewsItemController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\NewsItemController::class, 'store'])->name('store');
+            Route::get('{newsItem}', [App\Http\Controllers\Admin\NewsItemController::class, 'show'])->name('show');
+            Route::get('{newsItem}/edit', [App\Http\Controllers\Admin\NewsItemController::class, 'edit'])->name('edit');
+            Route::put('{newsItem}', [App\Http\Controllers\Admin\NewsItemController::class, 'update'])->name('update');
+            Route::delete('{newsItem}', [App\Http\Controllers\Admin\NewsItemController::class, 'destroy'])->name('destroy');
+            Route::post('{newsItem}/toggle-status', [App\Http\Controllers\Admin\NewsItemController::class, 'toggleStatus'])->name('toggle-status');
+        });
+
+        // Contact Messages Routes
+        Route::prefix('contact-messages')->name('admin.contact-messages.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\ContactMessageController::class, 'index'])->name('index');
+            // Route::get('create', [App\Http\Controllers\Admin\ContactMessageController::class, 'create'])->name('create'); // Front-end-dən gəlir
+            // Route::post('/', [App\Http\Controllers\Admin\ContactMessageController::class, 'store'])->name('store'); // Front-end-dən gəlir
+            Route::get('{contactMessage}', [App\Http\Controllers\Admin\ContactMessageController::class, 'show'])->name('show');
+            // Route::get('{contactMessage}/edit', [App\Http\Controllers\Admin\ContactMessageController::class, 'edit'])->name('edit'); // Redaktə edilmir
+            // Route::put('{contactMessage}', [App\Http\Controllers\Admin\ContactMessageController::class, 'update'])->name('update'); // Redaktə edilmir
+            Route::delete('{contactMessage}', [App\Http\Controllers\Admin\ContactMessageController::class, 'destroy'])->name('destroy');
+            Route::post('{contactMessage}/mark-as-read', [App\Http\Controllers\Admin\ContactMessageController::class, 'markAsRead'])->name('mark-as-read');
+            Route::post('{contactMessage}/mark-as-unread', [App\Http\Controllers\Admin\ContactMessageController::class, 'markAsUnread'])->name('mark-as-unread');
+        });
+
+        // Business Hours Routes (Tək girişli)
+        Route::prefix('business-hours')->name('admin.business-hours.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\BusinessHourController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\BusinessHourController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\BusinessHourController::class, 'store'])->name('store');
+            // Show səhifəsinə ehtiyac yoxdur, index kifayətdir
+            Route::get('{businessHour}/edit', [App\Http\Controllers\Admin\BusinessHourController::class, 'edit'])->name('edit');
+            Route::put('{businessHour}', [App\Http\Controllers\Admin\BusinessHourController::class, 'update'])->name('update');
+            // Silmə funksiyası ləğv edildi
+            // Route::delete('{businessHour}', [App\Http\Controllers\Admin\BusinessHourController::class, 'destroy'])->name('destroy');
+            Route::post('{businessHour}/toggle-status', [App\Http\Controllers\Admin\BusinessHourController::class, 'toggleStatus'])->name('toggle-status');
+        });
     });
 });
