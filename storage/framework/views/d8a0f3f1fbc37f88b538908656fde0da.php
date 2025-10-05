@@ -295,6 +295,11 @@
                     <?php $__currentLoopData = $newsItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="<?php echo e(300 + ($loop->index * 100)); ?>">
                             <article class="news-card">
+                                <?php if($item->image_url): ?>
+                                <div class="news-card-image-wrapper">
+                                    <img src="<?php echo e($item->image_url); ?>" alt="<?php echo e($item->title); ?>" class="news-card-image">
+                                </div>
+                                <?php endif; ?>
                                 <div class="news-date">
                                     <span class="day"><?php echo e($item->news_date->format('d')); ?></span>
                                     <span class="month"><?php echo e($item->news_date->translatedFormat('F Y')); ?></span>
@@ -316,6 +321,9 @@
                 <?php else: ?>
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <article class="news-card">
+                            <div class="news-card-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Xəbər Şəkli" class="news-card-image">
+                            </div>
                             <div class="news-date">
                                 <span class="day">15</span>
                                 <span class="month">Dekabr 2024</span>
@@ -334,6 +342,9 @@
                     
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
                         <article class="news-card">
+                            <div class="news-card-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1549923746-c50d60c23a7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Xəbər Şəkli" class="news-card-image">
+                            </div>
                             <div class="news-date">
                                 <span class="day">02</span>
                                 <span class="month">Dekabr 2024</span>
@@ -352,6 +363,9 @@
                     
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
                         <article class="news-card">
+                            <div class="news-card-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Xəbər Şəkli" class="news-card-image">
+                            </div>
                             <div class="news-date">
                                 <span class="day">28</span>
                                 <span class="month">Noyabr 2024</span>
@@ -539,12 +553,33 @@
         transition: all 0.3s ease;
         overflow: hidden;
         position: relative;
+        display: flex; /* Flexbox əlavə edildi */
+        flex-direction: column; /* Şaquli nizamlanma */
     }
     
     .news-card:hover {
         transform: translateY(-5px);
         border-color: var(--primary-color);
         box-shadow: 0 10px 30px rgba(34, 137, 255, 0.2);
+    }
+    
+    .news-card-image-wrapper {
+        width: 100%;
+        height: 200px; /* Şəkil üçün sabit hündürlük */
+        overflow: hidden;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .news-card-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .news-card:hover .news-card-image {
+        transform: scale(1.05);
     }
     
     .news-date {

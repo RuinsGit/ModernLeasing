@@ -30,7 +30,7 @@
                         <div class="d-flex align-items-center justify-content-between">
                             <h4 class="card-title">Xəbərlər Siyahısı</h4>
                             <a href="<?php echo e(route('admin.news-items.create')); ?>" class="btn btn-primary">
-                                <i class="bx bx-plus me-1"></i> Yeni Xəbər Əlavə Et
+                                <i class="mdi mdi-plus me-1"></i> Yeni Xəbər Əlavə Et
                             </a>
                         </div>
                     </div>
@@ -88,6 +88,7 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Başlıq</th>
+                                            <th>Şəkil</th>
                                             <th>Qısa Təsvir</th>
                                             <th>Tarix</th>
                                             <th>Sıra</th>
@@ -100,6 +101,13 @@
                                             <tr>
                                                 <td><?php echo e($item->id); ?></td>
                                                 <td><?php echo e(Str::limit($item->title, 50)); ?></td>
+                                                <td>
+                                                    <?php if($item->image_url): ?>
+                                                        <img src="<?php echo e($item->image_url); ?>" alt="<?php echo e($item->title); ?>" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                                                    <?php else: ?>
+                                                        <i class="mdi mdi-image-off-outline text-muted" style="font-size: 24px;"></i>
+                                                    <?php endif; ?>
+                                                </td>
                                                 <td><?php echo e(Str::limit($item->short_description, 70)); ?></td>
                                                 <td><?php echo e($item->news_date->format('d M Y')); ?></td>
                                                 <td><?php echo e($item->order); ?></td>
@@ -113,13 +121,13 @@
                                                     </form>
                                                 </td>
                                                 <td>
-                                                    <a href="<?php echo e(route('admin.news-items.show', $item->id)); ?>" class="btn btn-info btn-sm"><i class="bx bx-show"></i></a>
-                                                    <a href="<?php echo e(route('admin.news-items.edit', $item->id)); ?>" class="btn btn-primary btn-sm"><i class="bx bx-edit"></i></a>
+                                                    <a href="<?php echo e(route('admin.news-items.show', $item->id)); ?>" class="btn btn-info btn-sm"><i class="mdi mdi-eye"></i></a>
+                                                    <a href="<?php echo e(route('admin.news-items.edit', $item->id)); ?>" class="btn btn-primary btn-sm"><i class="mdi mdi-pencil"></i></a>
                                                     <form id="delete-form-<?php echo e($item->id); ?>" action="<?php echo e(route('admin.news-items.destroy', $item->id)); ?>" method="POST" class="d-inline-block">
                                                         <?php echo csrf_field(); ?>
                                                         <?php echo method_field('DELETE'); ?>
                                                         <button type="button" class="btn btn-danger btn-sm" onclick="deleteData(<?php echo e($item->id); ?>)">
-                                                            <i class="bx bx-trash"></i>
+                                                            <i class="mdi mdi-trash-can"></i>
                                                         </button>
                                                     </form>
                                                 </td>

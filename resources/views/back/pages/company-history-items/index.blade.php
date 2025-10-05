@@ -35,7 +35,7 @@
                             <div class="col-md-6">
                                 <div class="d-flex flex-wrap align-items-center justify-content-end gap-2">
                                     <a href="{{ route('admin.company-history-items.create') }}" class="btn btn-primary">
-                                        <i class="bx bx-plus me-1"></i> Yeni Element Əlavə Et
+                                        <i class="mdi mdi-plus me-1"></i> Yeni Element Əlavə Et
                                     </a>
                                 </div>
                             </div>
@@ -119,13 +119,13 @@
                                                     </form>
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('admin.company-history-items.show', $item->id) }}" class="btn btn-info btn-sm"><i class="bx bx-show"></i></a>
-                                                    <a href="{{ route('admin.company-history-items.edit', $item->id) }}" class="btn btn-primary btn-sm"><i class="bx bx-edit"></i></a>
+                                                    <a href="{{ route('admin.company-history-items.show', $item->id) }}" class="btn btn-info btn-sm"><i class="mdi mdi-eye"></i></a>
+                                                    <a href="{{ route('admin.company-history-items.edit', $item->id) }}" class="btn btn-primary btn-sm"><i class="mdi mdi-pencil"></i></a>
                                                     <form id="delete-form-{{ $item->id }}" action="{{ route('admin.company-history-items.destroy', $item->id) }}" method="POST" class="d-inline-block">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="button" class="btn btn-danger btn-sm" onclick="deleteData({{ $item->id }})">
-                                                            <i class="bx bx-trash"></i>
+                                                            <i class="mdi mdi-trash-can"></i>
                                                         </button>
                                                     </form>
                                                 </td>

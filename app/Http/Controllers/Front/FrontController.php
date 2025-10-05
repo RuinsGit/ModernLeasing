@@ -22,6 +22,11 @@ use App\Models\TeamMember; // Yeni əlavə edildi
 use App\Models\NewsItem; // Yeni əlavə edildi
 use App\Models\ContactMessage; // Yeni əlavə edildi
 use App\Models\BusinessHour; // Yeni əlavə edildi
+use App\Models\PartnershipSection; // Yeni əlavə edildi
+use App\Models\PartnershipFeature; // Yeni əlavə edildi
+use App\Models\PartnershipType; // Yeni əlavə edildi
+use App\Models\InvestorContactSection; // Yeni əlavə edildi
+use App\Models\FaqCategory; // Yeni əlavə edildi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -106,8 +111,13 @@ class FrontController extends Controller
         $siteLogo = SiteLogo::getActiveLogo();
         $contactInfo = ContactInfo::getActiveContactInfo(); // Yeni əlavə edildi
         $businessHours = BusinessHour::getActiveBusinessHours(); // Yeni əlavə edildi
-        
-        return view('front.pages.investors', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'contactInfo', 'businessHours'));
+        $partnershipSection = PartnershipSection::getSectionData(); // Yeni əlavə edildi
+        $partnershipFeatures = PartnershipFeature::getActiveFeatures(); // Yeni əlavə edildi
+        $partnershipTypes = PartnershipType::getActiveTypes(); // Yeni əlavə edildi
+        $partners = Partner::getActivePartners(); // Yeni əlavə edildi
+        $investorContactSection = InvestorContactSection::getSectionData(); // Yeni əlavə edildi
+
+        return view('front.pages.investors', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'contactInfo', 'businessHours', 'partnershipSection', 'partnershipFeatures', 'partnershipTypes', 'partners', 'investorContactSection'));
     }
     
     /**
@@ -115,16 +125,17 @@ class FrontController extends Controller
      */
     public function faq()
     {
-        $socialfooters = Socialfooter::orderBy('order')->get();
-        $logos = Logo::all();
-        $heroSection = HeroSection::first();
+        $socialfooters = Socialfooter::getActiveSocialfooters();
+        $logos = SiteLogo::getActiveLogo();
+        $heroSection = HeroSection::getFirst();
         $desktopNavbarItems = NavbarItem::getDesktopItems();
         $mobileNavbarItems = NavbarItem::getMobileItems();
         $siteLogo = SiteLogo::getActiveLogo();
-        $contactInfo = ContactInfo::getActiveContactInfo(); // Yeni əlavə edildi
-        $businessHours = BusinessHour::getActiveBusinessHours(); // Yeni əlavə edildi
+        $contactInfo = ContactInfo::getActiveContactInfo();
+        $businessHours = BusinessHour::getActiveBusinessHours();
+        $faqCategories = FaqCategory::with('faqItems')->where('is_active', true)->orderBy('order')->get();
         
-        return view('front.pages.faq', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'contactInfo', 'businessHours'));
+        return view('front.pages.faq', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'contactInfo', 'businessHours', 'faqCategories'));
     }
     
     /**

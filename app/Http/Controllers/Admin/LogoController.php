@@ -39,12 +39,6 @@ class LogoController extends Controller
             'logo_alt2_az' => 'required|string',
             'logo_alt2_en' => 'required|string',
             'logo_alt2_ru' => 'required|string',
-            'logo_title1_az' => 'required|string',
-            'logo_title1_en' => 'required|string',
-            'logo_title1_ru' => 'required|string',
-            'logo_title2_az' => 'required|string',
-            'logo_title2_en' => 'required|string',
-            'logo_title2_ru' => 'required|string',
         ], [
             'logo_1_image.required' => 'Logo 1 şəkli mütləq yüklənməlidir',
             'logo_2_image.required' => 'Logo 2 şəkli mütləq yüklənməlidir',
@@ -102,12 +96,12 @@ class LogoController extends Controller
             'logo_alt2_az' => 'required|string',
             'logo_alt2_en' => 'required|string',
             'logo_alt2_ru' => 'required|string',
-            'logo_title1_az' => 'required|string',
-            'logo_title1_en' => 'required|string',
-            'logo_title1_ru' => 'required|string',
-            'logo_title2_az' => 'required|string',
-            'logo_title2_en' => 'required|string',
-            'logo_title2_ru' => 'required|string',
+            'logo_title1_az' => 'nullable|string',
+            'logo_title1_en' => 'nullable|string',
+            'logo_title1_ru' => 'nullable|string',
+            'logo_title2_az' => 'nullable|string',
+            'logo_title2_en' => 'nullable|string',
+            'logo_title2_ru' => 'nullable|string',
         ]);
 
         $logo = Logo::findOrFail($id);

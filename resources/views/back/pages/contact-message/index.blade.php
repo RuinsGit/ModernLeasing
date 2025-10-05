@@ -108,19 +108,19 @@
                                                 </td>
                                                 <td>{{ $message->created_at->format('d M Y H:i') }}</td>
                                                 <td>
-                                                    <a href="{{ route('admin.contact-messages.show', $message->id) }}" class="btn btn-info btn-sm"><i class="bx bx-show"></i></a>
+                                                    <a href="{{ route('admin.contact-messages.show', $message->id) }}" class="btn btn-info btn-sm"><i class="mdi mdi-eye"></i></a>
                                                     @if(!$message->is_read)
                                                         <form action="{{ route('admin.contact-messages.mark-as-read', $message->id) }}" method="POST" class="d-inline-block">
                                                             @csrf
                                                             <button type="submit" class="btn btn-success btn-sm" title="Oxundu kimi qeyd et">
-                                                                <i class="bx bx-check"></i>
+                                                                <i class="mdi mdi-check"></i>
                                                             </button>
                                                         </form>
                                                     @else
                                                         <form action="{{ route('admin.contact-messages.mark-as-unread', $message->id) }}" method="POST" class="d-inline-block">
                                                             @csrf
                                                             <button type="submit" class="btn btn-warning btn-sm" title="Oxunmamış kimi qeyd et">
-                                                                <i class="bx bx-x"></i>
+                                                                <i class="mdi mdi-close"></i>
                                                             </button>
                                                         </form>
                                                     @endif
@@ -128,7 +128,7 @@
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="button" class="btn btn-danger btn-sm" onclick="deleteData({{ $message->id }})">
-                                                            <i class="bx bx-trash"></i>
+                                                            <i class="mdi mdi-trash-can"></i>
                                                         </button>
                                                     </form>
                                                 </td>

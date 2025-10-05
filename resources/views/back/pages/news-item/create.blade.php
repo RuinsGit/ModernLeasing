@@ -43,7 +43,7 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('admin.news-items.store') }}" method="POST">
+                        <form action="{{ route('admin.news-items.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             
                             <div class="row">
@@ -57,6 +57,26 @@
                                         @error('title')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
+                                    </div>
+                                    
+                                    <!-- Şəkil -->
+                                    <div class="mb-4">
+                                        <label for="image" class="form-label">Şəkil (Opsional)</label>
+                                        <input type="file" class="form-control @error('image') is-invalid @enderror" 
+                                               id="image" name="image" accept="image/*">
+                                        @error('image')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                        <div class="form-text">PNG, JPG formatları qəbul edilir. Max: 2MB</div>
+                                        
+                                        <!-- Şəkil önizləmə -->
+                                        <div class="mt-3" id="image-preview" style="display: none;">
+                                            <label class="form-label">Şəkil Önizləməsi:</label>
+                                            <div>
+                                                <img id="image-preview-img" src="" alt="Şəkil Önizləmə" 
+                                                     style="max-height: 150px; max-width: 100%; object-fit: cover; border: 1px solid #dee2e6; border-radius: 4px;">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -119,7 +139,7 @@
                             <!-- Düymələr -->
                             <div class="d-flex gap-2">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="bx bx-plus me-2"></i> Xəbər Yarat
+                                    <i class="mdi mdi-plus me-2"></i> Xəbər Yarat
                                 </button>
                                 <a href="{{ route('admin.news-items.index') }}" class="btn btn-secondary">
                                     <i class="bx bx-x me-2"></i> İmtina Et
@@ -134,3 +154,27 @@
     </div> <!-- container-fluid -->
 </div>
 @endsection
+
+@push('script')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const imageInput = document.getElementById('image');
+        const imagePreview = document.getElementById('image-preview');
+        const imagePreviewImg = document.getElementById('image-preview-img');
+
+        imageInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreviewImg.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.style.display = 'none';
+            }
+        });
+    });
+</script>
+@endpush

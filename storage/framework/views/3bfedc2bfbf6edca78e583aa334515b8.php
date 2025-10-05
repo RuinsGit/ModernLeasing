@@ -29,6 +29,8 @@
                     </a>
                 </li>
 
+                
+
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-home-line"></i>
@@ -86,9 +88,34 @@
                 <li class="menu-title">Əməkdaşlıq</li>
                 <li>
                     <a href="<?php echo e(route('admin.partners.index')); ?>" class="waves-effect">
-                        <i class="ri-handshake-line"></i>
+                        <i class="ri-hand-heart-line"></i>
                         <span>Tərəfdaşlar</span>
                     </a>
+                </li>
+
+                <li class="menu-title">İnvestorlar Səhifəsi</li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-money-dollar-box-line"></i>
+                        <span>Tərəfdaşlıq Bölmələri</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="<?php echo e(route('admin.partnership-section.index')); ?>">Ümumi Bölmə</a></li>
+                        <li><a href="<?php echo e(route('admin.partnership-features.index')); ?>">Xüsusiyyətlər</a></li>
+                        <li><a href="<?php echo e(route('admin.partnership-types.index')); ?>">Tərəfdaşlıq Növləri</a></li>
+                        <li><a href="<?php echo e(route('admin.investor-contact-section.index')); ?>">Əlaqə Bölməsi</a></li>
+                    </ul>
+                </li>
+                <li class="menu-title">FAQ İdarəetməsi</li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-question-answer-line"></i>
+                        <span>FAQ Bölmələri</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="<?php echo e(route('admin.faq-categories.index')); ?>">Kateqoriyalar</a></li>
+                        <li><a href="<?php echo e(route('admin.faq-items.index')); ?>">Suallar</a></li>
+                    </ul>
                 </li>
 
                 <li class="menu-title">Sayt Məlumatları</li>

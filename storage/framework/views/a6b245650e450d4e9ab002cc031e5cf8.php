@@ -29,11 +29,22 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center mb-5">
-                    <h2 class="section-title text-white" data-aos="fade-up">Tərəfdaşlıq <span class="text-primary">İmkanları</span></h2>
-                    <p class="section-subtitle text-light" data-aos="fade-up" data-aos-delay="200">
-                        Modern Lizinq olaraq güclü maliyyə strukturu və inkişaf strategiyamızla 
-                        yeni investorları və tərəfdaşları dəvət edirik
-                    </p>
+                    <?php if(isset($partnershipSection) && $partnershipSection->title): ?>
+                        <h2 class="section-title text-white" data-aos="fade-up"><?php echo e($partnershipSection->title); ?></h2>
+                    <?php else: ?>
+                        <h2 class="section-title text-white" data-aos="fade-up">Tərəfdaşlıq <span class="text-primary">İmkanları</span></h2>
+                    <?php endif; ?>
+                    <?php if(isset($partnershipSection) && $partnershipSection->subtitle): ?>
+                        <p class="section-subtitle text-light" data-aos="fade-up" data-aos-delay="200">
+                            <?php echo e($partnershipSection->subtitle); ?>
+
+                        </p>
+                    <?php else: ?>
+                        <p class="section-subtitle text-light" data-aos="fade-up" data-aos-delay="200">
+                            Modern Lizinq olaraq güclü maliyyə strukturu və inkişaf strategiyamızla 
+                            yeni investorları və tərəfdaşları dəvət edirik
+                        </p>
+                    <?php endif; ?>
                 </div>
             </div>
             
@@ -47,53 +58,69 @@
                         </p>
                         
                         <div class="partnership-features">
-                            <div class="feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-chart-line"></i>
+                            <?php if(isset($partnershipFeatures) && $partnershipFeatures->count() > 0): ?>
+                                <?php $__currentLoopData = $partnershipFeatures; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $feature): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <div class="feature-item" data-id="<?php echo e($feature->id); ?>" data-image="<?php echo e($feature->image_url); ?>"
+                                         data-stat1-number="<?php echo e($feature->stat_number_1); ?>" data-stat1-text="<?php echo e($feature->stat_text_1); ?>"
+                                         data-stat2-number="<?php echo e($feature->stat_number_2); ?>" data-stat2-text="<?php echo e($feature->stat_text_2); ?>">
+                                        <div class="feature-icon">
+                                            <i class="<?php echo e($feature->icon_class); ?>"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <h5 class="text-white"><?php echo e($feature->title); ?></h5>
+                                            <p class="text-light"><?php echo e($feature->description); ?></p>
+                                        </div>
+                                    </div>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php else: ?>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h5 class="text-white">Sabit Gəlir Artımı</h5>
+                                        <p class="text-light">İllik ortalama 25% gəlir artımı və dayanıqlı maliyyə göstəriciləri</p>
+                                    </div>
                                 </div>
-                                <div class="feature-content">
-                                    <h5 class="text-white">Sabit Gəlir Artımı</h5>
-                                    <p class="text-light">İllik ortalama 25% gəlir artımı və dayanıqlı maliyyə göstəriciləri</p>
+                                
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-handshake"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h5 class="text-white">Güclü Tərəfdaşlıq</h5>
+                                        <p class="text-light">25+ beynəlxalq tərəfdaş və geniş distributor şəbəkəsi</p>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-handshake"></i>
+                                
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-shield-alt"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h5 class="text-white">Risk İdarəetməsi</h5>
+                                        <p class="text-light">Peşəkar risk analizi və tam sığorta təminatı</p>
+                                    </div>
                                 </div>
-                                <div class="feature-content">
-                                    <h5 class="text-white">Güclü Tərəfdaşlıq</h5>
-                                    <p class="text-light">25+ beynəlxalq tərəfdaş və geniş distributor şəbəkəsi</p>
-                                </div>
-                            </div>
-                            
-                            <div class="feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-shield-alt"></i>
-                                </div>
-                                <div class="feature-content">
-                                    <h5 class="text-white">Risk İdarəetməsi</h5>
-                                    <p class="text-light">Peşəkar risk analizi və tam sığorta təminatı</p>
-                                </div>
-                            </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-lg-6" data-aos="fade-left">
                     <div class="partnership-image">
-                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1226&q=80" 
-                             alt="Tərəfdaşlıq" class="img-fluid" style="border-radius: 8px;">
+                        <img id="dynamic-partnership-image" src="<?php echo e((isset($partnershipFeatures) && $partnershipFeatures->first() && $partnershipFeatures->first()->image_url) ? $partnershipFeatures->first()->image_url : 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1226&q=80'); ?>" 
+                             alt="Tərəfdaşlıq" class="img-fluid" style="border-radius: 8px; object-fit: cover; width: 100%; height: 400px;">
                         
                         <!-- Stats Overlay -->
                         <div class="stats-overlay">
                             <div class="stat-item">
-                                <div class="stat-number">3500+</div>
-                                <div class="stat-label">Məmnun Müştəri</div>
+                                <div id="dynamic-stat1-number" class="stat-number"><?php echo e((isset($partnershipFeatures) && $partnershipFeatures->first() && $partnershipFeatures->first()->stat_number_1) ? $partnershipFeatures->first()->stat_number_1 : '3500+'); ?></div>
+                                <div id="dynamic-stat1-label" class="stat-label"><?php echo e((isset($partnershipFeatures) && $partnershipFeatures->first() && $partnershipFeatures->first()->stat_text_1) ? $partnershipFeatures->first()->stat_text_1 : 'Məmnun Müştəri'); ?></div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-number">25</div>
-                                <div class="stat-label">Beynəlxalq Tərəfdaş</div>
+                                <div id="dynamic-stat2-number" class="stat-number"><?php echo e((isset($partnershipFeatures) && $partnershipFeatures->first() && $partnershipFeatures->first()->stat_number_2) ? $partnershipFeatures->first()->stat_number_2 : '25'); ?></div>
+                                <div id="dynamic-stat2-label" class="stat-label"><?php echo e((isset($partnershipFeatures) && $partnershipFeatures->first() && $partnershipFeatures->first()->stat_text_2) ? $partnershipFeatures->first()->stat_text_2 : 'Beynəlxalq Tərəfdaş'); ?></div>
                             </div>
                         </div>
                     </div>
@@ -115,50 +142,71 @@
             </div>
             
             <div class="row g-4">
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="partnership-card">
-                        <div class="card-icon">
-                            <i class="fas fa-building"></i>
+                <?php if(isset($partnershipTypes) && $partnershipTypes->count() > 0): ?>
+                    <?php $__currentLoopData = $partnershipTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="<?php echo e(300 + ($loop->index * 100)); ?>">
+                            <div class="partnership-card">
+                                <div class="card-icon">
+                                    <i class="<?php echo e($type->icon_class); ?>"></i>
+                                </div>
+                                <h4 class="text-white"><?php echo e($type->title); ?></h4>
+                                <p class="text-light"><?php echo e($type->description); ?></p>
+                                <?php if(is_array($type->benefits) && count($type->benefits) > 0): ?>
+                                    <ul class="partnership-benefits">
+                                        <?php $__currentLoopData = $type->benefits; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $benefit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <li><?php echo e($benefit); ?></li>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </ul>
+                                <?php endif; ?>
+                            </div>
                         </div>
-                        <h4 class="text-white">Korporativ Tərəfdaş</h4>
-                        <p class="text-light">Böyük korporasiyalar üçün strateji əməkdaşlıq və joint venture imkanları</p>
-                        <ul class="partnership-benefits">
-                            <li>Birgə lizinq məhsulları</li>
-                            <li>Çarpaz satış imkanları</li>
-                            <li>Regional genişlənmə</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="partnership-card">
-                        <div class="card-icon">
-                            <i class="fas fa-users"></i>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php else: ?>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="partnership-card">
+                            <div class="card-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <h4 class="text-white">Korporativ Tərəfdaş</h4>
+                            <p class="text-light">Böyük korporasiyalar üçün strateji əməkdaşlıq və joint venture imkanları</p>
+                            <ul class="partnership-benefits">
+                                <li>Birgə lizinq məhsulları</li>
+                                <li>Çarpaz satış imkanları</li>
+                                <li>Regional genişlənmə</li>
+                            </ul>
                         </div>
-                        <h4 class="text-white">Distributor Şəbəkəsi</h4>
-                        <p class="text-light">Satış distributorarları və diler şəbəkəsi üçün əməkdaşlıq proqramları</p>
-                        <ul class="partnership-benefits">
-                            <li>Eksklüziv bölgə hüquqları</li>
-                            <li>Marketing dəstəyi</li>
-                            <li>Texniki təlim proqramları</li>
-                        </ul>
                     </div>
-                </div>
-                
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-                    <div class="partnership-card">
-                        <div class="card-icon">
-                            <i class="fas fa-globe"></i>
+                    
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                        <div class="partnership-card">
+                            <div class="card-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4 class="text-white">Distributor Şəbəkəsi</h4>
+                            <p class="text-light">Satış distributorarları və diler şəbəkəsi üçün əməkdaşlıq proqramları</p>
+                            <ul class="partnership-benefits">
+                                <li>Eksklüziv bölgə hüquqları</li>
+                                <li>Marketing dəstəyi</li>
+                                <li>Texniki təlim proqramları</li>
+                            </ul>
                         </div>
-                        <h4 class="text-white">Beynəlxalq Tərəfdaş</h4>
-                        <p class="text-light">Xarici investorlar və beynəlxalq maliyyə təşkilatları ilə əməkdaşlıq</p>
-                        <ul class="partnership-benefits">
-                            <li>Texnologiya transferi</li>
-                            <li>Kapital investisiyası</li>
-                            <li>Know-how paylaşımı</li>
-                        </ul>
                     </div>
-                </div>
+                    
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                        <div class="partnership-card">
+                            <div class="card-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h4 class="text-white">Beynəlxalq Tərəfdaş</h4>
+                            <p class="text-light">Xarici investorlar və beynəlxalq maliyyə təşkilatları ilə əməkdaşlıq</p>
+                            <ul class="partnership-benefits">
+                                <li>Texnologiya transferi</li>
+                                <li>Kapital investisiyası</li>
+                                <li>Know-how paylaşımı</li>
+                            </ul>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </section>
@@ -176,54 +224,71 @@
             </div>
             
             <div class="row align-items-center justify-content-center" data-aos="fade-up" data-aos-delay="400">
-                <div class="col-lg-2 col-md-3 col-4 mb-4">
-                    <div class="partner-logo">
-                        <div class="partner-placeholder">
-                            <i class="fas fa-building text-primary"></i>
-                            <span>Bank Partner</span>
+                <?php if(isset($partners) && $partners->count() > 0): ?>
+                    <?php $__currentLoopData = $partners; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $partner): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div class="col-lg-2 col-md-3 col-4 mb-4" data-aos="fade-up" data-aos-delay="<?php echo e(300 + ($index * 100)); ?>">
+                            <div class="partner-logo">
+                                <?php if($partner->logo_url): ?>
+                                    <img src="<?php echo e($partner->logo_url); ?>" alt="<?php echo e($partner->name); ?>" class="img-fluid">
+                                <?php else: ?>
+                                    <div class="partner-placeholder">
+                                        <i class="fas fa-handshake"></i> 
+                                        <span><?php echo e($partner->name); ?></span>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php else: ?>
+                    <div class="col-lg-2 col-md-3 col-4 mb-4">
+                        <div class="partner-logo">
+                            <div class="partner-placeholder">
+                                <i class="fas fa-building"></i>
+                                <span>Bank Partner</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-4 mb-4">
-                    <div class="partner-logo">
-                        <div class="partner-placeholder">
-                            <i class="fas fa-industry text-primary"></i>
-                            <span>Tech Partner</span>
+                    <div class="col-lg-2 col-md-3 col-4 mb-4">
+                        <div class="partner-logo">
+                            <div class="partner-placeholder">
+                                <i class="fas fa-industry"></i>
+                                <span>Tech Partner</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-4 mb-4">
-                    <div class="partner-logo">
-                        <div class="partner-placeholder">
-                            <i class="fas fa-handshake text-primary"></i>
-                            <span>Finance Partner</span>
+                    <div class="col-lg-2 col-md-3 col-4 mb-4">
+                        <div class="partner-logo">
+                            <div class="partner-placeholder">
+                                <i class="fas fa-handshake"></i>
+                                <span>Finance Partner</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-4 mb-4">
-                    <div class="partner-logo">
-                        <div class="partner-placeholder">
-                            <i class="fas fa-globe text-primary"></i>
-                            <span>Global Partner</span>
+                    <div class="col-lg-2 col-md-3 col-4 mb-4">
+                        <div class="partner-logo">
+                            <div class="partner-placeholder">
+                                <i class="fas fa-globe"></i>
+                                <span>Global Partner</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-4 mb-4">
-                    <div class="partner-logo">
-                        <div class="partner-placeholder">
-                            <i class="fas fa-car text-primary"></i>
-                            <span>Auto Partner</span>
+                    <div class="col-lg-2 col-md-3 col-4 mb-4">
+                        <div class="partner-logo">
+                            <div class="partner-placeholder">
+                                <i class="fas fa-car"></i>
+                                <span>Auto Partner</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-4 mb-4">
-                    <div class="partner-logo">
-                        <div class="partner-placeholder">
-                            <i class="fas fa-home text-primary"></i>
-                            <span>Real Estate</span>
+                    <div class="col-lg-2 col-md-3 col-4 mb-4">
+                        <div class="partner-logo">
+                            <div class="partner-placeholder">
+                                <i class="fas fa-home"></i>
+                                <span>Real Estate</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php endif; ?>
             </div>
         </div>
     </section>
@@ -234,26 +299,61 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center" data-aos="fade-up">
                     <div class="cta-content">
-                        <h2 class="section-title text-white mb-4">Bizimlə Tərəfdaşlığa Hazırsınız?</h2>
-                        <p class="section-subtitle text-light mb-4">
-                            Lizinq sahəsində böyümə imkanlarından faydalanmaq və uğurlu tərəfdaşlıq qurmaq üçün 
-                            bizimlə əlaqə saxlayın. Mütəxəssis komandamız sizə ən uyğun əməkdaşlıq modelini təklif edəcək.
-                        </p>
+                        <?php if(isset($investorContactSection) && $investorContactSection->title): ?>
+                            <h2 class="section-title text-white mb-4"><?php echo e($investorContactSection->title); ?></h2>
+                        <?php else: ?>
+                            <h2 class="section-title text-white mb-4">Bizimlə Tərəfdaşlığa Hazırsınız?</h2>
+                        <?php endif; ?>
+                        
+                        <?php if(isset($investorContactSection) && $investorContactSection->subtitle): ?>
+                            <p class="section-subtitle text-light mb-4">
+                                <?php echo e($investorContactSection->subtitle); ?>
+
+                            </p>
+                        <?php else: ?>
+                            <p class="section-subtitle text-light mb-4">
+                                Lizinq sahəsində böyümə imkanlarından faydalanmaq və uğurlu tərəfdaşlıq qurmaq üçün 
+                                bizimlə əlaqə saxlayın. Mütəxəssis komandamız sizə ən uyğun əməkdaşlıq modelini təklif edəcək.
+                            </p>
+                        <?php endif; ?>
                         
                         <div class="cta-actions">
-                            <a href="<?php echo e(route('front.contact')); ?>" class="btn-primary-custom me-3">
-                                <i class="fas fa-envelope me-2"></i>Əlaqə Saxlayın
-                            </a>
-                            <a href="tel:+994123456789" class="btn-outline-custom">
-                                <i class="fas fa-phone me-2"></i>+994 12 345 67 89
-                            </a>
+                            <?php if(isset($investorContactSection) && $investorContactSection->button1_text && $investorContactSection->button1_link): ?>
+                                <a href="<?php echo e($investorContactSection->button1_link); ?>" class="btn-primary-custom me-3">
+                                    <i class="fas fa-envelope me-2"></i><?php echo e($investorContactSection->button1_text); ?>
+
+                                </a>
+                            <?php else: ?>
+                                <a href="<?php echo e(route('front.contact')); ?>" class="btn-primary-custom me-3">
+                                    <i class="fas fa-envelope me-2"></i>Əlaqə Saxlayın
+                                </a>
+                            <?php endif; ?>
+                            
+                            <?php if(isset($investorContactSection) && $investorContactSection->button2_text && $investorContactSection->button2_link): ?>
+                                <a href="<?php echo e($investorContactSection->button2_link); ?>" class="btn-outline-custom">
+                                    <i class="fas fa-phone me-2"></i><?php echo e($investorContactSection->button2_text); ?>
+
+                                </a>
+                            <?php else: ?>
+                                <a href="tel:+994123456789" class="btn-outline-custom">
+                                    <i class="fas fa-phone me-2"></i>+994 12 345 67 89
+                                </a>
+                            <?php endif; ?>
                         </div>
                         
                         <div class="contact-info mt-4">
-                            <p class="text-light">
-                                <i class="fas fa-envelope text-primary me-2"></i>
-                                investor@modernlizinq.az
-                            </p>
+                            <?php if(isset($investorContactSection) && $investorContactSection->email): ?>
+                                <p class="text-light">
+                                    <i class="fas fa-envelope text-primary me-2"></i>
+                                    <?php echo e($investorContactSection->email); ?>
+
+                                </p>
+                            <?php else: ?>
+                                <p class="text-light">
+                                    <i class="fas fa-envelope text-primary me-2"></i>
+                                    investor@modernlizinq.az
+                                </p>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -294,6 +394,21 @@
         display: flex;
         align-items: flex-start;
         margin-bottom: 2rem;
+        padding: 1rem;
+        border-radius: 8px;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+        cursor: pointer;
+        border: 1px solid transparent;
+    }
+
+    .feature-item.active {
+        background-color: rgba(34, 137, 255, 0.1);
+        border-color: var(--primary-color);
+    }
+
+    .feature-item:hover {
+        background-color: rgba(34, 137, 255, 0.05);
+        border-color: rgba(34, 137, 255, 0.5);
     }
     
     .feature-icon {
@@ -545,5 +660,59 @@
         }
     }
 </style>
+<?php $__env->stopPush(); ?>
+
+<?php $__env->startPush('scripts'); ?>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const featureItems = document.querySelectorAll('.partnership-features .feature-item');
+        const dynamicImage = document.getElementById('dynamic-partnership-image');
+        const dynamicStat1Number = document.getElementById('dynamic-stat1-number');
+        const dynamicStat1Label = document.getElementById('dynamic-stat1-label');
+        const dynamicStat2Number = document.getElementById('dynamic-stat2-number');
+        const dynamicStat2Label = document.getElementById('dynamic-stat2-label');
+
+        // İlk elementi aktiv et
+        if (featureItems.length > 0) {
+            featureItems[0].classList.add('active');
+        }
+
+        featureItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // Bütün aktiv sinifləri sil
+                featureItems.forEach(fi => fi.classList.remove('active'));
+
+                // Cari elementə aktiv sinfi əlavə et
+                this.classList.add('active');
+
+                // Məlumatları götür
+                const imageUrl = this.dataset.image;
+                const stat1Number = this.dataset.stat1Number;
+                const stat1Text = this.dataset.stat1Text;
+                const stat2Number = this.dataset.stat2Number;
+                const stat2Text = this.dataset.stat2Text;
+
+                // Şəkli yenilə
+                if (dynamicImage) {
+                    dynamicImage.src = imageUrl;
+                }
+
+                // Statistikaları yenilə
+                if (dynamicStat1Number) {
+                    dynamicStat1Number.textContent = stat1Number;
+                }
+                if (dynamicStat1Label) {
+                    dynamicStat1Label.textContent = stat1Text;
+                }
+                if (dynamicStat2Number) {
+                    dynamicStat2Number.textContent = stat2Number;
+                }
+                if (dynamicStat2Label) {
+                    dynamicStat2Label.textContent = stat2Text;
+                }
+            });
+        });
+    });
+</script>
 <?php $__env->stopPush(); ?>
 <?php echo $__env->make('front.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\ModernLeasing\resources\views/front/pages/investors.blade.php ENDPATH**/ ?>

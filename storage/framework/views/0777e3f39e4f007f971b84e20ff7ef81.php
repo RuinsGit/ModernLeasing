@@ -42,151 +42,152 @@
     <section class="section-padding text-white" style="background-color: var(--section-bg);">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="services-accordion" data-aos="fade-up">
-                        
+                <div class="col-lg-12">
+                    <div class="row g-4">
                         <?php if(isset($services) && $services->count() > 0): ?>
                             <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <!-- <?php echo e($service->title); ?> -->
-                                <div class="service-accordion-item">
-                                    <div class="service-accordion-header" data-bs-toggle="collapse" data-bs-target="#service<?php echo e($service->id); ?>" aria-expanded="false">
-                                        <div class="service-icon">
+                                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="<?php echo e(100 * ($index + 1)); ?>">
+                                    <div class="service-card">
+                                        <div class="card-icon">
                                             <i class="<?php echo e($service->icon_class); ?>"></i>
                                         </div>
-                                        <div class="service-title">
-                                            <h3><?php echo e($service->title); ?></h3>
-                                            <p><?php echo e($service->description); ?></p>
-                                        </div>
-                                        <div class="service-arrow">
-                                            <i class="fas fa-chevron-down"></i>
-                                        </div>
-                                    </div>
-                                    <div class="collapse service-accordion-content" id="service<?php echo e($service->id); ?>">
-                                        <div class="service-content-body">
-                                            <div class="row g-4">
-                                                <div class="col-md-6">
-                                                    <h5>Xidmət təsviri</h5>
-                                                    <p><?php echo e($service->description); ?></p>
-                                                    
-                                                    <?php if($service->features_list && count($service->features_list) > 0): ?>
-                                                        <h6>Xidmət xüsusiyyətləri</h6>
-                                                        <ul class="service-features">
-                                                            <?php $__currentLoopData = $service->features_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $feature): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                <li><i class="fas fa-check text-primary me-2"></i><?php echo e($feature); ?></li>
-                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                        </ul>
-                                                    <?php endif; ?>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="service-image">
-                                                        <?php if($service->image): ?>
-                                                            <img src="<?php echo e($service->image_url); ?>" 
-                                                                 alt="<?php echo e($service->title); ?>" class="img-fluid" style="border-radius: 8px;">
-                                                        <?php else: ?>
-                                                            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                                                                 alt="<?php echo e($service->title); ?>" class="img-fluid" style="border-radius: 8px;">
-                                                        <?php endif; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mt-4">
-                                                <div class="col-12 text-center">
-                                                    <button class="btn btn-primary-custom" data-bs-toggle="modal" data-bs-target="#applicationModal">
-                                                        <?php echo e($service->title); ?> Üstünlükləri
-                                                    </button>
-                                                    <a href="<?php echo e(route('front.contact')); ?>" class="btn btn-outline ms-3">Müraciət Et</a>
-                                                </div>
-                                            </div>
+                                        <h4 class="card-title-service text-white"><?php echo e($service->title); ?></h4>
+                                        <p class="card-description text-light"><?php echo e($service->description); ?></p>
+                                        
+                                        <?php if($service->features_list && count($service->features_list) > 0): ?>
+                                            <ul class="card-features">
+                                                <?php $__currentLoopData = $service->features_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $feature): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <li><i class="fas fa-check-circle text-primary me-2"></i><?php echo e($feature); ?></li>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </ul>
+                                        <?php endif; ?>
+                                        
+                                        <div class="card-image-wrapper">
+                                            <?php if($service->image): ?>
+                                                <img src="<?php echo e($service->image_url); ?>"
+                                                     alt="<?php echo e($service->title); ?>" class="img-fluid card-image">
+                                            <?php else: ?>
+                                                <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                                                     alt="<?php echo e($service->title); ?>" class="img-fluid card-image">
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         <?php else: ?>
-                            <!-- Default static service if no data -->
-                            <div class="service-accordion-item">
-                                <div class="service-accordion-header" data-bs-toggle="collapse" data-bs-target="#agricultural" aria-expanded="false">
-                                    <div class="service-icon">
+                            <!-- Default static services if no data -->
+                            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                                <div class="service-card">
+                                    <div class="card-icon">
                                         <i class="fas fa-tractor"></i>
                                     </div>
-                                    <div class="service-title">
-                                        <h3>Kənd Təsərrüfatı Texnikası Lizinqi</h3>
-                                        <p>Traktor, kombayn və digər kənd təsərrüfatı avadanlıqları</p>
-                                    </div>
-                                    <div class="service-arrow">
-                                        <i class="fas fa-chevron-down"></i>
+                                    <h4 class="card-title-service text-white">Kənd Təsərrüfatı Texnikası</h4>
+                                    <p class="card-description text-light">Traktor, kombayn və digər kənd təsərrüfatı avadanlıqlarının lizinqi</p>
+                                    <ul class="card-features">
+                                        <li><i class="fas fa-check-circle text-primary me-2"></i>Traktor və kombaynlar</li>
+                                        <li><i class="fas fa-check-circle text-primary me-2"></i>Əkin-biçin avadanlıqları</li>
+                                        <li><i class="fas fa-check-circle text-primary me-2"></i>Suvarma sistemləri</li>
+                                    </ul>
+                                    <div class="card-image-wrapper">
+                                        <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                                             alt="Kənd Təsərrüfatı Texnikası" class="img-fluid card-image">
                                     </div>
                                 </div>
-                                <div class="collapse service-accordion-content" id="agricultural">
-                                    <div class="service-content-body">
-                                        <div class="row g-4">
-                                            <div class="col-md-6">
-                                                <h5>Giriş təsviri</h5>
-                                                <p>Kənd təsərrüfatı sahəsində ən müasir texnikalar və avadanlıqların lizinqi xidmətləri təqdim edirik.</p>
-                                                
-                                                <h6>Faydalar və şərtlər (bullet points)</h6>
-                                                <ul class="service-features">
-                                                    <li><i class="fas fa-check text-primary me-2"></i>24 aya qədər ödəniş müddəti</li>
-                                                    <li><i class="fas fa-check text-primary me-2"></i>İlkin ödəniş 10%-dən başlayır</li>
-                                                    <li><i class="fas fa-check text-primary me-2"></i>Sənədləşmə 48 saat ərzində</li>
-                                                    <li><i class="fas fa-check text-primary me-2"></i>Texniki dəstək və xidmət</li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="service-image">
-                                                    <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                                                         alt="Kənd Təsərrüfatı" class="img-fluid" style="border-radius: 8px;">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mt-4">
-                                            <div class="col-12 text-center">
-                                                <button class="btn btn-primary-custom" data-bs-toggle="modal" data-bs-target="#applicationModal">
-                                                    Müştəri üçün üstünlüklər
-                                                </button>
-                                                <a href="<?php echo e(route('front.contact')); ?>" class="btn btn-outline ms-3">Müraciət Et</a>
-                                            </div>
-                                        </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                                <div class="service-card">
+                                    <div class="card-icon">
+                                        <i class="fas fa-car"></i>
+                                    </div>
+                                    <h4 class="card-title-service text-white">Avtomobillər</h4>
+                                    <p class="card-description text-light">Şəxsi və kommersiya avtomobillərin əlverişli lizinq imkanları</p>
+                                    <ul class="card-features">
+                                        <li><i class="fas fa-check-circle text-primary me-2"></i>Şəxsi avtomobillər</li>
+                                        <li><i class="fas fa-check-circle text-primary me-2"></i>Kommersiya nəqliyyatı</li>
+                                        <li><i class="fas fa-check-circle text-primary me-2"></i>Lüks sinif avtomobillər</li>
+                                    </ul>
+                                    <div class="card-image-wrapper">
+                                        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                                             alt="Avtomobillər" class="img-fluid card-image">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                                <div class="service-card">
+                                    <div class="card-icon">
+                                        <i class="fas fa-home"></i>
+                                    </div>
+                                    <h4 class="card-title-service text-white">Məişət Texnikası</h4>
+                                    <p class="card-description text-light">Ev və mətbəx texnikalarının lizinq xidmətləri</p>
+                                    <ul class="card-features">
+                                        <li><i class="fas fa-check-circle text-primary me-2"></i>Mətbəx texnikası</li>
+                                        <li><i class="fas fa-check-circle text-primary me-2"></i>Ev elektronikası</li>
+                                        <li><i class="fas fa-check-circle text-primary me-2"></i>Mebel və dekorasiya</li>
+                                    </ul>
+                                    <div class="card-image-wrapper">
+                                        <img src="https://images.unsplash.com/photo-1588856557005-24b5d271927c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                                             alt="Məişət Texnikası" class="img-fluid card-image">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                                <div class="service-card">
+                                    <div class="card-icon">
+                                        <i class="fas fa-building"></i>
+                                    </div>
+                                    <h4 class="card-title-service text-white">Daşınmaz Əmlak</h4>
+                                    <p class="card-description text-light">Ofis və yaşayış sahələrinin lizinq imkanları</p>
+                                    <ul class="card-features">
+                                        <li><i class="fas fa-check-circle text-primary me-2"></i>Ofis binaları</li>
+                                        <li><i class="fas fa-check-circle text-primary me-2"></i>Mənzil və villalar</li>
+                                        <li><i class="fas fa-check-circle text-primary me-2"></i>Ticarət mərkəzləri</li>
+                                    </ul>
+                                    <div class="card-image-wrapper">
+                                        <img src="https://images.unsplash.com/photo-1549517070-5b5b5b5b5b5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                                             alt="Daşınmaz Əmlak" class="img-fluid card-image">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                                <div class="service-card">
+                                    <div class="card-icon">
+                                        <i class="fas fa-industry"></i>
+                                    </div>
+                                    <h4 class="card-title-service text-white">Sənaye Avadanlıqları</h4>
+                                    <p class="card-description text-light">Müxtəlif sənaye sahələri üçün avadanlıq lizinqi</p>
+                                    <ul class="card-features">
+                                        <li><i class="fas fa-check-circle text-primary me-2"></i>İstehsal avadanlıqları</li>
+                                        <li><i class="fas fa-check-circle text-primary me-2"></i>Enerji sistemləri</li>
+                                        <li><i class="fas fa-check-circle text-primary me-2"></i>Texnoloji həllər</li>
+                                    </ul>
+                                    <div class="card-image-wrapper">
+                                        <img src="https://images.unsplash.com/photo-1522204523234-87295a78f2e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                                             alt="Sənaye Avadanlıqları" class="img-fluid card-image">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                                <div class="service-card">
+                                    <div class="card-icon">
+                                        <i class="fas fa-tools"></i>
+                                    </div>
+                                    <h4 class="card-title-service text-white">Tikinti Texnikası</h4>
+                                    <p class="card-description text-light">Tikinti və yol-inşaat texnikalarının lizinqi</p>
+                                    <ul class="card-features">
+                                        <li><i class="fas fa-check-circle text-primary me-2"></i>Ekskovator və bulldozerlər</li>
+                                        <li><i class="fas fa-check-circle text-primary me-2"></i>Kranlar və liftlər</li>
+                                        <li><i class="fas fa-check-circle text-primary me-2"></i>Yükdaşıma vasitələri</li>
+                                    </ul>
+                                    <div class="card-image-wrapper">
+                                        <img src="https://images.unsplash.com/photo-1506478954751-2d7c0f1b2b2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                                             alt="Tikinti Texnikası" class="img-fluid card-image">
                                     </div>
                                 </div>
                             </div>
                         <?php endif; ?>
-
                     </div>
                 </div>
             </div>
-
-            <!-- Service Features Summary -->
-            <!-- <div class="row mt-5">
-                <div class="col-12 text-center">
-                    <h3 class="text-white mb-4">Hər Xidmət Sahəsi</h3>
-                    <div class="row g-4">
-                        <div class="col-lg-3 col-md-6">
-                            <div class="service-summary-card">
-                                <i class="fas fa-image text-primary mb-3"></i>
-                                <h6 class="text-white">Giriş təsviri</h6>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="service-summary-card">
-                                <i class="fas fa-list text-primary mb-3"></i>
-                                <h6 class="text-white">Faydalar və şərtlər (bullet points)</h6>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="service-summary-card">
-                                <i class="fas fa-users text-primary mb-3"></i>
-                                <h6 class="text-white">Müştəri üçün üstünlüklər</h6>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="service-summary-card">
-                                <i class="fas fa-mouse-pointer text-primary mb-3"></i>
-                                <h6 class="text-white">CTA: "Müraciət et"</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </section>
 <?php $__env->stopSection(); ?>
@@ -215,185 +216,147 @@
         color: rgba(255, 255, 255, 0.7);
     }
     
-    .services-accordion {
-        max-width: 100%;
-    }
-    
-    .service-accordion-item {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        margin-bottom: 1rem;
-        overflow: hidden;
-        transition: all 0.3s ease;
-    }
-    
-    .service-accordion-item:hover {
-        border-color: var(--primary-color);
-    }
-    
-    .service-accordion-header {
+    .service-card {
+        background: #1e1e1e; /* Tünd arxa plan */
+        border: 1px solid rgba(255, 255, 255, 0.1); /* Yüngül haşiyə */
+        border-radius: 12px;
+        padding: 2.5rem;
+        color: #fff;
+        height: 100%;
         display: flex;
-        align-items: center;
-        padding: 1.5rem;
-        cursor: pointer;
-        position: relative;
-        transition: all 0.3s ease;
+        flex-direction: column;
+        transition: all 0.3s ease-in-out;
+        overflow: hidden; /* Şəkil kənarlarından daşmasın */
     }
     
-    .service-accordion-header:hover {
-        background: rgba(255, 107, 53, 0.1);
+    .service-card:hover {
+        transform: translateY(-8px); /* Üzərinə gələndə yuxarı qalxsın */
+        border-color: var(--primary-color);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Kölgə effekti */
     }
     
-    .service-icon {
-        width: 60px;
-        height: 60px;
-        background: var(--primary-color);
-        border-radius: 8px;
+    .card-icon {
+        width: 70px;
+        height: 70px;
+        background-color: var(--primary-color);
+        border-radius: 8px; /* Şəkildəki kimi küncləri bir az yumru */
         display: flex;
         align-items: center;
         justify-content: center;
-        color: white;
-        font-size: 1.5rem;
-        margin-right: 1.5rem;
-        flex-shrink: 0;
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem; /* İkon ilə başlıq arasında boşluq */
+        color: white; /* İkon rəngi */
     }
     
-    .service-title {
-        flex: 1;
+    .card-title-service {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        line-height: 1.3;
     }
     
-    .service-title h3 {
-        color: white;
-        margin: 0 0 0.5rem 0;
-        font-size: 1.25rem;
-        font-weight: 600;
-    }
-    
-    .service-title p {
-        margin: 0;
+    .card-description {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
         color: rgba(255, 255, 255, 0.8);
-        font-size: 0.9rem;
     }
     
-    .service-arrow {
-        margin-left: 1rem;
-        color: var(--primary-color);
-        font-size: 1.2rem;
-        transition: transform 0.3s ease;
-    }
-    
-    .service-accordion-header[aria-expanded="true"] .service-arrow {
-        transform: rotate(180deg);
-    }
-    
-    .service-accordion-content {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .service-content-body {
-        padding: 2rem 1.5rem;
-    }
-    
-    .service-content-body h5 {
-        color: var(--primary-color);
-        margin-bottom: 1rem;
-        font-weight: 600;
-    }
-    
-    .service-content-body h6 {
-        color: white;
-        margin-bottom: 1rem;
-        margin-top: 1.5rem;
-    }
-    
-    .service-features {
+    .card-features {
         list-style: none;
         padding: 0;
         margin: 0;
+        margin-bottom: 2rem;
     }
     
-    .service-features li {
+    .card-features li {
         display: flex;
         align-items: center;
         margin-bottom: 0.75rem;
+        font-size: 0.9rem;
         color: rgba(255, 255, 255, 0.9);
-        font-size: 0.95rem;
     }
     
-    .service-image img {
-        width: 100%;
-        height: 250px;
-        object-fit: cover;
-    }
-    
-    .btn-outline {
-        background: transparent;
-        border: 2px solid var(--primary-color);
+    .card-features li i {
         color: var(--primary-color);
-        padding: 12px 30px;
-        border-radius: 8px;
-        font-weight: 600;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        transition: all 0.3s ease;
+        margin-right: 10px;
     }
     
-    .btn-outline:hover {
-        background: var(--primary-color);
-        color: white;
-        transform: translateY(-2px);
+    .card-image-wrapper {
+        margin-top: auto; /* Şəkli həmişə aşağı itələyin */
+        width: calc(100% + 5rem); /* Padding-i də nəzərə alaraq kənardan kənara */
+        margin-left: -2.5rem; /* Sol padding-i kompensasiya edin */
+        margin-right: -2.5rem; /* Sağ padding-i kompensasiya edin */
+        margin-bottom: -2.5rem; /* Alt padding-i kompensasiya edin */
+        border-bottom-left-radius: 10px; /* Kartın alt künclərinə uyğunlaşdırın */
+        border-bottom-right-radius: 10px; /* Kartın alt künclərinə uyğunlaşdırın */
+        overflow: hidden; /* Şəkil kənarlarından daşmasın */
     }
     
-    .service-summary-card {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        padding: 1.5rem;
-        text-align: center;
-        height: 100%;
-        transition: all 0.3s ease;
+    .card-image {
+        width: 100%;
+        height: 200px; /* Şəkilin sabit hündürlüyü */
+        object-fit: cover; /* Şəklin konteynerə sığmasını təmin edin */
+        display: block; /* Altda boşluqları aradan qaldırın */
     }
     
-    .service-summary-card:hover {
-        transform: translateY(-5px);
-        border-color: var(--primary-color);
+    /* Responsive stillər */
+    @media (max-width: 991.98px) {
+        .service-card {
+            padding: 2rem;
+        }
+        .card-image-wrapper {
+            width: calc(100% + 4rem); 
+            margin-left: -2rem;
+            margin-right: -2rem;
+            margin-bottom: -2rem;
+        }
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .card-title-service {
+            font-size: 1.4rem;
+        }
+        .card-description,
+        .card-features li {
+            font-size: 0.875rem;
+        }
+        .card-image {
+            height: 180px;
+        }
     }
     
-    .service-summary-card i {
-        font-size: 2rem;
-        display: block;
-    }
-    
-    @media (max-width: 768px) {
+    @media (max-width: 767.98px) {
         .page-title {
             font-size: 2rem;
         }
-        
-        .service-accordion-header {
-            padding: 1rem;
+        .service-card {
+            padding: 1.5rem;
         }
-        
-        .service-icon {
+        .card-icon {
             width: 50px;
             height: 50px;
-            margin-right: 1rem;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
         }
-        
-        .service-title h3 {
-            font-size: 1.1rem;
+        .card-title-service {
+            font-size: 1.25rem;
         }
-        
-        .service-content-body {
-            padding: 1.5rem 1rem;
+        .card-description,
+        .card-features li {
+            font-size: 0.8rem;
         }
-        
-        .btn-primary-custom,
-        .btn-outline {
-            display: block;
-            width: 100%;
-            margin-bottom: 1rem;
+        .card-image-wrapper {
+            width: calc(100% + 3rem); 
+            margin-left: -1.5rem;
+            margin-right: -1.5rem;
+            margin-bottom: -1.5rem;
+        }
+        .card-image {
+            height: 150px;
         }
     }
 </style>

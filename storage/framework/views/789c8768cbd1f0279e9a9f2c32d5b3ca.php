@@ -1,6 +1,6 @@
 
 
-<?php $__env->startSection('title', 'Yeni Haqqımızda Missiya Kartı Yarat - İdarə Paneli'); ?>
+<?php $__env->startSection('title', 'Şirkət Tarixi Elementini Redaktə Et - İdarə Paneli'); ?>
 
 <?php $__env->startSection('content'); ?>
 <div class="page-content">
@@ -10,13 +10,13 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0 font-size-18">Yeni Haqqımızda Missiya Kartı Yarat</h4>
+                    <h4 class="mb-sm-0 font-size-18">Şirkət Tarixi Elementini Redaktə Et</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="<?php echo e(route('admin.dashboard')); ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="<?php echo e(route('admin.about-mission-card.index')); ?>">Haqqımızda Missiya Kartları</a></li>
-                            <li class="breadcrumb-item active">Yeni Kart</li>
+                            <li class="breadcrumb-item"><a href="<?php echo e(route('admin.company-history-items.index')); ?>">Şirkət Tarixi</a></li>
+                            <li class="breadcrumb-item active">Redaktə Et</li>
                         </ol>
                     </div>
                 </div>
@@ -28,8 +28,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Yeni Haqqımızda Missiya Kartı</h4>
-                        <p class="card-title-desc">"Haqqımızda" səhifəsindəki "Bizim Missiyamız" bölməsi üçün yeni bir kart əlavə edin.</p>
+                        <h4 class="card-title">Şirkət Tarixi Elementini Redaktə Et</h4>
+                        <p class="card-title-desc">Şirkətinizin zaman xətti elementini yeniləyin.</p>
                     </div>
                     <div class="card-body">
                         
@@ -43,11 +43,37 @@
                             </div>
                         <?php endif; ?>
 
-                        <form action="<?php echo e(route('admin.about-mission-card.store')); ?>" method="POST">
+                        <form action="<?php echo e(route('admin.company-history-items.update', $companyHistoryItem->id)); ?>" method="POST">
                             <?php echo csrf_field(); ?>
+                            <?php echo method_field('PUT'); ?>
                             
                             <div class="row">
                                 <div class="col-lg-6">
+                                    <!-- İl -->
+                                    <div class="mb-4">
+                                        <label for="year" class="form-label">İl <span class="text-danger">*</span></label>
+                                        <input type="number" class="form-control <?php $__errorArgs = ['year'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                                               id="year" name="year" value="<?php echo e(old('year', $companyHistoryItem->year)); ?>" 
+                                               min="1900" max="2100" placeholder="Məsələn: 2023">
+                                        <?php $__errorArgs = ['year'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+
                                     <!-- Başlıq -->
                                     <div class="mb-4">
                                         <label for="title" class="form-label">Başlıq <span class="text-danger">*</span></label>
@@ -59,8 +85,8 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" 
-                                               id="title" name="title" value="<?php echo e(old('title')); ?>" 
-                                               placeholder="Məsələn: Missiya">
+                                               id="title" name="title" value="<?php echo e(old('title', $companyHistoryItem->title)); ?>" 
+                                               placeholder="Məsələn: Şirkətin Yaradılması">
                                         <?php $__errorArgs = ['title'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -86,8 +112,8 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" 
-                                               id="icon_class" name="icon_class" value="<?php echo e(old('icon_class', 'fas fa-bullseye')); ?>" 
-                                               placeholder="Məsələn: fas fa-bullseye">
+                                               id="icon_class" name="icon_class" value="<?php echo e(old('icon_class', $companyHistoryItem->icon_class)); ?>" 
+                                               placeholder="Məsələn: fas fa-calendar-alt">
                                         <?php $__errorArgs = ['icon_class'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -98,7 +124,33 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                        <div class="form-text">FontAwesome ikon classı daxil edin. Məsələn: `fas fa-bullseye`</div>
+                                        <div class="form-text">FontAwesome ikon classı daxil edin. Məsələn: `fas fa-calendar-alt`</div>
+                                    </div>
+
+                                    <!-- Sıra -->
+                                    <div class="mb-4">
+                                        <label for="order" class="form-label">Sıra <span class="text-danger">*</span></label>
+                                        <input type="number" class="form-control <?php $__errorArgs = ['order'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                                               id="order" name="order" value="<?php echo e(old('order', $companyHistoryItem->order)); ?>" 
+                                               min="0" placeholder="Məsələn: 1">
+                                        <?php $__errorArgs = ['order'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                        <div class="form-text">Elementin zaman xəttindəki göstərilmə sırası. 0 olarsa, avtomatik təyin ediləcək.</div>
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +167,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" 
                                           id="description" name="description" rows="4" 
-                                          placeholder="Kart haqqında qısa təsvir..."><?php echo e(old('description')); ?></textarea>
+                                          placeholder="Zaman xətti elementi haqqında qısa təsvir..."><?php echo e(old('description', $companyHistoryItem->description)); ?></textarea>
                                 <?php $__errorArgs = ['description'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -128,47 +180,21 @@ endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
 
-                            <!-- Sıra -->
-                            <div class="mb-4">
-                                <label for="order" class="form-label">Sıra <span class="text-danger">*</span></label>
-                                <input type="number" class="form-control <?php $__errorArgs = ['order'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" 
-                                       id="order" name="order" value="<?php echo e(old('order', 0)); ?>" 
-                                       min="0" placeholder="Məsələn: 1">
-                                <?php $__errorArgs = ['order'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                    <div class="invalid-feedback"><?php echo e($message); ?></div>
-                                <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                <div class="form-text">Kartın səhifədəki göstərilmə sırası. 0 olarsa, avtomatik təyin ediləcək.</div>
-                            </div>
-
                             <!-- Status -->
                             <div class="mb-4">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="is_active" name="is_active" <?php echo e(old('is_active', true) ? 'checked' : ''); ?>>
+                                    <input class="form-check-input" type="checkbox" id="is_active" name="is_active" <?php echo e(old('is_active', $companyHistoryItem->is_active) ? 'checked' : ''); ?>>
                                     <label class="form-check-label" for="is_active">Aktiv</label>
                                 </div>
-                                <div class="form-text">Bu kartı səhifədə göstər.</div>
+                                <div class="form-text">Bu elementi zaman xəttində göstər.</div>
                             </div>
 
                             <!-- Düymələr -->
                             <div class="d-flex gap-2">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="bx bx-plus me-2"></i> Kart Yarat
+                                    <i class="bx bx-save me-2"></i> Yenilə
                                 </button>
-                                <a href="<?php echo e(route('admin.about-mission-card.index')); ?>" class="btn btn-secondary">
+                                <a href="<?php echo e(route('admin.company-history-items.index')); ?>" class="btn btn-secondary">
                                     <i class="bx bx-x me-2"></i> İmtina Et
                                 </a>
                             </div>
@@ -182,4 +208,4 @@ unset($__errorArgs, $__bag); ?>
 </div>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('back.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\ModernLeasing\resources\views/back/pages/about-mission-card/create.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('back.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\ModernLeasing\resources\views/back/pages/company-history-items/edit.blade.php ENDPATH**/ ?>

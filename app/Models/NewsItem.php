@@ -13,6 +13,7 @@ class NewsItem extends Model
         'title',
         'short_description',
         'description',
+        'image',
         'news_date',
         'order',
         'is_active'
@@ -30,5 +31,10 @@ class NewsItem extends Model
                    ->orderBy('news_date', 'desc')
                    ->orderBy('order')
                    ->get();
+    }
+
+    public function getImageUrlAttribute()
+    {
+        return $this->image ? asset('storage/' . $this->image) : null;
     }
 }

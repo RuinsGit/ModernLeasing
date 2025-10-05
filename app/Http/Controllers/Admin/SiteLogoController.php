@@ -65,7 +65,7 @@ class SiteLogoController extends Controller
         }
 
         $request->validate([
-            'site_name' => 'required|string|max:255',
+            'site_name' => 'nullable|string|max:255',
             'site_description' => 'nullable|string|max:1000',
             'about_title' => 'nullable|string|max:255',
             'about_subtitle' => 'nullable|string|max:1000',
@@ -131,7 +131,7 @@ class SiteLogoController extends Controller
     public function update(Request $request, SiteLogo $siteLogo)
     {
         $request->validate([
-            'site_name' => 'required|string|max:255',
+            'site_name' => 'nullable|string|max:255',
             'site_description' => 'nullable|string|max:1000',
             'about_title' => 'nullable|string|max:255',
             'about_subtitle' => 'nullable|string|max:1000',

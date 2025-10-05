@@ -30,7 +30,7 @@
                         <div class="d-flex align-items-center justify-content-between">
                             <h4 class="card-title">Komanda Üzvləri Siyahısı</h4>
                             <a href="{{ route('admin.team-members.create') }}" class="btn btn-primary">
-                                <i class="bx bx-plus me-1"></i> Yeni Üzv Əlavə Et
+                                <i class="mdi mdi-plus me-1"></i> Yeni Üzv Əlavə Et
                             </a>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                                                     @if($member->image)
                                                         <img src="{{ $member->image_url }}" alt="{{ $member->name }}" class="rounded-circle avatar-sm">
                                                     @else
-                                                        <i class="bx bx-user avatar-sm d-flex align-items-center justify-content-center text-secondary" style="font-size: 20px;"></i>
+                                                        <i class="mdi mdi-account avatar-sm d-flex align-items-center justify-content-center text-secondary" style="font-size: 20px;"></i>
                                                     @endif
                                                 </td>
                                                 <td>{{ $member->name }}</td>
@@ -118,13 +118,13 @@
                                                     </form>
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('admin.team-members.show', $member->id) }}" class="btn btn-info btn-sm"><i class="bx bx-show"></i></a>
-                                                    <a href="{{ route('admin.team-members.edit', $member->id) }}" class="btn btn-primary btn-sm"><i class="bx bx-edit"></i></a>
+                                                    <a href="{{ route('admin.team-members.show', $member->id) }}" class="btn btn-info btn-sm"><i class="mdi mdi-eye"></i></a>
+                                                    <a href="{{ route('admin.team-members.edit', $member->id) }}" class="btn btn-primary btn-sm"><i class="mdi mdi-pencil"></i></a>
                                                     <form id="delete-form-{{ $member->id }}" action="{{ route('admin.team-members.destroy', $member->id) }}" method="POST" class="d-inline-block">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="button" class="btn btn-danger btn-sm" onclick="deleteData({{ $member->id }})">
-                                                            <i class="bx bx-trash"></i>
+                                                            <i class="mdi mdi-trash-can"></i>
                                                         </button>
                                                     </form>
                                                 </td>

@@ -317,5 +317,79 @@ Route::prefix('admin')->group(function () {
             // Route::delete('{businessHour}', [App\Http\Controllers\Admin\BusinessHourController::class, 'destroy'])->name('destroy');
             Route::post('{businessHour}/toggle-status', [App\Http\Controllers\Admin\BusinessHourController::class, 'toggleStatus'])->name('toggle-status');
         });
+
+        // Partnership Section Routes (Tək girişli)
+        Route::prefix('partnership-section')->name('admin.partnership-section.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\PartnershipSectionController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\PartnershipSectionController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\PartnershipSectionController::class, 'store'])->name('store');
+            Route::get('{partnershipSection}/edit', [App\Http\Controllers\Admin\PartnershipSectionController::class, 'edit'])->name('edit');
+            Route::put('{partnershipSection}', [App\Http\Controllers\Admin\PartnershipSectionController::class, 'update'])->name('update');
+        });
+
+        // Partnership Features Routes
+        Route::prefix('partnership-features')->name('admin.partnership-features.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\PartnershipFeatureController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\PartnershipFeatureController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\PartnershipFeatureController::class, 'store'])->name('store');
+            Route::get('{partnershipFeature}', [App\Http\Controllers\Admin\PartnershipFeatureController::class, 'show'])->name('show');
+            Route::get('{partnershipFeature}/edit', [App\Http\Controllers\Admin\PartnershipFeatureController::class, 'edit'])->name('edit');
+            Route::put('{partnershipFeature}', [App\Http\Controllers\Admin\PartnershipFeatureController::class, 'update'])->name('update');
+            Route::delete('{partnershipFeature}', [App\Http\Controllers\Admin\PartnershipFeatureController::class, 'destroy'])->name('destroy');
+            Route::post('{partnershipFeature}/toggle-status', [App\Http\Controllers\Admin\PartnershipFeatureController::class, 'toggleStatus'])->name('toggle-status');
+            Route::post('order', [App\Http\Controllers\Admin\PartnershipFeatureController::class, 'order'])->name('order');
+        });
+
+        // Partnership Types Routes
+        Route::prefix('partnership-types')->name('admin.partnership-types.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\PartnershipTypeController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\PartnershipTypeController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\PartnershipTypeController::class, 'store'])->name('store');
+            Route::get('{partnershipType}', [App\Http\Controllers\Admin\PartnershipTypeController::class, 'show'])->name('show');
+            Route::get('{partnershipType}/edit', [App\Http\Controllers\Admin\PartnershipTypeController::class, 'edit'])->name('edit');
+            Route::put('{partnershipType}', [App\Http\Controllers\Admin\PartnershipTypeController::class, 'update'])->name('update');
+            Route::delete('{partnershipType}', [App\Http\Controllers\Admin\PartnershipTypeController::class, 'destroy'])->name('destroy');
+            Route::post('{partnershipType}/toggle-status', [App\Http\Controllers\Admin\PartnershipTypeController::class, 'toggleStatus'])->name('toggle-status');
+            Route::post('order', [App\Http\Controllers\Admin\PartnershipTypeController::class, 'order'])->name('order');
+        });
+
+        // Investor Contact Section Routes (Tək girişli)
+        Route::prefix('investor-contact-section')->name('admin.investor-contact-section.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\InvestorContactSectionController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\InvestorContactSectionController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\InvestorContactSectionController::class, 'store'])->name('store');
+            // Show səhifəsinə ehtiyac yoxdur
+            Route::get('{investorContactSection}/edit', [App\Http\Controllers\Admin\InvestorContactSectionController::class, 'edit'])->name('edit');
+            Route::put('{investorContactSection}', [App\Http\Controllers\Admin\InvestorContactSectionController::class, 'update'])->name('update');
+            // Silmə funksiyası ləğv edildi
+            // Route::delete('{investorContactSection}', [App\Http\Controllers\Admin\InvestorContactSectionController::class, 'destroy'])->name('destroy');
+            Route::post('{investorContactSection}/toggle-status', [App\Http\Controllers\Admin\InvestorContactSectionController::class, 'toggleStatus'])->name('toggle-status');
+        });
+
+        // FAQ Categories Routes
+        Route::prefix('faq-categories')->name('admin.faq-categories.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\FaqCategoryController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\FaqCategoryController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\FaqCategoryController::class, 'store'])->name('store');
+            Route::get('{faqCategory}', [App\Http\Controllers\Admin\FaqCategoryController::class, 'show'])->name('show');
+            Route::get('{faqCategory}/edit', [App\Http\Controllers\Admin\FaqCategoryController::class, 'edit'])->name('edit');
+            Route::put('{faqCategory}', [App\Http\Controllers\Admin\FaqCategoryController::class, 'update'])->name('update');
+            Route::delete('{faqCategory}', [App\Http\Controllers\Admin\FaqCategoryController::class, 'destroy'])->name('destroy');
+            Route::post('{faqCategory}/toggle-status', [App\Http\Controllers\Admin\FaqCategoryController::class, 'toggleStatus'])->name('toggle-status');
+            Route::post('order', [App\Http\Controllers\Admin\FaqCategoryController::class, 'order'])->name('order');
+        });
+
+        // FAQ Items Routes
+        Route::prefix('faq-items')->name('admin.faq-items.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\FaqItemController::class, 'index'])->name('index');
+            Route::get('create', [App\Http\Controllers\Admin\FaqItemController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\Admin\FaqItemController::class, 'store'])->name('store');
+            Route::get('{faqItem}', [App\Http\Controllers\Admin\FaqItemController::class, 'show'])->name('show');
+            Route::get('{faqItem}/edit', [App\Http\Controllers\Admin\FaqItemController::class, 'edit'])->name('edit');
+            Route::put('{faqItem}', [App\Http\Controllers\Admin\FaqItemController::class, 'update'])->name('update');
+            Route::delete('{faqItem}', [App\Http\Controllers\Admin\FaqItemController::class, 'destroy'])->name('destroy');
+            Route::post('{faqItem}/toggle-status', [App\Http\Controllers\Admin\FaqItemController::class, 'toggleStatus'])->name('toggle-status');
+            Route::post('order', [App\Http\Controllers\Admin\FaqItemController::class, 'order'])->name('order');
+        });
     });
 });

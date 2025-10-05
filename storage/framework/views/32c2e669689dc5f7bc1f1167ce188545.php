@@ -30,7 +30,7 @@
                         <div class="d-flex align-items-center justify-content-between">
                             <h4 class="card-title">Missiya Kartları Siyahısı</h4>
                             <a href="<?php echo e(route('admin.about-mission-card.create')); ?>" class="btn btn-primary">
-                                <i class="bx bx-plus me-1"></i> Yeni Kart Əlavə Et
+                                <i class="mdi mdi-plus me-1"></i> Yeni Kart Əlavə Et
                             </a>
                         </div>
                     </div>
@@ -111,13 +111,13 @@
                                                     </form>
                                                 </td>
                                                 <td>
-                                                    <a href="<?php echo e(route('admin.about-mission-card.show', $card->id)); ?>" class="btn btn-info btn-sm"><i class="bx bx-show"></i></a>
-                                                    <a href="<?php echo e(route('admin.about-mission-card.edit', $card->id)); ?>" class="btn btn-primary btn-sm"><i class="bx bx-edit"></i></a>
+                                                    <a href="<?php echo e(route('admin.about-mission-card.show', $card->id)); ?>" class="btn btn-info btn-sm"><i class="mdi mdi-eye"></i></a>
+                                                    <a href="<?php echo e(route('admin.about-mission-card.edit', $card->id)); ?>" class="btn btn-primary btn-sm"><i class="mdi mdi-pencil"></i></a>
                                                     <form id="delete-form-<?php echo e($card->id); ?>" action="<?php echo e(route('admin.about-mission-card.destroy', $card->id)); ?>" method="POST" class="d-inline-block">
                                                         <?php echo csrf_field(); ?>
                                                         <?php echo method_field('DELETE'); ?>
                                                         <button type="button" class="btn btn-danger btn-sm" onclick="deleteData(<?php echo e($card->id); ?>)">
-                                                            <i class="bx bx-trash"></i>
+                                                            <i class="mdi mdi-trash-can"></i>
                                                         </button>
                                                     </form>
                                                 </td>

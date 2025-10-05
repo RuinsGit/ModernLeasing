@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\NewsItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class NewsItemController extends Controller
 {
@@ -25,12 +26,18 @@ class NewsItemController extends Controller
             'title' => 'required|string|max:255',
             'short_description' => 'required|string|max:500',
             'description' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'news_date' => 'required|date',
             'order' => 'required|integer|min:0'
         ]);
 
         $data = $request->all();
         $data['is_active'] = $request->has('is_active') ? 1 : 0;
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('news_images', 'public');
+            $data['image'] = $imagePath;
+        }
 
         if ($data['order'] == 0) {
             $data['order'] = NewsItem::max('order') + 1;
@@ -57,12 +64,26 @@ class NewsItemController extends Controller
             'title' => 'required|string|max:255',
             'short_description' => 'required|string|max:500',
             'description' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'news_date' => 'required|date',
             'order' => 'required|integer|min:0'
         ]);
 
         $data = $request->all();
         $data['is_active'] = $request->has('is_active') ? 1 : 0;
+
+        if ($request->hasFile('image')) {
+            if ($newsItem->image) {
+                Storage::disk('public')->delete($newsItem->image);
+            }
+            $imagePath = $request->file('image')->store('news_images', 'public');
+            $data['image'] = $imagePath;
+        } else if ($request->input('remove_image')) { // Şəkil silmə funksiyası üçün əlavə yoxlama
+            if ($newsItem->image) {
+                Storage::disk('public')->delete($newsItem->image);
+            }
+            $data['image'] = null;
+        }
 
         $newsItem->update($data);
 
@@ -72,6 +93,9 @@ class NewsItemController extends Controller
     public function destroy(NewsItem $newsItem)
     {
         try {
+            if ($newsItem->image) {
+                Storage::disk('public')->delete($newsItem->image);
+            }
             $newsItem->delete();
             return redirect()->route('admin.news-items.index')->with('success', 'Xəbər uğurla silindi!');
         } catch (\Exception $e) {

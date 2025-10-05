@@ -31,11 +31,11 @@
                             <h4 class="card-title">Missiya Bölməsi Məlumatları</h4>
                             @if(!$aboutMissionSection)
                                 <a href="{{ route('admin.about-mission-section.create') }}" class="btn btn-primary">
-                                    <i class="bx bx-plus me-1"></i> Yeni Bölmə Yarat
+                                    <i class="mdi mdi-plus me-1"></i> Yeni Bölmə Yarat
                                 </a>
                             @else
                                 <a href="{{ route('admin.about-mission-section.edit', $aboutMissionSection->id) }}" class="btn btn-primary">
-                                    <i class="bx bx-edit me-1"></i> Bölməni Redaktə Et
+                                    <i class="mdi mdi-pencil me-1"></i> Bölməni Redaktə Et
                                 </a>
                             @endif
                         </div>

@@ -1,6 +1,6 @@
 
 
-<?php $__env->startSection('title', 'Yeni İş Saatları Əlavə Et - İdarə Paneli'); ?>
+<?php $__env->startSection('title', 'Yeni FAQ Kateqoriyası Yarat - İdarə Paneli'); ?>
 
 <?php $__env->startSection('content'); ?>
 <div class="page-content">
@@ -10,13 +10,13 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0 font-size-18">Yeni İş Saatları Əlavə Et</h4>
+                    <h4 class="mb-sm-0 font-size-18">Yeni FAQ Kateqoriyası Yarat</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="<?php echo e(route('admin.dashboard')); ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="<?php echo e(route('admin.business-hours.index')); ?>">İş Saatları</a></li>
-                            <li class="breadcrumb-item active">Yeni</li>
+                            <li class="breadcrumb-item"><a href="<?php echo e(route('admin.faq-categories.index')); ?>">FAQ Kateqoriyaları</a></li>
+                            <li class="breadcrumb-item active">Yeni Yarat</li>
                         </ol>
                     </div>
                 </div>
@@ -28,8 +28,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Yeni İş Saatları Əlavə Et</h4>
-                        <p class="card-title-desc">Saytınız üçün iş saatlarını daxil edin.</p>
+                        <h4 class="card-title">Yeni FAQ Kateqoriyası Məlumatları</h4>
+                        <p class="card-title-desc">Yeni FAQ kateqoriyası üçün məlumatları daxil edin.</p>
                     </div>
                     <div class="card-body">
                         
@@ -43,13 +43,13 @@
                             </div>
                         <?php endif; ?>
 
-                        <form action="<?php echo e(route('admin.business-hours.store')); ?>" method="POST">
+                        <form action="<?php echo e(route('admin.faq-categories.store')); ?>" method="POST">
                             <?php echo csrf_field(); ?>
                             
-                            <!-- Həftə İçi İş Saatları -->
+                            <!-- Kateqoriya Adı -->
                             <div class="mb-4">
-                                <label for="weekday_hours" class="form-label">Həftə İçi İş Saatları</label>
-                                <input type="text" class="form-control <?php $__errorArgs = ['weekday_hours'];
+                                <label for="name" class="form-label">Kateqoriya Adı <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -57,9 +57,9 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" 
-                                       id="weekday_hours" name="weekday_hours" value="<?php echo e(old('weekday_hours', 'Bazar ertəsi - Cümə: 09:00 - 18:00')); ?>" 
-                                       placeholder="Məsələn: Bazar ertəsi - Cümə: 09:00 - 18:00">
-                                <?php $__errorArgs = ['weekday_hours'];
+                                       id="name" name="name" value="<?php echo e(old('name')); ?>" 
+                                       placeholder="Məsələn: Ümumi Suallar">
+                                <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -69,13 +69,12 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                <div class="form-text">Həftə içi iş saatlarını daxil edin.</div>
                             </div>
 
-                            <!-- Həftə Sonu İş Saatları -->
+                            <!-- Sıra -->
                             <div class="mb-4">
-                                <label for="weekend_hours" class="form-label">Həftə Sonu İş Saatları</label>
-                                <input type="text" class="form-control <?php $__errorArgs = ['weekend_hours'];
+                                <label for="order" class="form-label">Sıra</label>
+                                <input type="number" class="form-control <?php $__errorArgs = ['order'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -83,9 +82,8 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" 
-                                       id="weekend_hours" name="weekend_hours" value="<?php echo e(old('weekend_hours', 'Şənbə: 09:00 - 14:00, Bazar: Bağlı')); ?>" 
-                                       placeholder="Məsələn: Şənbə: 09:00 - 14:00, Bazar: Bağlı">
-                                <?php $__errorArgs = ['weekend_hours'];
+                                       id="order" name="order" value="<?php echo e(old('order', 0)); ?>" min="0">
+                                <?php $__errorArgs = ['order'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -95,25 +93,25 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                <div class="form-text">Həftə sonu iş saatlarını daxil edin.</div>
+                                <div class="form-text">Kateqoriyanın göstərilmə sırası. 0 = avtomatik.</div>
                             </div>
-
+                            
                             <!-- Status -->
                             <div class="mb-4">
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" id="is_active" name="is_active" <?php echo e(old('is_active', true) ? 'checked' : ''); ?>>
                                     <label class="form-check-label" for="is_active">Aktiv</label>
                                 </div>
-                                <div class="form-text">Bu iş saatları qeydini aktiv et.</div>
+                                <div class="form-text">Bu kateqoriyanı aktiv edin/deaktiv edin.</div>
                             </div>
 
                             <!-- Düymələr -->
                             <div class="d-flex gap-2">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="bx bx-plus me-2"></i> Əlavə Et
+                                    <i class="mdi mdi-plus me-2"></i> Kateqoriya Yarat
                                 </button>
-                                <a href="<?php echo e(route('admin.business-hours.index')); ?>" class="btn btn-secondary">
-                                    <i class="bx bx-x me-2"></i> Ləğv Et
+                                <a href="<?php echo e(route('admin.faq-categories.index')); ?>" class="btn btn-secondary">
+                                    <i class="mdi mdi-cancel me-2"></i> İmtina Et
                                 </a>
                             </div>
                         </form>
@@ -126,4 +124,4 @@ unset($__errorArgs, $__bag); ?>
 </div>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('back.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\ModernLeasing\resources\views/back/pages/business-hour/create.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('back.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\ModernLeasing\resources\views/back/pages/faq-category/create.blade.php ENDPATH**/ ?>
