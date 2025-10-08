@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title', 'Əlaqə - MODERN LİZİNQ'); ?>
 <?php $__env->startSection('description', 'Modern Lizinq ilə əlaqə saxlayın. Ünvan, telefon, email məlumatları və müraciət formu. Bizim ofisimizdə ziyarət edin və ya online əlaqə quruj.'); ?>
 <?php $__env->startSection('keywords', 'əlaqə, telefon, email, ünvan, müraciət formu, iş saatları, modern lizinq'); ?>
@@ -225,82 +223,30 @@
     </section>
 
     <!-- Map Section -->
-    <section class="map-section">
-        <div class="container-fluid p-0">
-            <div class="row g-0">
-                <div class="col-12">
-                    <div class="map-container" data-aos="fade-up">
-                        <div class="map-overlay">
-                            <div class="map-info">
-                                <h4 class="text-white">Modern Lizinq Mərkəzi Ofis</h4>
-                                <p class="text-light"><?php echo e($contactInfo->address ?? 'Təyin edilməyib'); ?></p>
-                                <a href="https://maps.google.com/?q=<?php echo e(urlencode($contactInfo->address ?? 'Bakı, Azərbaycan')); ?>" target="_blank" class="btn btn-primary-custom btn-sm">
-                                    <i class="fas fa-directions me-2"></i>Yol Tarifləri Al
-                                </a>
-                            </div>
-                        </div>
-                        <!-- Map Placeholder - Gerçək xəritə inteqrasiyası üçün Google Maps və ya digər xidmət -->
-                        <div class="map-placeholder">
-                            <?php if(isset($contactInfo) && $contactInfo->map_iframe): ?>
-                                <div class="responsive-map-iframe-wrapper">
-                                    <?php echo $contactInfo->map_iframe; ?>
+    <section class="section-padding py-5 d-flex justify-content-center align-items-center" style="background-color: var(--section-bg); min-height: 450px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12" data-aos="fade-up">
+                    <div class="map-container-new">
+                        <?php if(isset($contactInfo) && $contactInfo->map_iframe): ?>
+                            <div class="responsive-map-iframe-wrapper-new">
+                                <?php echo $contactInfo->map_iframe; ?>
 
-                                </div>
-                            <?php else: ?>
-                                <div class="responsive-map-iframe-wrapper">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3039.175385327671!2d49.8671!3d40.4093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDI0JzMzLjU!SBOIDQ5wrDuyUyNTInMDEuNiJF!5e0!3m2!1sen!2saz!4v1620000000000!5m2!1sen!2saz" 
-                                            width="100%" height="400" style="border:0;" allowfullscreen="" 
-                                            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                </div>
-                            <?php endif; ?>
-                        </div>
+                            </div>
+                        <?php else: ?>
+                            <div class="responsive-map-iframe-wrapper-new">
+                                <iframe src="https://www.google.com/maps/embed?q=Maştağa%20Daş%20Karxanası&zoom=15&language=az" 
+                                        width="100%" height="450" style="border:0;" allowfullscreen="" 
+                                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact CTA -->
-    <section class="section-padding text-white" style="background-color: var(--section-bg);">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 text-center">
-                    <!-- <div class="contact-cta">
-                        <h3 class="text-white mb-3">24/7 Müştəri Dəstəyi</h3>
-                        <p class="text-light mb-4">
-                            Bizim mütəxəssis komanda həftənin 7 günü sizin xidmətinizdədir. 
-                            İstənilən sualınız varsa, bizimlə əlaqə saxlamaqdan çəkinməyin.
-                        </p>
-                        <div class="support-features">
-                            <div class="row g-3">
-                                <div class="col-md-4">
-                                    <div class="support-feature">
-                                        <i class="fas fa-headset text-primary"></i>
-                                        <h6 class="text-white">Online Dəstək</h6>
-                                        <p class="text-light">Chat və telefon dəstəyi</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="support-feature">
-                                        <i class="fas fa-clock text-primary"></i>
-                                        <h6 class="text-white">Sürətli Cavab</h6>
-                                        <p class="text-light">1 saat ərzində cavab</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="support-feature">
-                                        <i class="fas fa-user-tie text-primary"></i>
-                                        <h6 class="text-white">Şəxsi Mütəxəssis</h6>
-                                        <p class="text-light">Təcrübəli məsləhətçilər</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                </div>
-            </div>
-        </div>
-    </section>
+   
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('styles'); ?>
@@ -555,88 +501,32 @@
         font-size: 0.9rem;
     }
     
-    .map-section {
-        position: relative;
-    }
-    
-    .map-container {
-        position: relative;
-        height: 400px;
+    /* Yeni Xəritə Stiləri */
+    .map-container-new {
+        border-radius: 15px;
         overflow: hidden;
-        border-radius: 0;
-    }
-    
-    .map-overlay {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        background: rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(10px);
-        padding: 1.5rem;
-        border-radius: 8px;
-        z-index: 10;
-        max-width: 300px;
-    }
-    
-    .map-info h4 {
-        margin: 0 0 0.5rem 0;
-        font-size: 1.1rem;
-    }
-    
-    .map-info p {
-        margin: 0 0 1rem 0;
-        font-size: 0.9rem;
-    }
-    
-    .map-placeholder iframe {
-        filter: grayscale(20%);
-        transition: filter 0.3s ease;
-    }
-    
-    .map-placeholder:hover iframe {
-        filter: grayscale(0%);
-    }
-
-    .responsive-map-iframe-wrapper {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         position: relative;
-        padding-bottom: 56.25%; /* 16:9 aspekt nisbəti (hündürlük / genişlik) */
-        height: 0;
-        overflow: hidden;
+        height: 450px; /* `padding-bottom` əvəzinə `height` istifadə et */
+        max-width: 90%; /* Kontainerin 90% genişliyini al */
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-
-    .responsive-map-iframe-wrapper iframe {
+    
+    .responsive-map-iframe-wrapper-new iframe {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         border: 0;
+        filter: grayscale(20%);
+        transition: filter 0.3s ease;
     }
     
-    .contact-cta {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        padding: 3rem 2rem;
-    }
-    
-    .support-feature {
-        text-align: center;
-        padding: 1rem;
-    }
-    
-    .support-feature i {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-    }
-    
-    .support-feature h6 {
-        margin: 0 0 0.5rem 0;
-    }
-    
-    .support-feature p {
-        margin: 0;
-        font-size: 0.9rem;
+    .map-container-new:hover .responsive-map-iframe-wrapper-new iframe {
+        filter: grayscale(0%);
     }
     
     @media (max-width: 768px) {

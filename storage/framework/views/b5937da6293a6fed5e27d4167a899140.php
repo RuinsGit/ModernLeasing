@@ -34,7 +34,7 @@
                                 <div class="d-flex flex-wrap align-items-center justify-content-end gap-2">
                                     <?php if($heroSections->count() == 0): ?>
                                         <a href="<?php echo e(route('admin.hero.create')); ?>" class="btn btn-primary">
-                                            <i class="bx bx-plus me-1"></i> Yeni Hero Əlavə Et
+                                            <i class="mdi mdi-plus me-1"></i> Yeni Hero Əlavə Et
                                         </a>
                                     <?php endif; ?>
                                 </div>
@@ -123,7 +123,7 @@
                                                     <h5 class="font-size-16">Hələ ki heç bir hero section yoxdur</h5>
                                                     <p class="text-muted">İlk hero section yaratmaq üçün "Yeni Hero Əlavə Et" düyməsinə klikləyin.</p>
                                                     <a href="<?php echo e(route('admin.hero.create')); ?>" class="btn btn-primary mt-2">
-                                                        <i class="bx bx-plus me-1"></i> Yeni Hero Əlavə Et
+                                                        <i class="mdi mdi-plus me-1"></i> Yeni Hero Əlavə Et
                                                     </a>
                                                 </div>
                                             </td>

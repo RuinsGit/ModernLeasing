@@ -19,7 +19,7 @@
     <meta property="og:url" content="<?php echo e(url()->current()); ?>">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="<?php echo e(asset('assets/images/favicon.ico')); ?>">
+    <link rel="icon" type="image/svg+xml" href="<?php echo e(asset('back/assets/images/logomogo.svg')); ?>">
     
     <!-- Styles -->
     <?php echo $__env->make('front.includes.styles', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

@@ -31,6 +31,9 @@ Route::get('/faq', [FrontController::class, 'faq'])->name('front.faq');
 Route::get('/elaqe', [FrontController::class, 'contact'])->name('front.contact');
 Route::post('/elaqe', [FrontController::class, 'contactStore'])->name('front.contact.store');
 
+// Redirect from /contact to /elaqe for SEO
+Route::redirect('/contact', '/elaqe', 301);
+
 // AJAX Routes
 Route::post('/newsletter-subscribe', [FrontController::class, 'newsletterSubscribe'])->name('front.newsletter.subscribe');
 Route::post('/track-package', [FrontController::class, 'trackPackage'])->name('front.track.package');

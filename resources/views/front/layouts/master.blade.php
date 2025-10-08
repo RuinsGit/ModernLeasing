@@ -19,7 +19,7 @@
     <meta property="og:url" content="{{ url()->current() }}">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('back/assets/images/logomogo.svg') }}">
     
     <!-- Styles -->
     @include('front.includes.styles')

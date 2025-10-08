@@ -43,7 +43,7 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('admin.hero.update', $hero->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.hero.update', $hero->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             
@@ -67,37 +67,6 @@
                                 @error('subtitle')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
-                            </div>
-
-                            <!-- Hero Image -->
-                            <div class="mb-3">
-                                <label for="image" class="form-label">Hero Şəkli (Opsional)</label>
-                                <input type="file" class="form-control @error('image') is-invalid @enderror" 
-                                       id="image" name="image" accept="image/*">
-                                @error('image')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                                <div class="form-text">PNG, JPG formatları qəbul edilir. Max: 2MB</div>
-                                
-                                @if($hero->image)
-                                    <div class="mt-3" id="current-image">
-                                        <label class="form-label">Hazırki Şəkil:</label>
-                                        <div class="current-image">
-                                            <img src="{{ $hero->image_url }}" 
-                                                 alt="{{ $hero->title }}" 
-                                                 style="max-height: 150px; max-width: 100%; object-fit: cover; border: 1px solid #dee2e6; border-radius: 4px;">
-                                        </div>
-                                    </div>
-                                @endif
-                                
-                                <!-- Yeni şəkil önizləmə -->
-                                <div class="mt-3" id="image-preview" style="display: none;">
-                                    <label class="form-label">Yeni Şəkil Önizləməsi:</label>
-                                    <div>
-                                        <img id="image-preview-img" src="" alt="Şəkil Önizləmə" 
-                                             style="max-height: 150px; max-width: 100%; object-fit: cover; border: 1px solid #dee2e6; border-radius: 4px;">
-                                    </div>
-                                </div>
                             </div>
 
                             <!-- Düymələr -->
@@ -211,13 +180,13 @@
                             <!-- Düymələr -->
                             <div class="d-flex gap-2">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="bx bx-save me-2"></i> Yenilə
+                                    <i class="mdi mdi-content-save me-2"></i> Yenilə
                                 </button>
                                 <a href="{{ route('admin.hero.index') }}" class="btn btn-secondary">
                                     <i class="bx bx-x me-2"></i> İmtina Et
                                 </a>
                                 <a href="{{ route('admin.hero.show', $hero->id) }}" class="btn btn-info">
-                                    <i class="bx bx-show me-2"></i> Bax
+                                    <i class="mdi mdi-eye me-2"></i> Bax
                                 </a>
                             </div>
                         </form>
@@ -229,33 +198,3 @@
     </div> <!-- container-fluid -->
 </div>
 @endsection
-
-@push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const imageInput = document.getElementById('image');
-        const imagePreview = document.getElementById('image-preview');
-        const imagePreviewImg = document.getElementById('image-preview-img');
-        const currentImageDiv = document.getElementById('current-image');
-
-        if (imageInput) {
-            imageInput.addEventListener('change', function(event) {
-                const file = event.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        imagePreviewImg.src = e.target.result;
-                        imagePreview.style.display = 'block';
-                        currentImageDiv.style.display = 'none';
-                    }
-                    reader.readAsDataURL(file);
-                } else {
-                    imagePreviewImg.src = '';
-                    imagePreview.style.display = 'none';
-                    currentImageDiv.style.display = 'block';
-                }
-            });
-        }
-    });
-</script>
-@endpush

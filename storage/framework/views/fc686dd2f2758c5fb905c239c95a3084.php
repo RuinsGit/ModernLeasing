@@ -12,17 +12,15 @@
                         <?php endif; ?>
                         <?php if(isset($siteLogo) && $siteLogo->site_name): ?>
                             <h4 class="text-white"><?php echo e($siteLogo->site_name); ?></h4>
-                        <?php else: ?>
-                            <h4 class="text-white">MODERN LİZİNQ</h4>
                         <?php endif; ?>
                     </div>
                     <p class="footer-description">
                         <?php if(isset($siteLogo) && $siteLogo->site_description): ?>
                             <?php echo e($siteLogo->site_description); ?>
 
-                        <?php else: ?>
-                            15 il təcrübəmizla Azərbaycanın aparıcı lizinq şirkəti olaraq 
-                            fərdi və korporativ müştərilərimizə ən uyğun maliyyələşdirmə həllərini təqdim edirik.
+                        <?php elseif(isset($heroSection) && $heroSection->subtitle): ?>
+                            <?php echo e($heroSection->subtitle); ?>
+
                         <?php endif; ?>
                     </p>
                     
@@ -39,23 +37,6 @@
                                         </a>
                                     <?php endif; ?>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            <?php else: ?>
-                                <!-- Default social media links -->
-                                <a href="#" class="social-link">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="#" class="social-link">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="#" class="social-link">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a href="#" class="social-link">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a href="#" class="social-link">
-                                    <i class="fab fa-youtube"></i>
-                                </a>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -70,15 +51,9 @@
                         <?php if(isset($desktopNavbarItems) && $desktopNavbarItems->count() > 0): ?>
                             <?php $__currentLoopData = $desktopNavbarItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <?php if(!$item->parent_id && $item->is_active && $item->show_desktop): ?>
-                                    <li><a href="<?php echo e($item->link); ?>"><?php echo e($item->title); ?></a></li>
+                                    <li><a href="<?php echo e($item->url); ?>"><?php echo e($item->title); ?></a></li>
                                 <?php endif; ?>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <?php else: ?>
-                            <li><a href="<?php echo e(route('front.index')); ?>">Ana Səhifə</a></li>
-                            <li><a href="<?php echo e(route('front.about')); ?>">Haqqımızda</a></li>
-                            <li><a href="#services">Xidmətlər</a></li>
-                            <li><a href="#investors">İnvestorlar</a></li>
-                            <li><a href="<?php echo e(route('front.contact')); ?>">Əlaqə</a></li>
                         <?php endif; ?>
                     </ul>
                 </div>
@@ -95,12 +70,6 @@
                                     <li><a href="<?php echo e(route('front.services')); ?>#<?php echo e(Str::slug($service->title)); ?>"><?php echo e($service->title); ?></a></li>
                                 <?php endif; ?>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <?php else: ?>
-                            <li><a href="#agricultural">Kənd Təsərrüfatı</a></li>
-                            <li><a href="#automotive">Avtomobillər</a></li>
-                            <li><a href="#household">Məişət Texnikası</a></li>
-                            <li><a href="#realestate">Daşınmaz Əmlak</a></li>
-                            <li><a href="#industrial">Sənaye Avadanlıqları</a></li>
                         <?php endif; ?>
                     </ul>
                 </div>
@@ -168,57 +137,6 @@
                             </div>
                         </div>
                         <?php endif; ?>
-                    <?php else: ?>
-                        <!-- Default static contact info -->
-                        <!-- Address -->
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-content">
-                                <p>28 May küç. 123<br>Bakı, Azərbaycan AZ1000</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Phone -->
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-content">
-                                <p>
-                                    <a href="tel:+994123456789">+994 12 345 67 89</a><br>
-                                    <a href="tel:+994503456789">+994 50 345 67 89</a>
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <!-- Email -->
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-content">
-                                <p>
-                                    <a href="mailto:info@modernlizinq.az">info@modernlizinq.az</a><br>
-                                    <a href="mailto:support@modernlizinq.az">support@modernlizinq.az</a>
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <!-- Working Hours -->
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div class="contact-content">
-                                <p>
-                                    Bazar ertəsi - Cümə: 09:00 - 18:00<br>
-                                    Şənbə: 09:00 - 14:00<br>
-                                    Bazar: Bağlı
-                                </p>
-                            </div>
-                        </div>
                     <?php endif; ?>
                 </div>
             </div>
@@ -229,7 +147,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="copyright">
-                        <p>&copy; <span id="currentYear"></span> MODERN LİZİNQ. Bütün hüquqlar qorunur.</p>
+                        <p>&copy; <span id="currentYear"></span> MODERN LEASING. Bütün hüquqlar qorunur.</p>
                     </div>
                 </div>
                 <div class="col-lg-6">

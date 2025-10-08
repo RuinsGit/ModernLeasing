@@ -179,7 +179,7 @@
                             <!-- Düymələr -->
                             <div class="d-flex gap-2">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="bx bx-save me-2"></i> Yadda Saxla
+                                    <i class="mdi mdi-content-save me-2"></i> Yadda Saxla
                                 </button>
                                 <a href="{{ route('admin.hero.index') }}" class="btn btn-secondary">
                                     <i class="bx bx-x me-2"></i> İmtina Et

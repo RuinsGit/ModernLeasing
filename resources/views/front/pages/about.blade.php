@@ -1,8 +1,8 @@
 @extends('front.layouts.master')
 
-@section('title', 'Haqqımızda - MODERN LİZİNQ')
-@section('description', 'Modern Lizinq haqqında ətraflı məlumat. Şirkətimizin tarixi, missiyası, strategji məqsədləri və gələcək planları.')
-@section('keywords', 'haqqımızda, modern lizinq, şirkət tarixi, missiya, strateji məqsədlər, gələcək planlar')
+@section('title', 'Haqqımızda - MODERN LEASING')
+@section('description', 'Modern Leasing haqqında ətraflı məlumat. Şirkətimizin tarixi, missiyası, strategji məqsədləri və gələcək planları.')
+@section('keywords', 'haqqımızda, modern leasing, şirkət tarixi, missiya, strateji məqsədlər, gələcək planlar')
 
 @section('content')
     <!-- Page Header -->
@@ -42,7 +42,7 @@
                             </p>
                         @else
                             <p class="section-subtitle text-light">
-                                Yaranma tarixi (2023), investorlar və peşəkar komanda ilə lizinq sahəsində güclü addımlar atırıq.
+                                Yaranma tarixi (2023), investorlar və peşəkar komanda ilə leasing sahəsində güclü addımlar atırıq.
                             </p>
                         @endif
                         
@@ -68,7 +68,7 @@
                                     <div class="timeline-content">
                                         <h5 class="text-primary">2023</h5>
                                         <h6 class="text-white">Şirkətin Yaradılması</h6>
-                                        <p class="text-light">Modern Lizinq şirkəti olaraq fəaliyyətə başladıq və ilk müştərilərimizlə işə başladıq.</p>
+                                        <p class="text-light">Modern leasing şirkəti olaraq fəaliyyətə başladıq və ilk müştərilərimizlə işə başladıq.</p>
                                     </div>
                                 </div>
                                 
@@ -155,7 +155,7 @@
                                 <i class="fas fa-bullseye"></i>
                             </div>
                             <h4 class="text-white">Missiya</h4>
-                            <p class="text-light">Müştəri yönümlü yanaşma və keyfiyyətli həllərlə lizinq sahəsində güclü mövqeyə nail olmaq</p>
+                            <p class="text-light">Müştəri yönümlü yanaşma və keyfiyyətli həllərlə leasing sahəsində güclü mövqeyə nail olmaq</p>
                         </div>
                     </div>
                     
@@ -165,7 +165,7 @@
                                 <i class="fas fa-eye"></i>
                             </div>
                             <h4 class="text-white">Vizyon</h4>
-                            <p class="text-light">Azərbaycanın aparıcı lizinq şirkəti olaraq beynəlxalq bazarda tanınmaq</p>
+                            <p class="text-light">Azərbaycanın aparıcı leasing şirkəti olaraq beynəlxalq bazarda tanınmaq</p>
                         </div>
                     </div>
                     
@@ -179,6 +179,11 @@
                         </div>
                     </div>
                 @endif
+            </div>
+            <div class="mission-actions" data-aos="fade-up" data-aos-delay="600">
+                <a href="{{ $heroSection->secondary_button_link ?? '#' }}" class="btn-primary-custom">
+                    {{ $heroSection->secondary_button_text ?? 'Bizimlə Əməkdaşlıq Edin' }}
+                </a>
             </div>
         </div>
     </section>
@@ -227,7 +232,7 @@
                             <div class="team-info">
                                 <h5 class="text-white">Rəhbər</h5>
                                 <p class="text-primary">İcraçı Direktor</p>
-                                <p class="text-light">15 illik lizinq sahəsində təcrübə</p>
+                                <p class="text-light">15 illik leasing sahəsində təcrübə</p>
                             </div>
                         </div>
                     </div>
@@ -330,7 +335,7 @@
                             <div class="news-content">
                                 <h5 class="news-title text-white">Yeni Rəqəmsal Platformamız İstifadəyə Verildi</h5>
                                 <p class="news-excerpt text-light">
-                                    Müştərilərimizin rahatlığı üçün hazırladığımız yeni online lizinq platforması artıq fəaliyyətdədir. Bu platforma ilə siz...
+                                    Müştərilərimizin rahatlığı üçün hazırladığımız yeni online leasing platforması artıq fəaliyyətdədir. Bu platforma ilə siz...
                                 </p>
                                 <a href="javascript:void(0)" class="news-link text-primary">
                                     <i class="fas fa-arrow-right me-2"></i>Ətraflı oxu
@@ -370,9 +375,9 @@
                                 <span class="month">Noyabr 2024</span>
                             </div>
                             <div class="news-content">
-                                <h5 class="news-title text-white">Avtomobl Lizinqi İnkişaf Edir</h5>
+                                <h5 class="news-title text-white">Avtomobl Leasing İnkişaf Edir</h5>
                                 <p class="news-excerpt text-light">
-                                    2024-cü ildə avtomobl lizinqi sahəsində 40% artım qeydə alınıb. Yeni model avtomobillər və sərfəli şərtlərlə...
+                                    2024-cü ildə avtomobl leasing sahəsində 40% artım qeydə alınıb. Yeni model avtomobillər və sərfəli şərtlərlə...
                                 </p>
                                 <a href="javascript:void(0)" class="news-link text-primary">
                                     <i class="fas fa-arrow-right me-2"></i>Ətraflı oxu

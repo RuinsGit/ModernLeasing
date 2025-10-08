@@ -1,8 +1,8 @@
 @extends('front.layouts.master')
 
-@section('title', 'Xidmətlər - MODERN LİZİNQ')
-@section('description', 'Modern Lizinq xidmətləri: kənd təsərrüfatı texnikası, avtomobil, məişət texnikası, daşınmaz əmlak, sənaye avadanlıqları və tikinti texnikası lizinqi.')
-@section('keywords', 'lizinq xidmətləri, kənd təsərrüfatı lizinqi, avtomobil lizinqi, məişət texnikası, sənaye avadanlıqları')
+@section('title', 'Xidmətlər - MODERN LEASING')
+@section('description', 'Modern Leasing xidmətləri: kənd təsərrüfatı texnikası, avtomobil, məişət texnikası, daşınmaz əmlak, sənaye avadanlıqları və tikinti texnikası leasingi.')
+@section('keywords', 'leasing xidmətləri, kənd təsərrüfatı leasingi, avtomobil leasingi, məişət texnikası, sənaye avadanlıqları')
 
 @section('content')
     <!-- Page Header -->
@@ -82,7 +82,7 @@
                                         <i class="fas fa-tractor"></i>
                                     </div>
                                     <h4 class="card-title-service text-white">Kənd Təsərrüfatı Texnikası</h4>
-                                    <p class="card-description text-light">Traktor, kombayn və digər kənd təsərrüfatı avadanlıqlarının lizinqi</p>
+                                    <p class="card-description text-light">Traktor, kombayn və digər kənd təsərrüfatı avadanlıqlarının leasingi</p>
                                     <ul class="card-features">
                                         <li><i class="fas fa-check-circle text-primary me-2"></i>Traktor və kombaynlar</li>
                                         <li><i class="fas fa-check-circle text-primary me-2"></i>Əkin-biçin avadanlıqları</li>
@@ -100,7 +100,7 @@
                                         <i class="fas fa-car"></i>
                                     </div>
                                     <h4 class="card-title-service text-white">Avtomobillər</h4>
-                                    <p class="card-description text-light">Şəxsi və kommersiya avtomobillərin əlverişli lizinq imkanları</p>
+                                    <p class="card-description text-light">Şəxsi və kommersiya avtomobillərin əlverişli leasing imkanları</p>
                                     <ul class="card-features">
                                         <li><i class="fas fa-check-circle text-primary me-2"></i>Şəxsi avtomobillər</li>
                                         <li><i class="fas fa-check-circle text-primary me-2"></i>Kommersiya nəqliyyatı</li>
@@ -118,7 +118,7 @@
                                         <i class="fas fa-home"></i>
                                     </div>
                                     <h4 class="card-title-service text-white">Məişət Texnikası</h4>
-                                    <p class="card-description text-light">Ev və mətbəx texnikalarının lizinq xidmətləri</p>
+                                    <p class="card-description text-light">Ev və mətbəx texnikalarının leasing xidmətləri</p>
                                     <ul class="card-features">
                                         <li><i class="fas fa-check-circle text-primary me-2"></i>Mətbəx texnikası</li>
                                         <li><i class="fas fa-check-circle text-primary me-2"></i>Ev elektronikası</li>
@@ -136,7 +136,7 @@
                                         <i class="fas fa-building"></i>
                                     </div>
                                     <h4 class="card-title-service text-white">Daşınmaz Əmlak</h4>
-                                    <p class="card-description text-light">Ofis və yaşayış sahələrinin lizinq imkanları</p>
+                                    <p class="card-description text-light">Ofis və yaşayış sahələrinin leasing imkanları</p>
                                     <ul class="card-features">
                                         <li><i class="fas fa-check-circle text-primary me-2"></i>Ofis binaları</li>
                                         <li><i class="fas fa-check-circle text-primary me-2"></i>Mənzil və villalar</li>
@@ -154,7 +154,7 @@
                                         <i class="fas fa-industry"></i>
                                     </div>
                                     <h4 class="card-title-service text-white">Sənaye Avadanlıqları</h4>
-                                    <p class="card-description text-light">Müxtəlif sənaye sahələri üçün avadanlıq lizinqi</p>
+                                    <p class="card-description text-light">Müxtəlif sənaye sahələri üçün avadanlıq leasingi</p>
                                     <ul class="card-features">
                                         <li><i class="fas fa-check-circle text-primary me-2"></i>İstehsal avadanlıqları</li>
                                         <li><i class="fas fa-check-circle text-primary me-2"></i>Enerji sistemləri</li>
@@ -172,7 +172,7 @@
                                         <i class="fas fa-tools"></i>
                                     </div>
                                     <h4 class="card-title-service text-white">Tikinti Texnikası</h4>
-                                    <p class="card-description text-light">Tikinti və yol-inşaat texnikalarının lizinqi</p>
+                                    <p class="card-description text-light">Tikinti və yol-inşaat texnikalarının leasing</p>
                                     <ul class="card-features">
                                         <li><i class="fas fa-check-circle text-primary me-2"></i>Ekskovator və bulldozerlər</li>
                                         <li><i class="fas fa-check-circle text-primary me-2"></i>Kranlar və liftlər</li>

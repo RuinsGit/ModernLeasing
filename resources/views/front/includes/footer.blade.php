@@ -12,16 +12,13 @@
                         @endif
                         @if(isset($siteLogo) && $siteLogo->site_name)
                             <h4 class="text-white">{{ $siteLogo->site_name }}</h4>
-                        @else
-                            <h4 class="text-white">MODERN LİZİNQ</h4>
                         @endif
                     </div>
                     <p class="footer-description">
                         @if(isset($siteLogo) && $siteLogo->site_description)
                             {{ $siteLogo->site_description }}
-                        @else
-                            15 il təcrübəmizla Azərbaycanın aparıcı lizinq şirkəti olaraq 
-                            fərdi və korporativ müştərilərimizə ən uyğun maliyyələşdirmə həllərini təqdim edirik.
+                        @elseif(isset($heroSection) && $heroSection->subtitle)
+                            {{ $heroSection->subtitle }}
                         @endif
                     </p>
                     
@@ -37,23 +34,6 @@
                                         </a>
                                     @endif
                                 @endforeach
-                            @else
-                                <!-- Default social media links -->
-                                <a href="#" class="social-link">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="#" class="social-link">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="#" class="social-link">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a href="#" class="social-link">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a href="#" class="social-link">
-                                    <i class="fab fa-youtube"></i>
-                                </a>
                             @endif
                         </div>
                     </div>
@@ -68,15 +48,9 @@
                         @if(isset($desktopNavbarItems) && $desktopNavbarItems->count() > 0)
                             @foreach($desktopNavbarItems as $item)
                                 @if(!$item->parent_id && $item->is_active && $item->show_desktop)
-                                    <li><a href="{{ $item->link }}">{{ $item->title }}</a></li>
+                                    <li><a href="{{ $item->url }}">{{ $item->title }}</a></li>
                                 @endif
                             @endforeach
-                        @else
-                            <li><a href="{{ route('front.index') }}">Ana Səhifə</a></li>
-                            <li><a href="{{ route('front.about') }}">Haqqımızda</a></li>
-                            <li><a href="#services">Xidmətlər</a></li>
-                            <li><a href="#investors">İnvestorlar</a></li>
-                            <li><a href="{{ route('front.contact') }}">Əlaqə</a></li>
                         @endif
                     </ul>
                 </div>
@@ -93,12 +67,6 @@
                                     <li><a href="{{ route('front.services') }}#{{ Str::slug($service->title) }}">{{ $service->title }}</a></li>
                                 @endif
                             @endforeach
-                        @else
-                            <li><a href="#agricultural">Kənd Təsərrüfatı</a></li>
-                            <li><a href="#automotive">Avtomobillər</a></li>
-                            <li><a href="#household">Məişət Texnikası</a></li>
-                            <li><a href="#realestate">Daşınmaz Əmlak</a></li>
-                            <li><a href="#industrial">Sənaye Avadanlıqları</a></li>
                         @endif
                     </ul>
                 </div>
@@ -166,57 +134,6 @@
                             </div>
                         </div>
                         @endif
-                    @else
-                        <!-- Default static contact info -->
-                        <!-- Address -->
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-content">
-                                <p>28 May küç. 123<br>Bakı, Azərbaycan AZ1000</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Phone -->
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-content">
-                                <p>
-                                    <a href="tel:+994123456789">+994 12 345 67 89</a><br>
-                                    <a href="tel:+994503456789">+994 50 345 67 89</a>
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <!-- Email -->
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-content">
-                                <p>
-                                    <a href="mailto:info@modernlizinq.az">info@modernlizinq.az</a><br>
-                                    <a href="mailto:support@modernlizinq.az">support@modernlizinq.az</a>
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <!-- Working Hours -->
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div class="contact-content">
-                                <p>
-                                    Bazar ertəsi - Cümə: 09:00 - 18:00<br>
-                                    Şənbə: 09:00 - 14:00<br>
-                                    Bazar: Bağlı
-                                </p>
-                            </div>
-                        </div>
                     @endif
                 </div>
             </div>
@@ -227,7 +144,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="copyright">
-                        <p>&copy; <span id="currentYear"></span> MODERN LİZİNQ. Bütün hüquqlar qorunur.</p>
+                        <p>&copy; <span id="currentYear"></span> MODERN LEASING. Bütün hüquqlar qorunur.</p>
                     </div>
                 </div>
                 <div class="col-lg-6">

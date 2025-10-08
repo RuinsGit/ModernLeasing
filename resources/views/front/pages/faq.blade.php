@@ -1,8 +1,8 @@
 @extends('front.layouts.master')
 
-@section('title', 'Tez-Tez Verilən Suallar - MODERN LİZİNQ')
-@section('description', 'Modern Lizinq ilə bağlı ən çox verilən suallara cavablar. Lizinq prosesi, ödənişlər, sənədlər və s. haqqında məlumatlar.')
-@section('keywords', 'faq, suallar, cavablar, lizinq sualları, ödəniş, sənədlər, modern lizinq')
+@section('title', 'Tez-Tez Verilən Suallar - MODERN LEASING')
+@section('description', 'Modern Leasing ilə bağlı ən çox verilən suallara cavablar. Leasing prosesi, ödənişlər, sənədlər və s. haqqında məlumatlar.')
+@section('keywords', 'faq, suallar, cavablar, leasing sualları, ödəniş, sənədlər, modern leasing')
 
 @section('content')
     <!-- Page Header -->
@@ -31,7 +31,7 @@
                 <div class="col-12 text-center mb-5">
                     <h2 class="section-title text-white" data-aos="fade-up">Bizə Ən Çox Verilən <span class="text-primary">Suallar</span></h2>
                     <p class="section-subtitle text-light" data-aos="fade-up" data-aos-delay="200">
-                        Lizinq prosesi, ödəniş şərtləri, sənədləşdirmə və digər mövzular haqqında bütün suallarınıza cavab tapın.
+                        Leasing prosesi, ödəniş şərtləri, sənədləşdirmə və digər mövzular haqqında bütün suallarınıza cavab tapın.
                     </p>
                 </div>
             </div>

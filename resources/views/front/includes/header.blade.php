@@ -9,7 +9,7 @@
                             {!! nl2br(e($heroSection->title)) !!}
                         @else
                             TEXNİKA, AVTOMOBİL VƏ<br>
-                            <span class="text-primary">ƏMLAKINIIZI ŞƏRFƏLI LİZİNQ ŞƏRTLƏRİ İLƏ ƏLDƏ EDİN</span>
+                            <span class="text-primary">ƏMLAKINIIZI SƏRFƏLI LEASING ŞƏRTLƏRİ İLƏ ƏLDƏ EDİN</span>
                         @endif
                     </h1>
                     
@@ -19,7 +19,7 @@
                         </p>
                     @else
                         <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="500">
-                            Modern Lizinq ilə texnika, avtomobil və əmlakınızı ən əlverişli şərtlərlə əldə edin. 
+                            Modern Leasing ilə texnika, avtomobil və əmlakınızı ən əlverişli şərtlərlə əldə edin. 
                             Çevik ödəniş imkanları, geniş məhsul seçimi və peşəkar komandamızla 
                             sizə xüsusi həllər təqdim edirik.
                         </p>
@@ -27,17 +27,17 @@
                     
                     <div class="hero-actions" data-aos="fade-up" data-aos-delay="700">
                         @if($heroSection)
-                            <button class="btn-primary-custom me-3" data-bs-toggle="modal" data-bs-target="#applicationModal">
-                                <i class="fas fa-file-alt me-2"></i>{{ $heroSection->primary_button_text ?? 'Lizinqə Müraciət Et' }}
-                            </button>
+                            <a href="{{ $heroSection->primary_button_link ?? '#' }}" class="btn-primary-custom me-3">
+                                <i class="fas fa-file-alt me-2"></i>{{ $heroSection->primary_button_text }}
+                            </a>
                             
                             <a href="{{ $heroSection->secondary_button_link ?? '#contact' }}" class="btn-outline-custom">
-                                <i class="fas fa-phone me-2"></i>{{ $heroSection->secondary_button_text ?? 'Əlaqə Saxla' }}
+                                <i class="fas fa-phone me-2"></i>{{ $heroSection->secondary_button_text }}
                             </a>
                         @else
-                            <button class="btn-primary-custom me-3" data-bs-toggle="modal" data-bs-target="#applicationModal">
-                                <i class="fas fa-file-alt me-2"></i>Lizinqə Müraciət Et
-                            </button>
+                            <a href="#" class="btn-primary-custom me-3">
+                                <i class="fas fa-file-alt me-2"></i>Leasingə Müraciət Et
+                            </a>
                             
                             <a href="#contact" class="btn-outline-custom">
                                 <i class="fas fa-phone me-2"></i>Əlaqə Saxla
@@ -105,7 +105,7 @@
                             </div>
                             <div class="card-content">
                                 <h4>Sürətli Razılaşma</h4>
-                                <p>24 saat ərzində lizinq razılaşması</p>
+                                <p>24 saat ərzində leasing razılaşması</p>
                             </div>
                         </div>
                         

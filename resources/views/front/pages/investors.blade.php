@@ -1,8 +1,8 @@
 @extends('front.layouts.master')
 
-@section('title', 'İnvestorlar - MODERN LİZİNQ')
-@section('description', 'Modern Lizinq investorları və tərəfdaş imkanları. Şirkətimizlə əməkdaşlıq edən partner şirkətləri və investor seçimləri.')
-@section('keywords', 'investor, tərəfdaş, əməkdaşlıq, partnerlik, investisiya imkanları, modern lizinq')
+@section('title', 'İnvestorlar - MODERN LEASING')
+@section('description', 'Modern Leasing investorları və tərəfdaş imkanları. Şirkətimizlə əməkdaşlıq edən partner şirkətləri və investor seçimləri.')
+@section('keywords', 'investor, tərəfdaş, əməkdaşlıq, partnerlik, investisiya imkanları, modern leasing')
 
 @section('content')
     <!-- Page Header -->
@@ -40,7 +40,7 @@
                         </p>
                     @else
                         <p class="section-subtitle text-light" data-aos="fade-up" data-aos-delay="200">
-                            Modern Lizinq olaraq güclü maliyyə strukturu və inkişaf strategiyamızla 
+                            Modern Leasing olaraq güclü maliyyə strukturu və inkişaf strategiyamızla 
                             yeni investorları və tərəfdaşları dəvət edirik
                         </p>
                     @endif
@@ -52,7 +52,7 @@
                     <div class="partnership-content">
                         <h3 class="text-white mb-4">Niyə Bizimlə Əməkdaşlıq Etməlisiniz?</h3>
                         <p class="text-light mb-4">
-                            Azərbaycanda lizinq sahəsinin dinamik inkişafı və böyümə potensialından yararlanaraq, 
+                            Azərbaycanda leasing sahəsinin dinamik inkişafı və böyümə potensialından yararlanaraq, 
                             strategji tərəfdaşlarımızla birlikdə güclü investisiya imkanları yaradırıq.
                         </p>
                         
@@ -169,7 +169,7 @@
                             <h4 class="text-white">Korporativ Tərəfdaş</h4>
                             <p class="text-light">Böyük korporasiyalar üçün strateji əməkdaşlıq və joint venture imkanları</p>
                             <ul class="partnership-benefits">
-                                <li>Birgə lizinq məhsulları</li>
+                                <li>Birgə leasing məhsulları</li>
                                 <li>Çarpaz satış imkanları</li>
                                 <li>Regional genişlənmə</li>
                             </ul>
@@ -310,7 +310,7 @@
                             </p>
                         @else
                             <p class="section-subtitle text-light mb-4">
-                                Lizinq sahəsində böyümə imkanlarından faydalanmaq və uğurlu tərəfdaşlıq qurmaq üçün 
+                                Leasing sahəsində böyümə imkanlarından faydalanmaq və uğurlu tərəfdaşlıq qurmaq üçün 
                                 bizimlə əlaqə saxlayın. Mütəxəssis komandamız sizə ən uyğun əməkdaşlıq modelini təklif edəcək.
                             </p>
                         @endif
@@ -346,7 +346,7 @@
                             @else
                                 <p class="text-light">
                                     <i class="fas fa-envelope text-primary me-2"></i>
-                                    investor@modernlizinq.az
+                                    investor@modernleasing.az
                                 </p>
                             @endif
                         </div>

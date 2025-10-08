@@ -45,7 +45,7 @@ class FrontController extends Controller
         $desktopNavbarItems = NavbarItem::getDesktopItems();
         $mobileNavbarItems = NavbarItem::getMobileItems();
         $siteLogo = SiteLogo::getActiveLogo();
-        $services = Service::getActiveServices();
+        $services = Service::getActiveServices()->take(6);
         $advantages = Advantage::getActiveAdvantages();
         $missionGoals = MissionGoal::getActiveMissionGoals(); // Yeni əlavə edildi
         $statItems = StatItem::getActiveStatItems(); // Yeni əlavə edildi
@@ -76,8 +76,9 @@ class FrontController extends Controller
         $teamMembers = TeamMember::getActiveTeamMembers(); // Yeni əlavə edildi
         $newsItems = NewsItem::getActiveNewsItems(); // Yeni əlavə edildi
         $businessHours = BusinessHour::getActiveBusinessHours(); // Yeni əlavə edildi
+        $services = Service::getActiveServices()->take(6); // Yeni əlavə edildi
         
-        return view('front.pages.about', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'advantages', 'contactInfo', 'companyHistoryItems', 'aboutMissionSection', 'aboutMissionCards', 'teamMembers', 'newsItems', 'businessHours'));
+        return view('front.pages.about', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'advantages', 'contactInfo', 'companyHistoryItems', 'aboutMissionSection', 'aboutMissionCards', 'teamMembers', 'newsItems', 'businessHours', 'services'));
     }
     
     /**
@@ -91,7 +92,7 @@ class FrontController extends Controller
         $desktopNavbarItems = NavbarItem::getDesktopItems();
         $mobileNavbarItems = NavbarItem::getMobileItems();
         $siteLogo = SiteLogo::getActiveLogo();
-        $services = Service::getActiveServices();
+        $services = Service::getActiveServices()->take(6);
         $contactInfo = ContactInfo::getActiveContactInfo(); // Yeni əlavə edildi
         $businessHours = BusinessHour::getActiveBusinessHours(); // Yeni əlavə edildi
         
@@ -116,8 +117,9 @@ class FrontController extends Controller
         $partnershipTypes = PartnershipType::getActiveTypes(); // Yeni əlavə edildi
         $partners = Partner::getActivePartners(); // Yeni əlavə edildi
         $investorContactSection = InvestorContactSection::getSectionData(); // Yeni əlavə edildi
-
-        return view('front.pages.investors', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'contactInfo', 'businessHours', 'partnershipSection', 'partnershipFeatures', 'partnershipTypes', 'partners', 'investorContactSection'));
+        $services = Service::getActiveServices()->take(6); // Yeni əlavə edildi
+        
+        return view('front.pages.investors', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'contactInfo', 'businessHours', 'partnershipSection', 'partnershipFeatures', 'partnershipTypes', 'partners', 'investorContactSection', 'services'));
     }
     
     /**
@@ -134,8 +136,9 @@ class FrontController extends Controller
         $contactInfo = ContactInfo::getActiveContactInfo();
         $businessHours = BusinessHour::getActiveBusinessHours();
         $faqCategories = FaqCategory::with('faqItems')->where('is_active', true)->orderBy('order')->get();
+        $services = Service::getActiveServices()->take(6); // Yeni əlavə edildi
         
-        return view('front.pages.faq', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'contactInfo', 'businessHours', 'faqCategories'));
+        return view('front.pages.faq', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'contactInfo', 'businessHours', 'faqCategories', 'services'));
     }
     
     /**
@@ -152,8 +155,9 @@ class FrontController extends Controller
         $siteLogo = SiteLogo::getActiveLogo();
         $contactInfo = ContactInfo::getActiveContactInfo(); // Yeni əlavə edildi
         $businessHours = BusinessHour::getActiveBusinessHours(); // Yeni əlavə edildi
+        $services = Service::getActiveServices()->take(6); // Yeni əlavə edildi
         
-        return view('front.pages.contact', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'contactInfo', 'businessHours'));
+        return view('front.pages.contact', compact('socialfooters', 'logos', 'heroSection', 'desktopNavbarItems', 'mobileNavbarItems', 'siteLogo', 'contactInfo', 'businessHours', 'services'));
     }
     
     /**

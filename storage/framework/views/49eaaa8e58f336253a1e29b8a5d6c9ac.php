@@ -1,6 +1,6 @@
 <?php $__env->startSection('title', 'MODERN LİZİNQ - Ana Səhifə'); ?>
-<?php $__env->startSection('description', 'MODERN LİZİNQ ilə texnika, avtomobil və əmlakınızı şərfəli lizinq şərtləri ilə əldə edin. Etibarlı xidmət və peşəkar dəstək.'); ?>
-<?php $__env->startSection('keywords', 'lizinq, texnika lizinqi, avtomobil lizinqi, əmlak lizinqi, kənd təsərrüfatı, sənaye avadanlıqları, modern lizinq'); ?>
+<?php $__env->startSection('description', 'MODERN LİZİNQ ilə texnika, avtomobil və əmlakınızı şərfəli leasing şərtləri ilə əldə edin. Etibarlı xidmət və peşəkar dəstək.'); ?>
+<?php $__env->startSection('keywords', 'leasing, texnika leasing, avtomobil leasing, əmlak leasing, kənd təsərrüfatı, sənaye avadanlıqları, modern leasing'); ?>
 
 <?php $__env->startSection('header'); ?>
     <?php echo $__env->make('front.includes.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
@@ -47,7 +47,7 @@
                                 <i class="fas fa-tractor"></i>
                             </div>
                             <h4 class="text-dark">Kənd Təsərrüfatı Texnikası</h4>
-                            <p style="color: #666666;">Traktor, kombayn və digər kənd təsərrüfatı avadanlıqlarının lizinqi</p>
+                            <p style="color: #666666;">Traktor, kombayn və digər kənd təsərrüfatı avadanlıqlarının leasing</p>
                             <ul class="category-features">
                                 <li>• Traktor və kombaynlar</li>
                                 <li>• Əkin-biçin avadanlıqları</li>
@@ -62,7 +62,7 @@
                                 <i class="fas fa-car"></i>
                             </div>
                             <h4 class="text-dark">Avtomobillər</h4>
-                            <p style="color: #666666;">Şəxsi və kommersiya avtomobillərin əlverişli lizinq imkanları</p>
+                            <p style="color: #666666;">Şəxsi və kommersiya avtomobillərin əlverişli leasing imkanları</p>
                             <ul class="category-features">
                                 <li>• Şəxsi avtomobillər</li>
                                 <li>• Kommersiya nəqliyyatı</li>
@@ -77,7 +77,7 @@
                                 <i class="fas fa-home"></i>
                             </div>
                             <h4 class="text-dark">Məişət Texnikası</h4>
-                            <p style="color: #666666;">Ev və mətbəx texnikalarının lizinq xidmətləri</p>
+                            <p style="color: #666666;">Ev və mətbəx texnikalarının leasing xidmətləri</p>
                             <ul class="category-features">
                                 <li>• Mətbəx texnikası</li>
                                 <li>• Ev elektronika</li>
@@ -97,7 +97,7 @@
                 <div class="col-12 text-center">
                     <h2 class="section-title text-white" data-aos="fade-up">Bizim <span class="text-primary">Üstünlüklərimiz</span></h2>
                     <p class="section-subtitle text-light" data-aos="fade-up" data-aos-delay="200">
-                        Modern Lizinq olaraq müştərilərimizə təqdim etdiyimiz əsas üstünlüklər
+                        Modern Leasing olaraq müştərilərimizə təqdim etdiyimiz əsas üstünlüklər
                     </p>
                 </div>
             </div>
@@ -125,7 +125,7 @@
                                 </div>
                                 <div class="advantage-content">
                                     <h4 class="text-white">Ən Aşağı Faiz Dərəcələri</h4>
-                                    <p class="text-light">Bazarda ən əlverişli faiz dərəcələri ilə lizinq imkanı</p>
+                                    <p class="text-light">Bazarda ən əlverişli faiz dərəcələri ilə leasing imkanı</p>
                                 </div>
                             </div>
                             
@@ -187,7 +187,7 @@
                     <div class="mission-content">
                         <h2 class="section-title text-white">Bizim <span class="text-primary">Missiya və Məqsədlərimiz</span></h2>
                         <p class="section-subtitle text-light">
-                            Müştəri yönümlü yanaşma ilə lizinq xidmətləri sahəsində lider mövqe tutaraq,
+                            Müştəri yönümlü yanaşma ilə leasing xidmətləri sahəsində lider mövqe tutaraq,
                             rəqabətədavamlı həllər və yenilikçi texnologiyalarla müştərilərimizin rifah səviyyəsini artırmaq.
                         </p>
                         
